@@ -25,3 +25,13 @@ body {
     text-wrap: balance;
   }
 }
+
+.form {
+  width: 0;
+  overflow: hidden;
+  transition: 0.35s;
+}
+
+.rubro:hover .form {
+  width: 75%;
+}

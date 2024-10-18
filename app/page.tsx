@@ -1,5 +1,5 @@
 import Dashboard from "./components/Dashboard/Dashboard";
-import Menu from "./components/Menu/Menu"
+import Menu from "./components/MenuAccordion/Menu"
 
 export default function Home() {
   return (

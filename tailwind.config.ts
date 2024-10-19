@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         background: "var(--background)",
-        "my-red": "bg-gradient-to-br from-slate-200 to-indigo-600",
+        "primary-red": "bg-gradient-to-br from-slate-200 to-indigo-600",
         "my-white": "#cacaca"
       },
     },

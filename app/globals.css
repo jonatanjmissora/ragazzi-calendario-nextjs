@@ -3,20 +3,24 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #222;
+  --background: linear-gradient(125deg, #eee, #999);
+  --primary-grad: linear-gradient(to bottom, rgb(177, 33, 33), rgb(104, 29, 29));
+  --primary: rgb(104, 29, 29);
+  --white: #eee;
+  --black: #222;
+  --text: var(--white);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: linear-gradient(125deg, rgb(44, 14, 14), rgb(15, 1, 1));
-    --white: #cacaca;
+    --text: #cacaca;
     --red: linear-gradient(125deg, rgb(113, 102, 212), rgb(58, 11, 11));
   }
 }
 
 body {
-  color: var(--white);
+  color: var(--text);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
@@ -28,10 +32,34 @@ body {
   }
 }
 
-.primary-red {
-  background: linear-gradient(125deg, rgb(0, 0, 0), rgb(26, 3, 3));
-  border: 1px solid rgb(10, 1, 1)
+.primary {
+  background: var(--primary-grad);
+  border: 1px solid rgb(34, 4, 4);
+  color: var(--text)
 }
+
+.white {
+  background: var(--white);
+  border: 1px solid rgb(34, 4, 4)
+}
+
+input {
+  border-bottom: 2px solid var(--primary);
+  background: transparent;
+  color: var(--black)
+}
+
+input:focus {
+  border: none;
+  border-bottom: 2px solid var(--primary);
+  outline: none;
+}
+
+input:checked+label {
+  border-bottom: 2px solid var(--primary);
+  color: var(--primary);
+}
+
 
 .form {
   width: 0;

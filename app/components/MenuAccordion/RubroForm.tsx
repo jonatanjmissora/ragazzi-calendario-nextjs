@@ -1,6 +1,7 @@
 "use client"
 
 import PlusSVG from "@/app/assets/PlusSVG"
+import SpinnerSVG from "@/app/assets/SpinnerSVG"
 import getActualLocaleDate from "@/app/utils/date"
 import { useRef, useState } from "react"
 
@@ -16,37 +17,33 @@ export default function RubroForm({ rubro, sectores }: { rubro: string, sectores
   const currentLocaleDate = getActualLocaleDate()
 
   const [showForm, setShowForm] = useState<boolean>(false)
-  const [actualSector, setActualSector] = useState<string>("")
-  const [actualDate, setActualDate] = useState<string>(currentLocaleDate)
-  const [actualMonto, setActualMonto] = useState<number | undefined>(undefined)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const dateRef = useRef(null)
-  const showDateRef = useRef(null)
+  const dateRef = useRef<HTMLInputElement>(null)
+  const showDateRef = useRef<HTMLInputElement>(null)
 
   const reset = () => {
-    setActualSector("")
-    setActualMonto(0)
     setShowForm(false)
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const { sector, date, monto } = Object.fromEntries(formData);
 
-    if (!actualSector || !actualMonto) return
-
-    const formData = {
+    const PaymentData = {
       rubro,
-      sector: actualSector,
-      monto: actualMonto,
-      date: actualDate,
+      sector,
+      monto,
+      date,
     }
     try {
       setIsLoading(true)
       await delay()
       reset()
-      alert("Cargado")
+      alert(JSON.stringify(PaymentData))
     } catch (error) {
 
+      console.log(error.message)
     }
     finally {
       setIsLoading(false)
@@ -55,9 +52,8 @@ export default function RubroForm({ rubro, sectores }: { rubro: string, sectores
   }
 
   const handleCalendarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const date = e.currentTarget.value
-    showDateRef.current.value = date
-    setActualDate(date)
+    if (showDateRef.current)
+      showDateRef.current.value = e.currentTarget.value
   }
 
   if (sectores.length === 0) return
@@ -68,34 +64,35 @@ export default function RubroForm({ rubro, sectores }: { rubro: string, sectores
       {
         showForm
         && (
+          <form onSubmit={handleSubmit}
+            className="min-h-[300px] flex-1 flex justify-between absolute z-10 left-0 right-0 top-[95%] white rounded-lg">
 
-          <form onSubmit={handleSubmit} 
-            className="flex-1 flex justify-between absolute z-10 left-0 right-0 top-[95%] bg-my-white rounded-lg">
-            
             <div onClick={() => setShowForm(prev => !prev)} className="absolute -inset-[100%]"></div>
 
-            <SectoresList sectores={sectores} actualSector={actualSector} setActualSector={setActualSector} />
+            <SectoresList sectores={sectores} />
 
-            <div className="relative flex-1 flex flex-col gap-1 justify-between items-center p-2">
-              
-              <div className="min-h-[100px] min-w-[220px] relative">
+            <div className="relative flex-1 flex flex-col justify-between p-2">
+
+              <div className="min-h-[100px] min-w-[100px] relative">
 
                 <input name="date"
-                  className="absolute top-[20%] left-[10%] w-3/4 py-1 text-center primary-red rounded-lg" 
-                  onClick={() => dateRef.current?.showPicker()} ref={showDateRef} readOnly value={actualDate} />
-                
+                  className="absolute top-[20%] right-0 w-full py-1 text-center"
+                  onClick={() => dateRef.current?.showPicker()} ref={showDateRef} readOnly defaultValue={currentLocaleDate} />
+
                 <input name="calendar"
-                   className="w-0 absolute -top-[23%] left-[1%]" 
+                  className="w-0 absolute -top-[25%] right-[125%]"
                   ref={dateRef} type="date" onChange={handleCalendarChange} />
-              
+
               </div>
 
               <input name="monto"
-                className="primary-red rounded-lg text-center w-3/4 py-1"
-                type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} onChange={(e) => setActualMonto(Number(e.currentTarget.value))} value={actualMonto} required/>
-              
-              <button type="submit" className={`mt-[90px] mb-2 self-end primary-red p-4 py-2 rounded-lg ${isLoading && "opacity-50"}`} disabled={isLoading}>{isLoading ? "Cargando" : "Agregar"}</button>
-            
+                className="text-center w-full py-1 bg-transparent border-b-2 border-red-900 text-black"
+                type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} defaultValue="0" />
+
+              <button
+                className={`tracking-wider w-[5.8rem] h-[2.6rem] mb-2 self-end flex justify-center primary p-4 py-2 rounded-lg ${isLoading && "opacity-80"}`}
+                type="submit" disabled={isLoading}>{isLoading ? <SpinnerSVG className="size-6" /> : "Agregar"}</button>
+
             </div>
 
           </form>
@@ -110,25 +107,23 @@ export default function RubroForm({ rubro, sectores }: { rubro: string, sectores
   )
 }
 
-export function SectoresList({ sectores, actualSector, setActualSector }: { sectores: string[] }) {
-
-  const handleClick = (sector: string) => {
-    setActualSector(sector)
-  }
+export function SectoresList({ sectores }: { sectores: string[] }) {
 
   return (
-    <div className="flex-1 flex flex-col static z-10 py-2">
-      {sectores.map(sector =>
+    <div className="flex-1 flex flex-col static z-10 p-2">
+      <fieldset>
+        {sectores.map(sector =>
 
-        <span
-          className={`text-center mx-1 px-1 rounded-lg border border-transparent hover:border hover:border-slate-600 ${actualSector === sector ? "primary-red" : "text-slate-600"}`}
-          key={sector}
-          onClick={() => handleClick(sector)}
-        >
-          {sector}
-        </span>
+          <div key={sector} className="text-center w-full flex">
+            <input
+              className="hidden flex-0"
+              type="radio" id={sector} name="sector" defaultValue={sector} />
+            <label htmlFor={sector}
+              className="text-slate-600 text-center flex-1 border border-transparent hover:text-black ">{sector}</label>
+          </div>
 
-      )}
+        )}
+      </fieldset>
     </div>
   )
 }

@@ -1,22 +1,17 @@
 import { Sorted } from "@/app/utils/sort"
 import Rubro from "./Rubro"
+import { getMenuRubros } from "@/app/db/client"
 
-const RUBROS = {
-  "ragazzi": ["luz", "gas"],
-  "patricios": ["agua", "cable", "internet"],
-  "jmolina": ["sindicato", "cochera", "cochera", "cochera", "cochera", "cochera", "cochera", "cochera", "cochera", "cochera", "cochera", "cochera"],
-  "palihue": ["visa", "contador", "rentas"]
-}
+export default async function Menu() {
 
-export default function Menu() {
-
-  const rubros = Sorted(Object.keys(RUBROS))
+  const rubros = await getMenuRubros()
+  const sortedRubros = Sorted(Object.keys(rubros))
 
   return (
     <section className="w-5/12 mt-20 flex flex-col items-center">
 
       <div className="min-w-[380px] py-4 primary rounded-lg shadow-xl">
-        {rubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={RUBROS[rubro]} />)}
+        {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={rubros[rubro]} />)}
       </div>
 
     </section>

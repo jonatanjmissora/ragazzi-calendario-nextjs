@@ -32,6 +32,7 @@ body {
   }
 }
 
+ /*         COLORES         */
 .primary {
   background: var(--primary-grad);
   border: 1px solid rgb(34, 4, 4);
@@ -43,6 +44,7 @@ body {
   border: 1px solid rgb(34, 4, 4)
 }
 
+/*         INPUTS         */
 input {
   border-bottom: 2px solid var(--primary);
   background: transparent;
@@ -58,6 +60,36 @@ input:focus {
 input:checked+label {
   border-bottom: 2px solid var(--primary);
   color: var(--primary);
+}
+
+/*         CHECKBOXS         */
+.label-empty {
+  display: flex;
+}
+.label-fill {
+  display: none;
+}
+
+input[type="checkbox"]:checked~.label-empty {
+  display: none
+}
+input[type="checkbox"]:checked~.label-fill {
+  display: flex;
+}
+
+/*         PAGOS GRID         */
+.pagos-grid {
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr;
+}
+.pagos-grid span {
+  padding: 0.2rem 1rem;
+  margin: 0.2rem 0;
+  text-align: end;
+}
+
+#span-checkbox, #span-menu {
+  padding: 0;
+  margin: 0 1rem;
 }
 
 

@@ -4,7 +4,8 @@ import { getMenuRubros } from "@/app/db/client"
 
 export default async function Menu() {
 
-  const rubros = await getMenuRubros()
+  //const rubros = await getMenuRubros()
+  const rubros = {ragazzi: ["gas", "luz", "telefono"]}
   const sortedRubros = Sorted(Object.keys(rubros))
 
   return (

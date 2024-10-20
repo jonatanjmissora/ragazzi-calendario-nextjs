@@ -30,6 +30,11 @@ export default function RubroForm({ rubro, sectores }: { rubro: string, sectores
     const formData = new FormData(e.currentTarget)
     const { sector, date, monto } = Object.fromEntries(formData);
 
+    if(!sector) {
+      alert("Falta elegir servicio")
+      return
+    }
+
     const PaymentData = {
       rubro,
       sector,
@@ -110,14 +115,14 @@ export default function RubroForm({ rubro, sectores }: { rubro: string, sectores
 export function SectoresList({ sectores }: { sectores: string[] }) {
 
   return (
-    <div className="flex-1 flex flex-col static z-10 p-2">
+    <div className="flex-1 flex flex-col justify-center static z-10 p-2 border-r border-slate-200">
       <fieldset>
         {sectores.map(sector =>
 
           <div key={sector} className="text-center w-full flex">
             <input
               className="hidden flex-0"
-              type="radio" id={sector} name="sector" defaultValue={sector} />
+              type="radio" id={sector} name="sector" defaultValue={sector}/>
             <label htmlFor={sector}
               className="text-slate-600 text-center flex-1 border border-transparent hover:text-black ">{sector}</label>
           </div>

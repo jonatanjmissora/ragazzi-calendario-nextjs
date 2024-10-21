@@ -5,18 +5,18 @@ import Header from "./Header";
 import PagosPendientesList from "./PagosPendientesList";
 import { useState } from "react";
 
-export default function Dashboard({pagosPendientes}: {pagosPendientes: PagoPendienteProps[]}) {
+export default function Dashboard({ pagosPendientes }: { pagosPendientes: PagoPendienteProps[] }) {
 
   const [filter, setFilter] = useState<string>("todos")
 
   return (
-    <section className="primary rounded-lg shadow overflow-hidden">
+    <section className="w-3/4 h-full primary rounded-lg shadow overflow-hidden">
 
       <div className="">
-        <Header setFilter={setFilter}/>
-        <PagosPendientesList pagosPendientes={pagosPendientes} filter={filter}/>
+        <Header setFilter={setFilter} />
+        <PagosPendientesList pagosPendientes={pagosPendientes} filter={filter} />
       </div>
-    
+
     </section>
   )
 }

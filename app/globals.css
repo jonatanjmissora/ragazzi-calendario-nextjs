@@ -6,7 +6,7 @@
   --background: linear-gradient(125deg, #eee, #999);
   --primary-grad: linear-gradient(to bottom, rgb(177, 33, 33), rgb(104, 29, 29));
   --primary: rgb(104, 29, 29);
-  --white: #eee;
+  --white: #cacaca;
   --black: #222;
   --text: var(--white);
 }
@@ -79,7 +79,7 @@ input[type="checkbox"]:checked~.label-fill {
 
 /*         PAGOS GRID         */
 .pagos-grid {
-  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1.5fr;
 }
 .pagos-grid span {
   padding: 0.2rem 1rem;

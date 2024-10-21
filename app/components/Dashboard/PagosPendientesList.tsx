@@ -1,6 +1,5 @@
 import { getPagosPendientes } from "@/app/db/pagos"
 import { PagoPendienteProps } from "@/app/types/pagosPendientes"
-import Header from "./Header"
 import venceFormat from "@/app/utils/venceFormat"
 import DotEmptySVG from "@/app/assets/DotEmptySvg"
 import DotFillSVG from "@/app/assets/DotFillSvg"
@@ -9,24 +8,19 @@ import CancelSVG from "@/app/assets/CancelSVG"
 import EditSVG from "@/app/assets/EditSVG"
 import montoFormat from "@/app/utils/montoFormat"
 
-export default async function PagosPendientesList() {
+export default function PagosPendientesList({pagosPendientes, filter}: {pagosPendientes: PagoPendienteProps[]}) {
 
-  //const data = await getPagosPendientes()
-  const data = [
-    {_id: "er223", vencimiento: "2024-10-30", rubro: "ragazzi", sector: "contador", monto: "1285000"},
-    {_id: "edf23", vencimiento: "2024-10-20", rubro: "jmolina", sector: "agua", monto: "7654"},
-    {_id: "edf23", vencimiento: "2024-10-25", rubro: "palihue", sector: "cable", monto: "25385"}
-  ]
-
-  const sortedData = data.sort((a, b) => a.vencimiento.localeCompare(b.vencimiento))
+  
+  
+  const sortedData = pagosPendientes.sort((a, b) => a.vencimiento.localeCompare(b.vencimiento)) || []
 
   return (
-    <section
-      className="primary p-4 m-8 rounded-lg shadow">
-      <Header />    
+    <div
+      className=" py-4">    
+      {filter}
       {sortedData.map(pago => <PagoPendiente key={pago._id.toString()} pago={pago} />)}
 
-    </section>
+    </div>
   )
 }
 

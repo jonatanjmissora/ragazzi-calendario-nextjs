@@ -11,7 +11,8 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         "primary-red": "bg-gradient-to-br from-slate-200 to-indigo-600",
-        "my-white": "#cacaca"
+        "my-white": "#cacaca",
+        "my-black": "#222",
       },
     },
   },

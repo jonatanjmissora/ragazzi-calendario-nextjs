@@ -1,8 +1,17 @@
-export default function Header({ setFilter }: { setFilter: React.Dispatch<React.SetStateAction<string>> }) {
-    return (
-        <article className="bg-my-white p-4 pb-0 border">
+import montoFormat from "@/app/utils/montoFormat"
 
-            <Filter setFilter={setFilter} />
+export default function Header({ setFilter, total }: { setFilter: React.Dispatch<React.SetStateAction<string>>, total: number }) {
+
+    return (
+        <article className="bg-my-white p-2 pb-0 border">
+
+            <div className="flex-1 flex justify-between items-center mb-2 mx-2">
+                <span
+                    className={`text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
+                    $ {montoFormat(total)}
+                </span>
+                <Filter setFilter={setFilter} />
+            </div>
 
             <div className="grid pagos-grid tracking-wide font-semibold text-my-black">
                 <span id="checkbox"></span>
@@ -19,10 +28,8 @@ export default function Header({ setFilter }: { setFilter: React.Dispatch<React.
 
 const Filter = ({ setFilter }: { setFilter: React.Dispatch<React.SetStateAction<string>> }) => {
 
-
-
     return (
-        <div className="w-full flex justify-center items-center mb-4">
+        <div className="">
 
             <fieldset className="flex gap-6 text-xs">
 
@@ -38,28 +45,28 @@ const Filter = ({ setFilter }: { setFilter: React.Dispatch<React.SetStateAction<
                     onChange={() => setFilter("ragazzi")}
                     type="radio" id="ragazzi" name="filter" />
                 <label htmlFor="ragazzi"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1 rounded-lg ragazzi">Ragazzi</label>
+                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">Ragazzi</label>
 
                 <input
                     className="hidden flex-0"
                     onChange={() => setFilter("patricios")}
                     type="radio" id="patricios" name="filter" />
                 <label htmlFor="patricios"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1 rounded-lg patricios">Patricios</label>
+                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">Patricios</label>
 
                 <input
                     className="hidden flex-0"
                     onChange={() => setFilter("palihue")}
                     type="radio" id="palihue" name="filter" />
                 <label htmlFor="palihue"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1 rounded-lg palihue">Palihue</label>
+                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">Palihue</label>
 
                 <input
                     className="hidden flex-0"
                     onChange={() => setFilter("jmolina")}
                     type="radio" id="jmolina" name="filter" />
                 <label htmlFor="jmolina"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1 rounded-lg jmolina">Jmolina</label>
+                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">Jmolina</label>
 
             </fieldset>
 

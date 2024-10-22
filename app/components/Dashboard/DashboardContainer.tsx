@@ -12,7 +12,7 @@ export default function DashboardContainer() {
 
   return (
     <div className="flex-1 flex justify-center m-8">
-      <Dashboard pagosPendientes={data} />
+      <Dashboard data={data} />
     </div>
   )
 }

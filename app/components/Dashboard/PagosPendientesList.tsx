@@ -1,10 +1,11 @@
 import { PagoPendienteProps } from "@/app/types/pagosPendientes"
 import PagoPendiente from "./PagosPendientesList/PagoPendiente"
 
-export default function PagosPendientesList({ pagosPendientes, setPagosPend, setPagosTotal }:
+export default function PagosPendientesList({ pagosPendientes, setPagosPend, pagosTotal, setPagosTotal }:
   {
     pagosPendientes: PagoPendienteProps[],
     setPagosPend: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>>,
+    pagosTotal: PagoPendienteProps[],
     setPagosTotal: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>>
   }) {
 
@@ -13,7 +14,14 @@ export default function PagosPendientesList({ pagosPendientes, setPagosPend, set
   return (
     <div
       className=" py-2">
-      {pagosPendientes.map(pago => <PagoPendiente key={pago._id.toString()} pago={pago} setPagosTotal={setPagosTotal} setPagosPend={setPagosPend} />)}
+      {pagosPendientes.map(pago => 
+        <PagoPendiente 
+          key={pago._id.toString()} 
+          pago={pago} 
+          setPagosPend={setPagosPend} 
+          pagosTotal={pagosTotal}
+          setPagosTotal={setPagosTotal} 
+        />)}
     </div>
   )
 }

@@ -1,15 +1,24 @@
+import { PagoPendienteProps } from "@/app/types/pagosPendientes"
 import montoFormat from "@/app/utils/montoFormat"
 
-export default function Header({ setFilter, total }: { setFilter: React.Dispatch<React.SetStateAction<string>>, total: number }) {
+export default function Header({ setFilter, total, setPagosTotal }: { setFilter: React.Dispatch<React.SetStateAction<string>>, total: number, setPagosTotal: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>> }) {
 
     return (
         <article className="bg-my-white p-2 pb-0 border">
 
             <div className="flex-1 flex justify-between items-center mb-2 mx-2">
-                <span
-                    className={`text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
-                    $ {montoFormat(total)}
-                </span>
+                <div className="flex justify-between items center gap-12">
+                    <span
+                         className={`flex items-center text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
+                        $ {montoFormat(total)}
+                    </span>
+                    <button 
+                        className={`text-slate-400 ${total == 0 && "opacity-0"} p-1 px-2 text-xl rounded-lg hover:bg-slate-300 hover:text-slate-700`}
+                        onClick={() => setPagosTotal([])}    
+                    >
+                        x
+                    </button>
+                </div>
                 <Filter setFilter={setFilter} />
             </div>
 

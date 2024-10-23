@@ -20,8 +20,8 @@ export default function Dashboard({ data }: { data: PagoPendienteProps[] }) {
     <section className="w-3/4 h-full primary rounded-lg shadow overflow-hidden">
 
       <div className="">
-        <Header setFilter={setFilter} total={total} />
-        <PagosPendientesList pagosPendientes={sortedData} setPagosPend={setPagosPend} setPagosTotal={setPagosTotal} />
+        <Header setFilter={setFilter} total={total} setPagosTotal={setPagosTotal}/>
+        <PagosPendientesList pagosPendientes={sortedData} setPagosPend={setPagosPend} pagosTotal={pagosTotal} setPagosTotal={setPagosTotal} />
       </div>
 
     </section>

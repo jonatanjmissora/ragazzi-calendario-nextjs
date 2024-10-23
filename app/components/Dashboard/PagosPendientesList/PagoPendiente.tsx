@@ -8,7 +8,16 @@ import PagoCheckbox from "./PagoCheckbox"
 import PagoMenu from "./PagoMenu"
 import PagoModal from "./PagoModal"
 
-export default function PagoPendiente({ pago, setPagosTotal, setPagosPend }: { pago: PagoPendienteProps, setPagosTotal: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>>, setPagosPend: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>> }) {
+export default function PagoPendiente({ 
+  pago,
+  setPagosPend ,
+  pagosTotal, 
+  setPagosTotal }: 
+  { pago: PagoPendienteProps, 
+    setPagosPend: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>>,
+    pagosTotal: PagoPendienteProps[],
+    setPagosTotal: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>>, 
+  }) {
 
   const [showModal, setShowModal] = useState<boolean>(false)
 

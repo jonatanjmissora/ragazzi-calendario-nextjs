@@ -8,16 +8,7 @@ import PagoCheckbox from "./PagoCheckbox"
 import PagoMenu from "./PagoMenu"
 import PagoModal from "./PagoModal"
 
-export default function PagoPendiente({ 
-  pago,
-  setPagosPend ,
-  pagosTotal, 
-  setPagosTotal }: 
-  { pago: PagoPendienteProps, 
-    setPagosPend: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>>,
-    pagosTotal: PagoPendienteProps[],
-    setPagosTotal: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>>, 
-  }) {
+export default function PagoPendiente({ pago }: { pago: PagoPendienteProps }) {
 
   const [showModal, setShowModal] = useState<boolean>(false)
 
@@ -28,19 +19,19 @@ export default function PagoPendiente({
     <>
       <article className={`relative grid pagos-grid items-center tracking-wide rounded-lg m-1 mx-4 text-my-black ${pago.rubro}`}>
 
-        <PagoCheckbox pago={pago} setPagosTotal={setPagosTotal} />
+        <PagoCheckbox pago={pago} />
 
         <span>{pagoVenceFormat}</span>
         <span>{pago.rubro}</span>
         <span>{pago.sector}</span>
         <span>{pagoMonto}</span>
 
-        <PagoMenu pago={pago} setPagosPend={setPagosPend} setShowModal={setShowModal} setPagosTotal={setPagosTotal} />
+        <PagoMenu pago={pago} setShowModal={setShowModal} />
 
       </article>
 
       {
-        showModal && <PagoModal pago={pago} setPagosPend={setPagosPend} setShowModal={setShowModal} setPagosTotal={setPagosTotal} />
+        showModal && <PagoModal pago={pago} setShowModal={setShowModal} />
       }
 
     </>

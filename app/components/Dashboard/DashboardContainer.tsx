@@ -1,6 +1,6 @@
 import Dashboard from "./Dashboard"
 
-export default function DashboardContainer() {
+export default async function DashboardContainer() {
 
   //const data = await getPagosPendientes()
   const data = [

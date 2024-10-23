@@ -1,7 +1,11 @@
-import { PagoPendienteProps } from "@/app/types/pagosPendientes"
 import montoFormat from "@/app/utils/montoFormat"
+import { usePagosStore } from "@/app/zustand/usePagosStore"
 
-export default function Header({ setFilter, total, setPagosTotal }: { setFilter: React.Dispatch<React.SetStateAction<string>>, total: number, setPagosTotal: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>> }) {
+export default function Header() {
+
+    const { getTotal, deleteAllIdsTotal, setFilter } = usePagosStore()
+
+    const total = getTotal()
 
     return (
         <article className="bg-my-white p-2 pb-0 border">
@@ -9,12 +13,12 @@ export default function Header({ setFilter, total, setPagosTotal }: { setFilter:
             <div className="flex-1 flex justify-between items-center mb-2 mx-2">
                 <div className="flex justify-between items center gap-12">
                     <span
-                         className={`flex items-center text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
+                        className={`flex items-center text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
                         $ {montoFormat(total)}
                     </span>
-                    <button 
+                    <button
                         className={`text-slate-400 ${total == 0 && "opacity-0"} p-1 px-2 text-xl rounded-lg hover:bg-slate-300 hover:text-slate-700`}
-                        onClick={() => setPagosTotal([])}    
+                        onClick={deleteAllIdsTotal}
                     >
                         x
                     </button>
@@ -35,7 +39,7 @@ export default function Header({ setFilter, total, setPagosTotal }: { setFilter:
     )
 }
 
-const Filter = ({ setFilter }: { setFilter: React.Dispatch<React.SetStateAction<string>> }) => {
+const Filter = ({ setFilter }: { setFilter: (value: string) => void }) => {
 
     return (
         <div className="">

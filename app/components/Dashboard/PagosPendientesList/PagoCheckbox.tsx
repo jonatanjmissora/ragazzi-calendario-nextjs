@@ -1,17 +1,16 @@
 import DotEmptySVG from "@/app/assets/DotEmptySvg"
 import DotFillSVG from "@/app/assets/DotFillSvg"
 import { PagoPendienteProps } from "@/app/types/pagosPendientes"
+import { usePagosStore } from "@/app/zustand/usePagosStore"
 
-export default function PagoCheckbox({ pago, setPagosTotal }: { pago: PagoPendienteProps, setPagosTotal: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>> }) {
+export default function PagoCheckbox({ pago }: { pago: PagoPendienteProps }) {
+
+  const { addIdTotal, deleteIdTotal } = usePagosStore()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.checked)
-      setPagosTotal(prev => {
-        const newPagosTotal = [...prev]
-        newPagosTotal.push(pago)
-        return newPagosTotal
-      })
-    else setPagosTotal(prev => prev.filter(prevPag => prevPag._id !== pago._id))
+      addIdTotal(pago._id)
+    else deleteIdTotal(pago._id)
   }
 
   return (

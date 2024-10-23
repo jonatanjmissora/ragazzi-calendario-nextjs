@@ -1,7 +1,10 @@
 import CancelSVG from "@/app/assets/CancelSVG";
 import { PagoPendienteProps } from "@/app/types/pagosPendientes";
+import { usePagosStore } from "@/app/zustand/usePagosStore";
 
-export default function PagoModal({ pago, setPagosPend, setShowModal, setPagosTotal }: { pago: PagoPendienteProps, setPagosPend: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>>, setShowModal: React.Dispatch<React.SetStateAction<boolean>>, setPagosTotal: React.Dispatch<React.SetStateAction<PagoPendienteProps[]>> }) {
+export default function PagoModal({ pago, setShowModal }: { pago: PagoPendienteProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
+
+  const { addPagoPend } = usePagosStore()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -9,20 +12,16 @@ export default function PagoModal({ pago, setPagosPend, setShowModal, setPagosTo
     const { editDate, editMonto } = Object.fromEntries(formData);
     const newPago = { ...pago, vencimiento: editDate.toString(), monto: editMonto.toString() }
 
-    setPagosPend(prev => {
-      const newPagos = prev.filter(prevPago => prevPago._id !== pago._id)
-      newPagos.push(newPago)
-      return newPagos
-    })
+    addPagoPend(newPago)
 
-    if (Number(pago.monto) !== Number(newPago.monto))
-      setPagosTotal(prev => {
-        const isOnPagosTotal = prev.findIndex(pago => pago._id === pago._id) >= 0
-        if (!isOnPagosTotal) return prev
-        const newPagosTotal = prev.filter(oldPrev => oldPrev._id !== pago._id)
-        newPagosTotal.push(newPago)
-        return newPagosTotal
-      })
+    // if (Number(pago.monto) !== Number(newPago.monto))
+    //   setPagosTotal(prev => {
+    //     const isOnPagosTotal = prev.findIndex(pago => pago._id === pago._id) >= 0
+    //     if (!isOnPagosTotal) return prev
+    //     const newPagosTotal = prev.filter(oldPrev => oldPrev._id !== pago._id)
+    //     newPagosTotal.push(newPago)
+    //     return newPagosTotal
+    //   })
     setShowModal(false)
 
   }

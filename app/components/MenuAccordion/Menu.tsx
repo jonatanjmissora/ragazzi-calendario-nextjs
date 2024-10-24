@@ -1,20 +1,23 @@
-import { Sorted } from "@/app/utils/sort"
-import Rubro from "./Rubro"
 import Header from "./Header"
+import Rubro from "./Rubro"
 
-export default function Menu() {
+const getSectores = (array: MenuRubroProps[], rubro: string) => {
+    const sectoresArray = array.filter(object => object.rubro === rubro)
+    return sectoresArray.length > 0 ? sectoresArray[0].sectores : []
+}
 
-  //const rubros = await getMenuRubros()
-  const rubros = { ragazzi: ["gas", "luz", "telefono"], "patricios": ["municipal", "rentas", "patente"] } as { [key: string]: string[] }
-  const sortedRubros = Sorted(Object.keys(rubros))
+export default function Menu({data} : {data : MenuRubroProps[]}) {
 
-  return (
-    <section className="w-[250px] min-h-screen primary flex flex-col shadow-lg">
+    const menuRubros = data
 
-      <Header />
+    const sortedRubros = ["ragazzi", "patricios", "palihue", "jmolina"]
 
-      {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={rubros[rubro]} />)}
+    return (
+        <section className="w-[250px] min-h-screen primary flex flex-col shadow-lg">
 
-    </section>
-  )
+        <Header />
+        {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(menuRubros, rubro)} />)}
+
+        </section>
+    )
 }

@@ -8,14 +8,6 @@ import { usePagosStore } from "@/app/zustand/usePagosStore";
 
 export default function Dashboard({ data }: { data: PagoPendienteProps[] }) {
 
-  // const [pagosPend, setPagosPend] = useState<PagoPendienteProps[]>(data)
-  // const [filter, setFilter] = useState<string>("todos")
-  // const [pagosTotal, setPagosTotal] = useState<PagoPendienteProps[]>([])
-
-  // const filteredPagosPendientes = filteredArrayByRubro(pagosPend, filter)
-  // const sortedData = filteredPagosPendientes.sort((a, b) => a.vencimiento.localeCompare(b.vencimiento))
-  // const total = pagosTotal.reduce((acc, pago) => acc + Number(pago.monto), 0)
-
   const { setPagosPend } = usePagosStore()
   useEffect(() => {
     setPagosPend(data)

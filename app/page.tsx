@@ -1,10 +1,10 @@
 import DashboardContainer from "./components/Dashboard/DashboardContainer";
-import Menu from "./components/MenuAccordion/Menu"
+import MenuContainer from "./components/MenuAccordion/MenuContainer";
 
-export default function Home() {
+export default function Page() {
   return (
     <div className="flex min-h-screen overflow-hidden font-[family-name:var(--font-geist-sans)]">
-      <Menu />
+      <MenuContainer />
       <DashboardContainer />
     </div>
   );

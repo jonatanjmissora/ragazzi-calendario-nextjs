@@ -39,6 +39,10 @@ type PagosStoreProps = {
 
   total: number;
   getTotal: () => number;
+
+  //menuRubros: MenuRubroProps,
+  //addMenuRubro: (rubro: string, sector: string) => void;
+  //deleteMenuRubro: (id: string) => void;
 }
 
 export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
@@ -68,5 +72,8 @@ export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
         .monto)
       .reduce((acc, monto) => acc + Number(monto), 0)
     return totalValues
-  }
+  },
+  //menuRubros: {},
+  //addMenuRubro: (rubro: string, sector: string) => set({menuRubros: {...get().menuRubros, get().menuRubros[rubro]: get().menuRubros[rubro].push(sector) || [sector]} }),
+  //deleteMenuRubro: (id: string) => null,
 }))

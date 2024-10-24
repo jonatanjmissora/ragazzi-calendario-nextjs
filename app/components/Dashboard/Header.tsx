@@ -11,7 +11,7 @@ export default function Header() {
         <article className="bg-my-white p-2 pb-0 border">
 
             <div className="flex-1 flex justify-between items-center mb-2 mx-2">
-                <div className="flex justify-between items center gap-12">
+                <div className="flex justify-between items center gap-4">
                     <span
                         className={`flex items-center text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
                         $ {montoFormat(total)}

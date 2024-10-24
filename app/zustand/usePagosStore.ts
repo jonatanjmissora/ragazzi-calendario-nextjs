@@ -40,9 +40,10 @@ type PagosStoreProps = {
   total: number;
   getTotal: () => number;
 
-  //menuRubros: MenuRubroProps,
+  menuRubros: MenuRubroProps[],
+  setMenuRubros: (rubros: MenuRubroProps[]) => void;
   //addMenuRubro: (rubro: string, sector: string) => void;
-  //deleteMenuRubro: (id: string) => void;
+  deleteMenuSector: (rubro: string, sector: string) => void;
 }
 
 export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
@@ -73,7 +74,25 @@ export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
       .reduce((acc, monto) => acc + Number(monto), 0)
     return totalValues
   },
-  //menuRubros: {},
-  //addMenuRubro: (rubro: string, sector: string) => set({menuRubros: {...get().menuRubros, get().menuRubros[rubro]: get().menuRubros[rubro].push(sector) || [sector]} }),
-  //deleteMenuRubro: (id: string) => null,
+  menuRubros: [],
+  setMenuRubros: (menuRubros: MenuRubroProps[]) => set({ menuRubros }),
+  //addMenuSector: 
+
+  deleteMenuSector: (rubro: string, sector: string) => {
+
+    const newMenuRubros = get().menuRubros
+    const newRubro = newMenuRubros
+      .filter(menu => menu.rubro === rubro)[0]
+    const index = newMenuRubros.findIndex(menu => menu.rubro === rubro)
+    const newSectores = newRubro
+      .sectores
+      .filter(newSector => newSector !== sector)
+
+    newMenuRubros[index].sectores = newSectores
+
+
+    console.log({ newMenuRubros })
+
+    set({ menuRubros: newMenuRubros })
+  },
 }))

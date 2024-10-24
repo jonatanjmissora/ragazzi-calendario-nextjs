@@ -2,6 +2,7 @@
 
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
 import getActualLocaleDate from "@/app/utils/date"
+import { usePagosStore } from "@/app/zustand/usePagosStore"
 import { useRef, useState } from "react"
 
 const delay = () => new Promise(res => {
@@ -19,6 +20,7 @@ type RubroFormProps = {
 
 export default function RubroForm({ rubro, sectores, showForm, setShowForm }: RubroFormProps) {
 
+  const { deleteMenuSector } = usePagosStore()
   const currentLocaleDate = getActualLocaleDate()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -39,20 +41,19 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
       return
     }
 
-    const PaymentData = {
-      rubro,
-      sector,
-      monto,
-      date,
-    }
+    // const PaymentData = {
+    //   rubro,
+    //   sector,
+    //   monto,
+    //   date,
+    // }
     try {
       setIsLoading(true)
       await delay()
+      deleteMenuSector(rubro, sector.toString())
       reset()
-      alert(JSON.stringify(PaymentData))
     } catch (error) {
 
-      console.log(error.message)
     }
     finally {
       setIsLoading(false)

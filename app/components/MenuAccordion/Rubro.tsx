@@ -23,16 +23,16 @@ export default function Rubro({ rubro, sectores }: { rubro: string, sectores: st
       <div className={`flex-1 flex justify-between items-center p-4 ${rubro} text-my-black duration-200 hover:bg-slate-800 hover:text-my-white`}
         onClick={handleClick}>
 
-        <div className={`${isEmptyClass && "text-gray-400"}`}>
+        <div className={`${isEmptyClass && "text-gray-500"}`}>
 
-          <span className={`font-semibold ${isEmptyClass}`}>{rubro} </span>
+          <span className={`font-semibold`}>{rubro} </span>
           <span>
             ({sectores.length})
           </span>
 
         </div>
 
-        <button className="" ><PlusSVG className={`size-6 transition-transform duration-300 ${showForm && "rotate-45"}`} /></button>
+        <button className="" ><PlusSVG className={`size-6 transition-transform duration-300 ${showForm && "rotate-45"} ${isEmptyClass && "text-gray-500"}`} /></button>
 
       </div >
 

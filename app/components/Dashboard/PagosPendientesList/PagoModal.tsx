@@ -4,7 +4,7 @@ import { usePagosStore } from "@/app/zustand/usePagosStore";
 
 export default function PagoModal({ pago, setShowModal }: { pago: PagoPendienteProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-  const { addPagoPend } = usePagosStore()
+  const { editPagoPend } = usePagosStore()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -12,7 +12,8 @@ export default function PagoModal({ pago, setShowModal }: { pago: PagoPendienteP
     const { editDate, editMonto } = Object.fromEntries(formData);
     const newPago = { ...pago, vencimiento: editDate.toString(), monto: editMonto.toString() }
 
-    addPagoPend(newPago)
+    editPagoPend(newPago)
+    //TODO editar en DB
 
     // if (Number(pago.monto) !== Number(newPago.monto))
     //   setPagosTotal(prev => {

@@ -2,6 +2,7 @@
 
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
 import getActualLocaleDate from "@/app/utils/date"
+import { useMenuStore } from "@/app/zustand/useMenuStore"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
 import { useRef, useState } from "react"
 
@@ -20,7 +21,8 @@ type RubroFormProps = {
 
 export default function RubroForm({ rubro, sectores, showForm, setShowForm }: RubroFormProps) {
 
-  const { deleteMenuSector } = usePagosStore()
+  const { addPagoPend } = usePagosStore()
+  const { deleteMenuSector } = useMenuStore()
   const currentLocaleDate = getActualLocaleDate()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -34,23 +36,26 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const { sector, date, monto } = Object.fromEntries(formData);
+    const { sector: inputSector, date: inputDate, monto: inputMonto } = Object.fromEntries(formData);
 
-    if (!sector) {
+    if (!inputSector) {
       alert("Falta elegir servicio")
       return
     }
 
-    // const PaymentData = {
-    //   rubro,
-    //   sector,
-    //   monto,
-    //   date,
-    // }
+    const newPagoPend = { 
+      _id: "gy77",
+      rubro,
+      sector: inputSector.toString(),
+      monto: inputMonto.toString(),
+      vencimiento: inputDate.toString(),
+    }
     try {
       setIsLoading(true)
       await delay()
-      deleteMenuSector(rubro, sector.toString())
+      // TODO llevar a la base de datos 
+      deleteMenuSector(rubro, inputSector.toString())
+      addPagoPend(newPagoPend)
       reset()
     } catch (error) {
 

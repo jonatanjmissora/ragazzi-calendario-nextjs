@@ -3,19 +3,26 @@ import CancelSVG from "@/app/assets/CancelSVG"
 import CheckSVG from "@/app/assets/CheckSVG"
 import { PagoPendienteProps } from "@/app/types/pagosPendientes"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
+import { useMenuStore } from "@/app/zustand/useMenuStore"
 
 export default function PagoMenu({ pago, setShowModal }: { pago: PagoPendienteProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
   const { deleteIdTotal, deletePagoPend } = usePagosStore()
+  const { addMenuSector } = useMenuStore()
 
   const handleCheck = () => {
     deleteIdTotal(pago._id)
     deletePagoPend(pago._id)
+    //TODO quitar de "Pagos Pendientes" en DB
+    //TODO agregar a "Pagos Realizados" en DB
   }
 
   const handleCancel = () => {
     deleteIdTotal(pago._id)
     deletePagoPend(pago._id)
+    addMenuSector(pago.rubro, pago.sector)
+    //TODO quitar de "Pagos Pendientes" en DB
+    //TODO agregar a "Menu" en DB
   }
 
   const handleEdit = () => {

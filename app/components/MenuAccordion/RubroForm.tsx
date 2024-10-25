@@ -1,7 +1,8 @@
 "use client"
 
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
-import addPagoPendiente from "@/app/services/pagosPendientes"
+import deleteMenuSectorBack from "@/app/services/menuSectoresBack"
+import addPagoPendienteBack from "@/app/services/pagosPendientesBack"
 import getActualLocaleDate from "@/app/utils/date"
 import { useMenuStore } from "@/app/zustand/useMenuStore"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
@@ -22,18 +23,14 @@ type RubroFormProps = {
 
 export default function RubroForm({ rubro, sectores, showForm, setShowForm }: RubroFormProps) {
 
-  const { addPagoPend } = usePagosStore()
-  const { deleteMenuSector } = useMenuStore()
+  const { addPagoPendienteFront } = usePagosStore()
+  const { deleteMenuSectorFront } = useMenuStore()
   const currentLocaleDate = getActualLocaleDate()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
   const dateRef = useRef<HTMLInputElement>(null)
   const showDateRef = useRef<HTMLInputElement>(null)
-
-  const reset = () => {
-    setShowForm(false)
-  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -56,14 +53,16 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
         vencimiento: inputDate.toString(),
       }
 
-      const res = await addPagoPendiente(newPagoPend)
+      const res = await addPagoPendienteBack(newPagoPend)
 
       if (!res.insertedId) throw new Error(res)
 
       console.log("Pago pendiente creado, ", res.insertedId)
-      deleteMenuSector(rubro, inputSector.toString())
-      addPagoPend(newPagoPend)
-      reset()
+      deleteMenuSectorBack(rubro, inputSector.toString())
+      deleteMenuSectorFront(rubro, inputSector.toString())
+      addPagoPendienteFront(newPagoPend)
+      setShowForm(false)
+
     } catch (error) {
       if (error instanceof Error)
         setError(error.message)

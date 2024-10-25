@@ -8,7 +8,7 @@ type PagosStoreProps = {
   pagosPend: PagoPendienteProps[];
   setPagosPend: (pagos: PagoPendienteProps[]) => void;
   getPagoPendById: (id: string) => void;
-  addPagoPend: (newPagPend: PagoPendienteProps) => void;
+  addPagoPendienteFront: (newPagPend: PagoPendienteProps) => void;
   deletePagoPend: (id: string) => void;
   editPagoPend: (newPagoPend: PagoPendienteProps) => void;
 
@@ -23,8 +23,8 @@ type PagosStoreProps = {
 }
 
 export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
- 
- 
+
+
   filter: "todos",
   setFilter: (value: string) => set({ filter: value }),
 
@@ -32,9 +32,9 @@ export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
   pagosPend: [],
   setPagosPend: (pagosPend: PagoPendienteProps[]) => set({ pagosPend }),
   getPagoPendById: (id: string) => get().pagosPend.filter(pago => pago._id === id)[0],
-  addPagoPend: (newPagoPend: PagoPendienteProps) => set({ pagosPend: [...get().pagosPend, newPagoPend] }),
+  addPagoPendienteFront: (newPagoPend: PagoPendienteProps) => set({ pagosPend: [...get().pagosPend, newPagoPend] }),
   deletePagoPend: (id: string) => set({ pagosPend: get().pagosPend.filter(pago => pago._id !== id) }),
-  editPagoPend: (newPagoPend: PagoPendienteProps) => 
+  editPagoPend: (newPagoPend: PagoPendienteProps) =>
     set({ pagosPend: get().pagosPend.map(pago => pago._id === newPagoPend._id ? newPagoPend : pago) }),
 
 
@@ -52,5 +52,5 @@ export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
       .reduce((acc, monto) => acc + Number(monto), 0)
     return totalValues
   },
-  
+
 }))

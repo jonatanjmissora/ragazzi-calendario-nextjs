@@ -4,12 +4,21 @@ const uri = "mongodb+srv://jonatanjmissora:kato26794337@ragazzi.jdw5i.mongodb.ne
 
 export const mongoClient = new MongoClient(uri)
 
-export async function getMenuRubrosDB() {
+export async function getMenuSectoresDB() {
   const data = await mongoClient
     .db("Ragazzi")
-    .collection("Sectores")
+    .collection("SectoresActuales")
     .find()
     .toArray()
+
+  return data
+}
+
+export async function deleteMenuSectorDB(rubro: string, sector: string) {
+  const data = await mongoClient
+    .db("Ragazzi")
+    .collection("SectoresActuales")
+    .updateOne({ rubro }, { set{ sectores: [] } })
 
   return data
 }

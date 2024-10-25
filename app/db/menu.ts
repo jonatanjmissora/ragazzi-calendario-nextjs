@@ -18,7 +18,12 @@ export async function deleteMenuSectorDB(rubro: string, sector: string) {
   const data = await mongoClient
     .db("Ragazzi")
     .collection("SectoresActuales")
-    .updateOne({ rubro }, { set{ sectores: [] } })
+    .updateOne(
+      { rubro: 'ragazzi' },
+      {
+        $set: { 'sectores': [] }
+      }
+    )
 
   return data
 }

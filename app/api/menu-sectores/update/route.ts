@@ -5,6 +5,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const { rubro, sector } = await request.json()
+    console.log("en route", rubro, sector)
     const res = await deleteMenuSectorDB(rubro, sector)
 
     return new NextResponse(JSON.stringify(res), { status: 200 })

@@ -1,6 +1,7 @@
 "use client"
 
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
+import { addPagoPendienteDB } from "@/app/db/client"
 import getActualLocaleDate from "@/app/utils/date"
 import { useMenuStore } from "@/app/zustand/useMenuStore"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
@@ -43,17 +44,26 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
       return
     }
 
-    const newPagoPend = { 
-      _id: "gy77",
-      rubro,
-      sector: inputSector.toString(),
-      monto: inputMonto.toString(),
-      vencimiento: inputDate.toString(),
-    }
     try {
       setIsLoading(true)
       await delay()
-      // TODO llevar a la base de datos 
+      // TODO llevar a la base de datos y obtener un id
+      addPagoPendienteDB(
+        { 
+          rubro,
+          sector: inputSector.toString(),
+          monto: inputMonto.toString(),
+          vencimiento: inputDate.toString(),
+        }
+      )
+      //TODO obtener el id de la respuesta de la DB
+      const newPagoPend = { 
+        _id: "",
+        rubro,
+        sector: inputSector.toString(),
+        monto: inputMonto.toString(),
+        vencimiento: inputDate.toString(),
+      }
       deleteMenuSector(rubro, inputSector.toString())
       addPagoPend(newPagoPend)
       reset()

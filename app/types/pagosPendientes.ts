@@ -5,3 +5,10 @@ export type PagoPendienteProps = {
     sector: string;
     monto: string;
   }
+
+  export type NewPagoPendienteProps = {
+    vencimiento: string;
+    rubro: string;
+    sector: string;
+    monto: string;
+  }

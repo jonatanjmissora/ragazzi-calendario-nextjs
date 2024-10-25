@@ -1,17 +1,17 @@
 "use client"
 
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
-import { addPagoPendienteDB } from "@/app/db/client"
+import addPagoPendiente from "@/app/services/pagosPendientes"
 import getActualLocaleDate from "@/app/utils/date"
 import { useMenuStore } from "@/app/zustand/useMenuStore"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
 import { useRef, useState } from "react"
 
-const delay = () => new Promise(res => {
-  setTimeout(() => {
-    res("")
-  }, 2000)
-})
+// const delay = () => new Promise(res => {
+//   setTimeout(() => {
+//     res("")
+//   }, 2000)
+// })
 
 type RubroFormProps = {
   rubro: string;
@@ -27,6 +27,7 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
   const currentLocaleDate = getActualLocaleDate()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>("")
   const dateRef = useRef<HTMLInputElement>(null)
   const showDateRef = useRef<HTMLInputElement>(null)
 
@@ -46,29 +47,26 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
 
     try {
       setIsLoading(true)
-      await delay()
-      // TODO llevar a la base de datos y obtener un id
-      addPagoPendienteDB(
-        { 
-          rubro,
-          sector: inputSector.toString(),
-          monto: inputMonto.toString(),
-          vencimiento: inputDate.toString(),
-        }
-      )
-      //TODO obtener el id de la respuesta de la DB
-      const newPagoPend = { 
-        _id: "",
+      setError("")
+      const newPagoPend = {
+        _id: `${inputDate.toString()}-${rubro}-${inputSector.toString()}`,
         rubro,
         sector: inputSector.toString(),
         monto: inputMonto.toString(),
         vencimiento: inputDate.toString(),
       }
+
+      const res = await addPagoPendiente(newPagoPend)
+
+      if (!res.insertedId) throw new Error(res)
+
+      console.log("Pago pendiente creado, ", res.insertedId)
       deleteMenuSector(rubro, inputSector.toString())
       addPagoPend(newPagoPend)
       reset()
     } catch (error) {
-
+      if (error instanceof Error)
+        setError(error.message)
     }
     finally {
       setIsLoading(false)
@@ -118,8 +116,10 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
                 type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} defaultValue="0" />
 
               <button
-                className={`tracking-wider w-full h-[2.6rem] mb-2 self-end flex justify-center primary p-4 py-2 rounded-lg ${isLoading && "opacity-80"}`}
+                className={`tracking-wider w-full h-[2.6rem] mb-2 self-end flex justify-center primary p-4 py-2 rounded-lg ${isLoading && "opacity-80"} duration-200 hover:text-my-black hover:border-slate-400`}
                 type="submit" disabled={isLoading}>{isLoading ? <SpinnerSVG className="size-6" /> : "Agregar"}</button>
+
+              <span className="w-[300px] fixed bottom-4 left-0 text-xs">{error}</span>
 
             </div>
 
@@ -145,7 +145,7 @@ export function SectoresList({ sectores }: { sectores: string[] }) {
               className="hidden flex-0"
               type="radio" id={sector} name="sector" defaultValue={sector} />
             <label htmlFor={sector}
-              className="text-slate-600 text-center flex-1 border-2 border-transparent hover:text-black ">{sector}</label>
+              className={`${sectores.length > 12 && "text-xs"} text-slate-600 text-center flex-1 border-b-2 border-transparent hover:bg-slate-200 hover:text-my-black`} >{sector}</label>
           </div>
 
         )}

@@ -14,3 +14,12 @@ export async function getPagosPendientes() {
 
   return data
 }
+
+export async function addPagoPendienteDB(newPagoPend: PagoPendienteProps) {
+  const data = await mongoClient
+    .db("Ragazzi")
+    .collection<PagoPendienteProps>("PagosPendientes")
+    .insertOne(newPagoPend)
+
+  return data
+}

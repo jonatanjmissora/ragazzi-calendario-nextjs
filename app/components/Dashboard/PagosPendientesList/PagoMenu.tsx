@@ -4,23 +4,33 @@ import CheckSVG from "@/app/assets/CheckSVG"
 import { PagoPendienteProps } from "@/app/types/pagosPendientes"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
 import { useMenuStore } from "@/app/zustand/useMenuStore"
+import addPagoRealizadoBack from "@/app/services/pagosRealizadosBack"
 
 export default function PagoMenu({ pago, setShowModal }: { pago: PagoPendienteProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-  const { deleteIdTotal, deletePagoPend } = usePagosStore()
-  const { addMenuSector } = useMenuStore()
+  const { deleteIdTotal, deletePagoPendienteFront } = usePagosStore()
+  const { addMenuSectorFront } = useMenuStore()
 
   const handleCheck = () => {
     deleteIdTotal(pago._id)
-    deletePagoPend(pago._id)
+    deletePagoPendienteFront(pago._id)
     //TODO quitar de "Pagos Pendientes" en DB
     //TODO agregar a "Pagos Realizados" en DB
+    const pagoRealizado = {
+      _id: pago._id,
+      vencimiento: pago.vencimiento,
+      rubro: pago.rubro,
+      sector: pago.sector,
+      monto: pago.monto,
+      pagado: "2024-10-33",
+    }
+    addPagoRealizadoBack(pagoRealizado)
   }
 
   const handleCancel = () => {
     deleteIdTotal(pago._id)
-    deletePagoPend(pago._id)
-    addMenuSector(pago.rubro, pago.sector)
+    deletePagoPendienteFront(pago._id)
+    addMenuSectorFront(pago.rubro, pago.sector)
     //TODO quitar de "Pagos Pendientes" en DB
     //TODO agregar a "Menu" en DB
   }

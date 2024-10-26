@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb"
 import { PagoPendienteProps } from "../types/pagosPendientes"
+import { PagoRealizadoProps } from "../types/pagosRealizados"
 
 const uri = "mongodb+srv://jonatanjmissora:kato26794337@ragazzi.jdw5i.mongodb.net/?retryWrites=true&w=majority&appName=Ragazzi"
 
@@ -20,6 +21,16 @@ export async function addPagoPendienteDB(newPagoPend: PagoPendienteProps) {
     .db("Ragazzi")
     .collection<PagoPendienteProps>("PagosPendientes")
     .insertOne(newPagoPend)
+
+  return data
+}
+
+export async function addPagoRealizadoDB(pagoRealizado: PagoRealizadoProps) {
+  console.log("en DB", pagoRealizado)
+  const data = await mongoClient
+    .db("Ragazzi")
+    .collection<PagoRealizadoProps>("PagosRealizados")
+    .insertOne(pagoRealizado)
 
   return data
 }

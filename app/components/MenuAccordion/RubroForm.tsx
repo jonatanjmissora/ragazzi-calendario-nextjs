@@ -57,8 +57,9 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
 
       if (!res.insertedId) throw new Error(res)
 
-      console.log("Pago pendiente creado, ", res.insertedId)
-      deleteMenuSectorBack(rubro, inputSector.toString())
+      const newSectorArray = sectores.filter(actualSector => actualSector !== inputSector)
+      console.log(newSectorArray)
+      deleteMenuSectorBack(rubro, newSectorArray)
       deleteMenuSectorFront(rubro, inputSector.toString())
       addPagoPendienteFront(newPagoPend)
       setShowForm(false)

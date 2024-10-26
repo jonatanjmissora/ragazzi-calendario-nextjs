@@ -14,14 +14,14 @@ export async function getMenuSectoresDB() {
   return data
 }
 
-export async function deleteMenuSectorDB(rubro: string, sector: string) {
+export async function deleteMenuSectorDB(rubro: string, sectoresArray: string) {
   const data = await mongoClient
     .db("Ragazzi")
     .collection("SectoresActuales")
     .updateOne(
-      { rubro: 'ragazzi' },
+      { rubro },
       {
-        $set: { 'sectores': [] }
+        $set: { 'sectores': sectoresArray }
       }
     )
 

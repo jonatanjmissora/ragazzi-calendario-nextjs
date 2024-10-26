@@ -2,7 +2,7 @@
 
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
 import deleteMenuSectorBack from "@/app/services/menuSectoresBack"
-import addPagoPendienteBack from "@/app/services/pagosPendientesBack"
+import { addPagoPendienteBack } from "@/app/services/pagosPendientesBack"
 import getActualLocaleDate from "@/app/utils/date"
 import { useMenuStore } from "@/app/zustand/useMenuStore"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
@@ -51,6 +51,7 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
         sector: inputSector.toString(),
         monto: inputMonto.toString(),
         vencimiento: inputDate.toString(),
+        pagado: "",
       }
 
       const res = await addPagoPendienteBack(newPagoPend)
@@ -117,7 +118,7 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
 
               <button
                 className={`tracking-wider w-full h-[2.6rem] mb-2 self-end flex justify-center primary p-4 py-2 rounded-lg ${isLoading && "opacity-80"} duration-200 hover:text-my-black hover:border-slate-400`}
-                type="submit" disabled={isLoading}>{isLoading ? <SpinnerSVG className="size-6" /> : "Agregar"}</button>
+                type="submit" disabled={isLoading}>{isLoading ? <SpinnerSVG className="size-6" currentColor="#eeeeee" /> : "Agregar"}</button>
 
               <span className="w-[300px] fixed bottom-4 left-0 text-xs">{error}</span>
 

@@ -1,11 +1,12 @@
 import DashboardContainer from "./components/Dashboard/DashboardContainer";
-import MenuContainer from "./components/MenuAccordion/MenuContainer";
+import PagosPendientesList from "./components/Dashboard/PagosPendientesList/PagosPendientesList";
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen overflow-hidden font-[family-name:var(--font-geist-sans)]">
-      <MenuContainer />
-      <DashboardContainer />
+    <div className="flex-1 font-[family-name:var(--font-geist-sans)]">
+      <DashboardContainer page={"pendientes"}>
+        <PagosPendientesList />
+      </DashboardContainer>
     </div>
   );
 }

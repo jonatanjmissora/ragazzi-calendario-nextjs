@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Suspense } from "react";
+import MenuContainer from "./components/MenuAccordion/MenuContainer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,9 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`flex h-screen overflow-hidden ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <MenuContainer />
+        <Suspense fallback={"Loading ..."}>
+          {children}
+        </Suspense>
       </body>
     </html>
   );

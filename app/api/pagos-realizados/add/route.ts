@@ -1,11 +1,10 @@
-import { deleteMenuSectorDB } from "@/app/db/menu"
+import { addPagoRealizadoDB } from "@/app/db/pagos"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function PATCH(request: NextRequest) {
-
+export async function POST(request: NextRequest) {
   try {
-    const { rubro, sectoresArray } = await request.json()
-    const res = await deleteMenuSectorDB(rubro, sectoresArray)
+    const { pagoRealizado } = await request.json()
+    const res = await addPagoRealizadoDB(pagoRealizado)
 
     return new NextResponse(JSON.stringify(res), { status: 200 })
   } catch (e) {

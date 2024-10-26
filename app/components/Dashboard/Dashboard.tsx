@@ -1,24 +1,28 @@
 "use client"
 
-import { PagoPendienteProps } from "@/app/types/pagosPendientes";
 import Header from "./Header";
-import PagosPendientesList from "./PagosPendientesList";
 import { useEffect } from "react";
 import { usePagosStore } from "@/app/zustand/usePagosStore";
+import { PagoProps } from "@/app/types/pagos";
 
-export default function Dashboard({ data }: { data: PagoPendienteProps[] }) {
+export default function Dashboard({ data, page, children }: { data: PagoProps[], page: string, children: React.ReactNode }) {
 
-  const { setPagosPend } = usePagosStore()
+  const { setPagosPend, setPagosReal } = usePagosStore()
   useEffect(() => {
-    setPagosPend(data)
-  }, [setPagosPend, data])
+    if (page === "pendientes") {
+      setPagosPend(data)
+    }
+    else {
+      setPagosReal(data)
+    }
+  }, [setPagosPend, setPagosReal, page, data])
 
   return (
-    <section className="w-3/4 h-full primary rounded-lg shadow overflow-hidden">
+    <section className="relative w-3/4 min-h-[300px] primary border border-slate-500 rounded-lg shadow overflow-hidden m-8">
 
-      <div className="">
-        <Header />
-        <PagosPendientesList />
+      <div className="h-full">
+        <Header page={page} />
+        {children}
       </div>
 
     </section>

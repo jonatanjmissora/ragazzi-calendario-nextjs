@@ -1,16 +1,16 @@
 import montoFormat from "@/app/utils/montoFormat"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
 
-export default function Header() {
+export default function Header({ page }: { page: string }) {
 
     const { getTotal, deleteAllIdsTotal, setFilter } = usePagosStore()
 
     const total = getTotal()
 
     return (
-        <article className="bg-my-white p-2 pb-0 border">
+        <article className="bg-my-white border">
 
-            <div className="flex-1 flex justify-between items-center mb-2 mx-2">
+            <div className="flex-1 flex justify-between items-center mb-2 mx-4">
                 <div className="flex justify-between items center gap-4">
                     <span
                         className={`flex items-center text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
@@ -26,14 +26,9 @@ export default function Header() {
                 <Filter setFilter={setFilter} />
             </div>
 
-            <div className="grid pagos-grid tracking-wide font-semibold text-my-black">
-                <span id="checkbox"></span>
-                <span>vence</span>
-                <span>rubro</span>
-                <span>sector</span>
-                <span>monto</span>
-                <span id="menu"></span>
-            </div>
+            {page === "pendientes"
+                ? <HeaderPendientes />
+                : <HeaderRealizados />}
 
         </article>
     )
@@ -85,5 +80,30 @@ const Filter = ({ setFilter }: { setFilter: (value: string) => void }) => {
 
         </div>
 
+    )
+}
+
+const HeaderPendientes = () => {
+    return (
+        <div className="grid pagos-grid-6 tracking-wide font-semibold text-my-black mx-4">
+            <span id="checkbox"></span>
+            <span>vence</span>
+            <span>rubro</span>
+            <span>sector</span>
+            <span>monto</span>
+            <span id="menu"></span>
+        </div>
+    )
+}
+
+const HeaderRealizados = () => {
+    return (
+        <div className="grid pagos-grid-5 tracking-wide font-semibold text-my-black mx-4">
+            <span>vence</span>
+            <span>rubro</span>
+            <span>sector</span>
+            <span>monto</span>
+            <span className="mr-10">pagado</span>
+        </div>
     )
 }

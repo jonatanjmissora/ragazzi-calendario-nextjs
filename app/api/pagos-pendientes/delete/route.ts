@@ -1,11 +1,11 @@
-import { addPagoRealizadoDB } from "@/app/db/pagos"
+import { deletePagoPendienteDB } from "@/app/db/pagos"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function POST(request: NextRequest) {
+export async function DELETE(request: NextRequest) {
+
   try {
-    const { pagoRealizado } = await request.json()
-    console.log("ROUTE", pagoRealizado)
-    const res = await addPagoRealizadoDB(pagoRealizado)
+    const { id } = await request.json()
+    const res = await deletePagoPendienteDB(id)
 
     return new NextResponse(JSON.stringify(res), { status: 200 })
   } catch (e) {

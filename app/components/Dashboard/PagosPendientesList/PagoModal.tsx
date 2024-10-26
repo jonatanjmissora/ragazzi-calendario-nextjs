@@ -1,8 +1,8 @@
 import CancelSVG from "@/app/assets/CancelSVG";
-import { PagoPendienteProps } from "@/app/types/pagosPendientes";
+import { PagoProps } from "@/app/types/pagos";
 import { usePagosStore } from "@/app/zustand/usePagosStore";
 
-export default function PagoModal({ pago, setShowModal }: { pago: PagoPendienteProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function PagoModal({ pago, setShowModal }: { pago: PagoProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
   const { editPagoPend } = usePagosStore()
 

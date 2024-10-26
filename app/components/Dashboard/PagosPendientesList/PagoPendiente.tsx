@@ -1,6 +1,6 @@
 "use client"
 
-import { PagoPendienteProps } from "@/app/types/pagosPendientes"
+import { PagoProps } from "@/app/types/pagos"
 import montoFormat from "@/app/utils/montoFormat"
 import venceFormat from "@/app/utils/venceFormat"
 import { useState } from "react"
@@ -8,7 +8,7 @@ import PagoCheckbox from "./PagoCheckbox"
 import PagoMenu from "./PagoMenu"
 import PagoModal from "./PagoModal"
 
-export default function PagoPendiente({ pago }: { pago: PagoPendienteProps }) {
+export default function PagoPendiente({ pago }: { pago: PagoProps }) {
 
   const [showModal, setShowModal] = useState<boolean>(false)
 
@@ -17,7 +17,7 @@ export default function PagoPendiente({ pago }: { pago: PagoPendienteProps }) {
 
   return (
     <>
-      <article className={`relative grid pagos-grid items-center tracking-wide rounded-lg m-1 mx-4 text-my-black ${pago.rubro}`}>
+      <article className={`grid pagos-grid-6 items-center tracking-wide rounded-lg m-1 mx-4 text-my-black ${pago.rubro}`}>
 
         <PagoCheckbox pago={pago} />
 

@@ -1,9 +1,9 @@
 import DotEmptySVG from "@/app/assets/DotEmptySvg"
 import DotFillSVG from "@/app/assets/DotFillSvg"
-import { PagoPendienteProps } from "@/app/types/pagosPendientes"
+import { PagoProps } from "@/app/types/pagos"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
 
-export default function PagoCheckbox({ pago }: { pago: PagoPendienteProps }) {
+export default function PagoCheckbox({ pago }: { pago: PagoProps }) {
 
   const { idsTotal, addIdTotal, deleteIdTotal } = usePagosStore()
 

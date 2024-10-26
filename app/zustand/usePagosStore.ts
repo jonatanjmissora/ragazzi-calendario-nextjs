@@ -1,20 +1,16 @@
 import { create } from "zustand";
-import { PagoPendienteProps } from "../types/pagosPendientes";
-import { PagoRealizadoProps } from "../types/pagosRealizados";
+import { PagoProps } from "../types/pagos";
 
 type PagosStoreProps = {
   filter: string;
   setFilter: (value: string) => void;
 
-  pagosPend: PagoPendienteProps[];
-  setPagosPend: (pagos: PagoPendienteProps[]) => void;
-  getPagoPendById: (id: string) => void;
-  addPagoPendienteFront: (newPagPend: PagoPendienteProps) => void;
+  pagosPend: PagoProps[];
+  setPagosPend: (pagos: PagoProps[]) => void;
+  // getPagoPendById: (id: string) => void;
+  addPagoPendienteFront: (newPagPend: PagoProps) => void;
   deletePagoPendienteFront: (id: string) => void;
-  editPagoPend: (newPagoPend: PagoPendienteProps) => void;
-
-  pagosReal: PagoRealizadoProps[];
-  setPagosReal: (pagosReal: PagoRealizadoProps[]) => void;
+  editPagoPend: (newPagoPend: PagoProps) => void;
 
   idsTotal: string[];
   addIdTotal: (newId: string) => void;
@@ -24,25 +20,28 @@ type PagosStoreProps = {
   total: number;
   getTotal: () => number;
 
+  pagosReal: PagoProps[];
+  setPagosReal: (pagosReal: PagoProps[]) => void;
+  addPagoRealizadosFront: (newPagPend: PagoProps) => void;
 }
 
 export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
 
-
+  /*
+          PAGOS PENDIENTES
+  */
   filter: "todos",
   setFilter: (value: string) => set({ filter: value }),
 
 
   pagosPend: [],
-  setPagosPend: (pagosPend: PagoPendienteProps[]) => set({ pagosPend }),
-  getPagoPendById: (id: string) => get().pagosPend.filter(pago => pago._id === id)[0],
-  addPagoPendienteFront: (newPagoPend: PagoPendienteProps) => set({ pagosPend: [...get().pagosPend, newPagoPend] }),
+  setPagosPend: (pagosPend: PagoProps[]) => set({ pagosPend }),
+  // getPagoPendById: (id: string) => get().pagosPend.filter(pago => pago._id === id)[0],
+  addPagoPendienteFront: (newPagoPend: PagoProps) => set({ pagosPend: [...get().pagosPend, newPagoPend] }),
   deletePagoPendienteFront: (id: string) => set({ pagosPend: get().pagosPend.filter(pago => pago._id !== id) }),
-  editPagoPend: (newPagoPend: PagoPendienteProps) =>
+  editPagoPend: (newPagoPend: PagoProps) =>
     set({ pagosPend: get().pagosPend.map(pago => pago._id === newPagoPend._id ? newPagoPend : pago) }),
 
-  pagosReal: [],
-  setPagosReal: (pagosReal: PagoRealizadoProps[]) => set({ pagosReal }),
 
   idsTotal: [],
   addIdTotal: (newId: string) => set({ idsTotal: [...get().idsTotal, newId] }),
@@ -58,5 +57,12 @@ export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
       .reduce((acc, monto) => acc + Number(monto), 0)
     return totalValues
   },
+
+  /*
+  PAGOS REALIZADOS
+  */
+  pagosReal: [],
+  setPagosReal: (pagosReal: PagoProps[]) => set({ pagosReal }),
+  addPagoRealizadosFront: (newPagoReal: PagoProps) => set({ pagosReal: [...get().pagosReal, newPagoReal] }),
 
 }))

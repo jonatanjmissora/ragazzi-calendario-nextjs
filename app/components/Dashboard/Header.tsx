@@ -1,11 +1,33 @@
+"use client"
 import montoFormat from "@/app/utils/montoFormat"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function Header({ page }: { page: string }) {
 
-    const { getTotal, deleteAllIdsTotal, setFilter } = usePagosStore()
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const params = new URLSearchParams(searchParams)
+    const filter = searchParams.get("filter") ?? "todos"
 
-    const total = getTotal()
+    const setFilter = (newFilter: string) => {
+        params.set('filter', newFilter);
+        router.replace(`${pathname}?${params.toString()}`)
+    }
+
+    const { getTotal, idsTotal, deleteAllIdsTotal } = usePagosStore()
+
+    const [total, setTotal] = useState<number>(0)
+    useEffect(() => {
+        async function getT() {
+            const resp = await getTotal()
+            setTotal(resp)
+        }
+        getT()
+
+    }, [getTotal, idsTotal])
 
     return (
         <article className="bg-my-white border">
@@ -23,7 +45,7 @@ export default function Header({ page }: { page: string }) {
                         x
                     </button>
                 </div>
-                <Filter setFilter={setFilter} />
+                <Filter setFilter={setFilter} filter={filter} />
             </div>
 
             {page === "pendientes"
@@ -34,52 +56,41 @@ export default function Header({ page }: { page: string }) {
     )
 }
 
-const Filter = ({ setFilter }: { setFilter: (value: string) => void }) => {
+const Filter = ({ filter, setFilter }: { filter: string, setFilter: (value: string) => void }) => {
+
+    const filterNames = ["todos", "ragazzi", "patricios", "palihue", "jmolina"]
 
     return (
         <div className="">
 
             <fieldset className="flex gap-6 text-xs">
 
-                <input
-                    className="hidden flex-0"
-                    onChange={() => setFilter("todos")}
-                    type="radio" id="all" name="filter" defaultChecked />
-                <label htmlFor="all"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black ">Todos</label>
-
-                <input
-                    className="hidden flex-0"
-                    onChange={() => setFilter("ragazzi")}
-                    type="radio" id="ragazzi" name="filter" />
-                <label htmlFor="ragazzi"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">Ragazzi</label>
-
-                <input
-                    className="hidden flex-0"
-                    onChange={() => setFilter("patricios")}
-                    type="radio" id="patricios" name="filter" />
-                <label htmlFor="patricios"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">Patricios</label>
-
-                <input
-                    className="hidden flex-0"
-                    onChange={() => setFilter("palihue")}
-                    type="radio" id="palihue" name="filter" />
-                <label htmlFor="palihue"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">Palihue</label>
-
-                <input
-                    className="hidden flex-0"
-                    onChange={() => setFilter("jmolina")}
-                    type="radio" id="jmolina" name="filter" />
-                <label htmlFor="jmolina"
-                    className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">Jmolina</label>
+                {filterNames.map(name =>
+                    <Input key={name} text={name} filter={filter} setFilter={setFilter} />
+                )}
 
             </fieldset>
 
         </div>
 
+    )
+}
+
+const Input = ({ text, filter, setFilter }: { text: string, filter: string, setFilter: (newFilter: string) => void }) => {
+
+    const labelText = text[0].toUpperCase() + text.slice(1)
+
+    return (
+        <>
+            <input
+                className="hidden flex-0"
+                onChange={() => setFilter(text)}
+                type="radio" id={text} name="filter"
+                checked={filter === text}
+            />
+            <label htmlFor={text}
+                className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">{labelText}</label>
+        </>
     )
 }
 

@@ -1,17 +1,17 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { addPago, deletePago } from "../db/pagos"
+import { addPagoDB, deletePagoDB } from "../db/pagosDB"
 import { PagoProps } from "../types/pagos"
 
 export async function addPagoAction(collection: string, newPago: PagoProps) {
-    const res = await addPago(collection, newPago)
+    const res = await addPagoDB(collection, newPago)
     revalidatePath("/")
     return res
 }
 
 export async function deletePagoAction(collection: string, id: string) {
-    const res = await deletePago(collection, id)
+    const res = await deletePagoDB(collection, id)
     revalidatePath("/")
     return res
 }

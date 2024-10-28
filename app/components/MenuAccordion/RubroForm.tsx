@@ -1,14 +1,10 @@
 "use client"
 
-import SpinnerSVG from "@/app/assets/SpinnerSVG"
+import { addPagoAction } from "@/app/actions/pagosAction"
 import getActualLocaleDate from "@/app/utils/date"
 import { useRef, useState } from "react"
-
-// const delay = () => new Promise(res => {
-//   setTimeout(() => {
-//     res("")
-//   }, 2000)
-// })
+import SubmitBtn from "../SubmitBtn"
+import { deleteSectorAction } from "@/app/actions/menuAction"
 
 type RubroFormProps = {
   rubro: string;
@@ -36,47 +32,20 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
       vencimiento: inputDate.toString(),
       pagado: "",
     }
-    console.log({newPago})
-
-  }
-
-/*
-  const formAction = async (formData: FormData) => {
-    const { sector: inputSector, date: inputDate, monto: inputMonto } = Object.fromEntries(formData);
-
     if (!inputSector) {
       alert("Falta elegir servicio")
       return
     }
 
-    try {
-      setError("")
-      const newPagoPend = {
-        _id: `${inputDate.toString()}-${rubro}-${inputSector.toString()}`,
-        rubro,
-        sector: inputSector.toString(),
-        monto: inputMonto.toString(),
-        vencimiento: inputDate.toString(),
-        pagado: "",
-      }
-
-      //const res = await addPagoPendienteBack(newPagoPend)
-
-      //if (!res.insertedId) throw new Error(res)
-
-      const newSectorArray = sectores.filter(actualSector => actualSector !== inputSector)
-      console.log(newSectorArray)
-      
+    const res = await addPagoAction("PagosPendientes", newPago)
+    if (res?.error) setError(res?.error)
+    else {
+      const sectoresWithoutActualSector = sectores.filter(sect => sect !== newPago.sector)
+      await deleteSectorAction(rubro, sectoresWithoutActualSector)
       setShowForm(false)
-
-    } catch (error) {
-      if (error instanceof Error)
-        setError(error.message)
     }
-    
 
   }
-*/
 
   const handleCalendarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (showDateRef.current)
@@ -119,9 +88,7 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
                 className="text-center w-full py-1 bg-transparent border-b-2 border-red-900 text-black"
                 type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} defaultValue="0" />
 
-              <button
-                className={`tracking-wider w-full h-[2.6rem] mb-2 self-end flex justify-center primary p-4 py-2 rounded-lg ${false && "opacity-80"} duration-200 hover:text-my-black hover:border-slate-400`}
-                type="submit" >{false ? <SpinnerSVG className="size-6" currentColor="#eeeeee" /> : "Agregar"}</button>
+              <SubmitBtn text="Agregar" />
 
               <span className="w-[300px] fixed bottom-4 left-0 text-xs">{error}</span>
 

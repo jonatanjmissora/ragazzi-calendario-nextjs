@@ -1,8 +1,6 @@
 "use client"
 
 import Rubro from "./Rubro"
-import { useEffect } from "react"
-import { useMenuStore } from "@/app/zustand/useMenuStore"
 import { MenuRubroProps } from "@/app/types/menuRubros"
 import Nav from "./Nav"
 import Logo from "./Logo"
@@ -14,12 +12,6 @@ const getSectores = (array: MenuRubroProps[], rubro: string) => {
 
 export default function Menu({ data }: { data: MenuRubroProps[] }) {
 
-    /*
-    const { menuRubros, setMenuRubros } = useMenuStore()
-    useEffect(() => {
-        setMenuRubros(data)
-    }, [setMenuRubros, data])
-*/
     const sortedRubros = ["ragazzi", "patricios", "palihue", "jmolina"]
 
     return (

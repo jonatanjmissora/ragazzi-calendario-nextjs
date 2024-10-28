@@ -8,7 +8,7 @@ import PagoCheckbox from "./PagoCheckbox"
 import PagoMenu from "./PagoMenu"
 import PagoModal from "./PagoModal"
 
-export default function PagoPendiente({ pago }: { pago: PagoProps }) {
+export default function Pago({ pago }: { pago: PagoProps }) {
 
   const [showModal, setShowModal] = useState<boolean>(false)
 

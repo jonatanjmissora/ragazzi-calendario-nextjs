@@ -1,12 +1,14 @@
 import DashboardContainer from "./components/Dashboard/DashboardContainer";
-import PagosPendientesList from "./components/Dashboard/PagosPendientesList/PagosPendientesList";
+import PagosList from "./components/Dashboard/PagosList/PagosList";
 
-export default function Page() {
+export default function Page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+
+  const filter = searchParams?.filter ?? "todos"
+
   return (
     <div className="flex-1 font-[family-name:var(--font-geist-sans)]">
       <DashboardContainer page={"pendientes"}>
-        {/*<PagosPendientesList />*/}
-        <span>Hola</span>
+        <PagosList page={"pendientes"} filter={filter} />
       </DashboardContainer>
     </div>
   );

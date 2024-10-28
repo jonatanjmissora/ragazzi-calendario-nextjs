@@ -1,18 +1,15 @@
 import CancelSVG from "@/app/assets/CancelSVG";
 import { PagoProps } from "@/app/types/pagos";
-import { usePagosStore } from "@/app/zustand/usePagosStore";
 
 export default function PagoModal({ pago, setShowModal }: { pago: PagoProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-  const { editPagoPend } = usePagosStore()
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const { editDate, editMonto } = Object.fromEntries(formData);
-    const newPago = { ...pago, vencimiento: editDate.toString(), monto: editMonto.toString() }
+    // const formData = new FormData(e.currentTarget)
+    // const { editDate, editMonto } = Object.fromEntries(formData);
+    // const newPago = { ...pago, vencimiento: editDate.toString(), monto: editMonto.toString() }
 
-    editPagoPend(newPago)
+    // editPagoPend(newPago)
     //TODO editar en DB
 
     // if (Number(pago.monto) !== Number(newPago.monto))

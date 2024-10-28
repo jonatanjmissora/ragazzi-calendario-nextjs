@@ -2,30 +2,27 @@ import EditSVG from "@/app/assets/EditSVG"
 import CancelSVG from "@/app/assets/CancelSVG"
 import CheckSVG from "@/app/assets/CheckSVG"
 import { usePagosStore } from "@/app/zustand/usePagosStore"
-import { useMenuStore } from "@/app/zustand/useMenuStore"
-import addPagoRealizadoBack from "@/app/services/pagosRealizadosBack"
 import { useState } from "react"
 import getActualDate from "@/app/utils/date"
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
-import { deletePagoPendienteBack } from "@/app/services/pagosPendientesBack"
 import { PagoProps } from "@/app/types/pagos"
+import { addPagoAction, deletePagoAction } from "@/app/actions/pagosAction"
 
 export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
 
-  const { deleteIdTotal, deletePagoPendienteFront } = usePagosStore()
-  const { addMenuSectorFront } = useMenuStore()
+  const { deleteIdTotal } = usePagosStore()
 
-  const handleCheck = async () => {
-
+  const handlePagado = async () => {
+    console.log("entro en handlePagado")
     try {
-      setIsLoading(true)
       setError("")
+      setIsLoading(true)
 
       const actualDate = getActualDate()
-      const pagoRealizado = {
+      const newPago = {
         _id: pago._id,
         vencimiento: pago.vencimiento,
         rubro: pago.rubro,
@@ -34,13 +31,13 @@ export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setS
         pagado: actualDate,
       }
 
-      const res = await addPagoRealizadoBack(pagoRealizado)
-      console.log({ res })
-      if (!res.insertedId) throw new Error(res)
+      const res = await addPagoAction("PagosRealizados", newPago)
+      if (res?.error) setError(res?.error)
+      else {
+        await deletePagoAction("PagosPendientes", pago._id)
+      }
 
       deleteIdTotal(pago._id)
-      deletePagoPendienteFront(pago._id)
-      deletePagoPendienteBack(pago._id)
     } catch (error) {
       if (error instanceof Error)
         setError(error.message)
@@ -53,8 +50,8 @@ export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setS
 
   const handleCancel = () => {
     deleteIdTotal(pago._id)
-    deletePagoPendienteFront(pago._id)
-    addMenuSectorFront(pago.rubro, pago.sector)
+    // deletePagoPendienteFront(pago._id)
+    //addMenuSectorFront(pago.rubro, pago.sector)
     //TODO quitar de "Pagos Pendientes" en DB
     //TODO agregar a "Menu" en DB
   }
@@ -74,7 +71,7 @@ export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setS
             <div className="flex justify-center gap-6">
               <button id="check-btn"
                 className="rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200"
-                onClick={handleCheck}
+                onClick={handlePagado}
                 type="button" >
                 <CheckSVG className="size-7 p-1" currentColor="#00800095" />
               </button>

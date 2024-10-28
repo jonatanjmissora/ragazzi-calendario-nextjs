@@ -1,6 +1,6 @@
 "use client"
 
-import { Sorted } from "@/app/utils/sort"
+import { sortedAlpha } from "@/app/utils/sort"
 import RubroForm from "./RubroForm"
 import { useState } from "react"
 import PlusSVG from "@/app/assets/PlusSVG"
@@ -9,7 +9,7 @@ export default function Rubro({ rubro, sectores }: { rubro: string, sectores: st
 
   const [showForm, setShowForm] = useState<boolean>(false)
 
-  const sortedSectores = Sorted(sectores)
+  const sortedSectores = sortedAlpha(sectores)
   const isEmptyClass = sectores.length === 0
 
   const handleClick = () => {

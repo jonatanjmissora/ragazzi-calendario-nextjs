@@ -5,7 +5,8 @@ export default function Page() {
   return (
     <div className="flex-1 font-[family-name:var(--font-geist-sans)]">
       <DashboardContainer page={"pendientes"}>
-        <PagosPendientesList />
+        {/*<PagosPendientesList />*/}
+        <span>Hola</span>
       </DashboardContainer>
     </div>
   );

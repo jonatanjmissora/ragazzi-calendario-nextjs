@@ -5,55 +5,28 @@ const uri = "mongodb+srv://jonatanjmissora:kato26794337@ragazzi.jdw5i.mongodb.ne
 
 const mongoClient = new MongoClient(uri)
 
-/*
-          PAGOS PENDIENTES
-*/
-
-export async function getPagosPendientes() {
+export async function deletePago(collection: string, id: string) {
   const data = await mongoClient
     .db("Ragazzi")
-    .collection<PagoProps>("PagosPendientes")
-    .find()
-    .toArray()
+    .collection<PagoProps>(collection)
+    .deleteOne({"_id": id})
 
   return data
 }
 
-export async function addPagoPendienteDB(newPagoPend: PagoProps) {
+export async function addPago(collection: string, newPago: PagoProps) {
   const data = await mongoClient
     .db("Ragazzi")
-    .collection<PagoProps>("PagosPendientes")
-    .insertOne(newPagoPend)
+    .collection<PagoProps>(collection)
+    .insertOne(newPago)
 
   return data
 }
 
-export async function deletePagoPendienteDB(id: string) {
+export async function getPagos(collection: string) {
   const data = await mongoClient
     .db("Ragazzi")
-    .collection<PagoProps>("PagosPendientes")
-    .deleteOne({ "_id": id })
-
-  return data
-}
-
-/*
-          PAGOS REALIZADOS
-*/
-
-export async function addPagoRealizadoDB(pagoRealizado: PagoProps) {
-  const data = await mongoClient
-    .db("Ragazzi")
-    .collection<PagoProps>("PagosRealizados")
-    .insertOne(pagoRealizado)
-
-  return data
-}
-
-export async function getPagosRealizados() {
-  const data = await mongoClient
-    .db("Ragazzi")
-    .collection<PagoProps>("PagosRealizados")
+    .collection<PagoProps>(collection)
     .find()
     .toArray()
 

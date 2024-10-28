@@ -7,16 +7,6 @@ import { PagoProps } from "@/app/types/pagos";
 
 export default function Dashboard({ data, page, children }: { data: PagoProps[], page: string, children: React.ReactNode }) {
 
-  const { setPagosPend, setPagosReal } = usePagosStore()
-  useEffect(() => {
-    if (page === "pendientes") {
-      setPagosPend(data)
-    }
-    else {
-      setPagosReal(data)
-    }
-  }, [setPagosPend, setPagosReal, page, data])
-
   return (
     <section className="relative w-3/4 min-h-[300px] primary border border-slate-500 rounded-lg shadow overflow-hidden m-8">
 

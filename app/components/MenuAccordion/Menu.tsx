@@ -14,11 +14,12 @@ const getSectores = (array: MenuRubroProps[], rubro: string) => {
 
 export default function Menu({ data }: { data: MenuRubroProps[] }) {
 
+    /*
     const { menuRubros, setMenuRubros } = useMenuStore()
     useEffect(() => {
         setMenuRubros(data)
     }, [setMenuRubros, data])
-
+*/
     const sortedRubros = ["ragazzi", "patricios", "palihue", "jmolina"]
 
     return (
@@ -27,7 +28,7 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
                 <Nav />
                 <Logo />
             </div>
-            {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(menuRubros, rubro)} />)}
+            {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(data, rubro)} />)}
 
         </section>
     )

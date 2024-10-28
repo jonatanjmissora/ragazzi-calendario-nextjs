@@ -21,26 +21,11 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
 
   const currentLocaleDate = getActualLocaleDate()
 
+  //const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
   const dateRef = useRef<HTMLInputElement>(null)
   const showDateRef = useRef<HTMLInputElement>(null)
 
-  const formAction = async (formData: FormData) => {
-    const { sector: inputSector, date: inputDate, monto: inputMonto } = Object.fromEntries(formData);
-
-    const newPago = {
-      _id: `${inputDate.toString()}-${rubro}-${inputSector.toString()}`,
-      rubro,
-      sector: inputSector.toString(),
-      monto: inputMonto.toString(),
-      vencimiento: inputDate.toString(),
-      pagado: "",
-    }
-    console.log({newPago})
-
-  }
-
-/*
   const formAction = async (formData: FormData) => {
     const { sector: inputSector, date: inputDate, monto: inputMonto } = Object.fromEntries(formData);
 
@@ -76,7 +61,6 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
     
 
   }
-*/
 
   const handleCalendarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (showDateRef.current)

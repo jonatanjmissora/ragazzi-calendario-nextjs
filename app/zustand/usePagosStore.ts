@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getPagosDB } from "../db/dataDB";
+import { getPagosAction } from "../actions/pagosAction";
 
 type PagosStoreProps = {
 
@@ -23,7 +23,7 @@ export const usePagosStore = create<PagosStoreProps>()((set, get) => ({
 
   total: 0,
   getTotal: async () => {
-    const pagosPend = await getPagosDB("pendientes")
+    const pagosPend = await getPagosAction("PagosPendientes")
     const totalValues = get().idsTotal
       .map(id => pagosPend.filter(pago => pago._id === id)[0]
         .monto)

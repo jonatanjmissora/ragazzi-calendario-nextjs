@@ -1,9 +1,9 @@
-import { getSectoresDB } from "@/app/db/dataDB";
+import { getSectoresAction } from "@/app/actions/menuAction"
 import Menu from "./Menu"
 
 export default async function MenuContainer() {
 
-  const data = await getSectoresDB("SectoresActuales")
+  const data = await getSectoresAction()
 
   return (
     <>

@@ -1,19 +1,18 @@
 import DotEmptySVG from "@/app/assets/DotEmptySvg"
 import DotFillSVG from "@/app/assets/DotFillSvg"
 import { PagoProps } from "@/app/types/pagos"
-import { usePagosStore } from "@/app/zustand/usePagosStore"
 
 export default function PagoCheckbox({ pago }: { pago: PagoProps }) {
 
-  const { idsTotal, addIdTotal, deleteIdTotal } = usePagosStore()
+  // const { total } = usePagosStore()
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget.checked)
-      addIdTotal(pago._id)
-    else deleteIdTotal(pago._id)
-  }
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.currentTarget.checked)
+  //     addIdTotal(pago._id)
+  //   else deleteIdTotal(pago._id)
+  // }
 
-  const isOnTotal = idsTotal.includes(pago._id)
+  // const isOnTotal = idsTotal.includes(pago._id)
 
   return (
     <span id="span-checkbox"
@@ -21,8 +20,8 @@ export default function PagoCheckbox({ pago }: { pago: PagoProps }) {
 
       <input
         className="hidden"
-        onChange={handleChange}
-        checked={isOnTotal}
+        // onChange={handleChange}
+        // checked={isOnTotal}
         id={`check-${pago._id}`} type="checkbox"
       />
 

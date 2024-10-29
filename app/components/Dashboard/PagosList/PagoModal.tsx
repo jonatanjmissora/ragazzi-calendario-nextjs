@@ -1,25 +1,26 @@
+"use client"
+import { updatePagoAction } from "@/app/actions/pagosAction";
 import CancelSVG from "@/app/assets/CancelSVG";
 import { PagoProps } from "@/app/types/pagos";
+import { useState } from "react";
 
 export default function PagoModal({ pago, setShowModal }: { pago: PagoProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    // const formData = new FormData(e.currentTarget)
-    // const { editDate, editMonto } = Object.fromEntries(formData);
-    // const newPago = { ...pago, vencimiento: editDate.toString(), monto: editMonto.toString() }
+  const [error, setError] = useState<string>("")
 
-    // editPagoPend(newPago)
-    //TODO editar en DB
 
-    // if (Number(pago.monto) !== Number(newPago.monto))
-    //   setPagosTotal(prev => {
-    //     const isOnPagosTotal = prev.findIndex(pago => pago._id === pago._id) >= 0
-    //     if (!isOnPagosTotal) return prev
-    //     const newPagosTotal = prev.filter(oldPrev => oldPrev._id !== pago._id)
-    //     newPagosTotal.push(newPago)
-    //     return newPagosTotal
-    //   })
+  const formAction = async (formData: FormData) => {
+    const { date: inputDate, monto: inputMonto } = Object.fromEntries(formData);
+    const newPago = { ...pago, vencimiento: inputDate.toString(), monto: inputMonto.toString() }
+
+    if (Number(pago.monto) !== Number(newPago.monto)
+      || pago.vencimiento !== newPago.vencimiento) {
+      const res = await updatePagoAction(pago._id, newPago)
+      if (res?.error) {
+        setError(res.error)
+        return
+      }
+    }
     setShowModal(false)
 
   }
@@ -30,7 +31,7 @@ export default function PagoModal({ pago, setShowModal }: { pago: PagoProps, set
       <div className="absolute z-10 inset-0 top-0 left-0 flex justify-center items-center">
         <form
           className="relative bg-my-white rounded-xl p-8 text-my-black flex flex-col gap-6"
-          onSubmit={handleSubmit}
+          action={formAction}
         >
 
           <i className="absolute -top-10 -right-0" onClick={() => setShowModal(false)}><CancelSVG className="size-7 p-1 hover:bg-slate-500 rounded-lg" currentColor="#cacaca" /></i>
@@ -38,18 +39,20 @@ export default function PagoModal({ pago, setShowModal }: { pago: PagoProps, set
           <div className="flex items-center gap-8">
             <div className="flex flex-col gap-4">
               <span>{pago.rubro}</span>
-              <input className="w-5rem" type="date" name="editDate" defaultValue={pago.vencimiento} />
+              <input className="w-5rem" type="date" name="date" defaultValue={pago.vencimiento} />
             </div>
 
             <div className="flex flex-col gap-4">
               <span>{pago.sector}</span>
-              <input className="w-[6rem] pb-[2px]" type="number" name="editMonto" defaultValue={pago.monto} onFocus={(e) => e.currentTarget.select()} />
+              <input className="w-[6rem] pb-[2px]" type="number" name="monto" defaultValue={pago.monto} onFocus={(e) => e.currentTarget.select()} />
             </div>
           </div>
 
           <button
             className="font-semibold tracking-wide p-2 px-4 primary rounded-lg"
             type="submit">Cambiar</button>
+
+          <span className="absolute -bottom-4 left-4 text-xs text-my-white">{error}</span>
 
         </form>
       </div>

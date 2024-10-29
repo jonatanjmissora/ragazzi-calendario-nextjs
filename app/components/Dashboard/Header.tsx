@@ -17,24 +17,24 @@ export default function Header({ page }: { page: string }) {
         router.replace(`${pathname}?${params.toString()}`)
     }
 
-    const { getTotal, idsTotal, deleteAllIdsTotal } = usePagosStore()
+    // const { getTotal, idsTotal, deleteAllIdsTotal } = usePagosStore()
 
-    const [total, setTotal] = useState<number>(0)
-    useEffect(() => {
-        async function getT() {
-            const resp = await getTotal()
-            setTotal(resp)
-        }
-        getT()
+    // const [total, setTotal] = useState<number>(0)
+    // useEffect(() => {
+    //     async function getT() {
+    //         const resp = await getTotal()
+    //         setTotal(resp)
+    //     }
+    //     getT()
 
-    }, [getTotal, idsTotal])
+    // }, [getTotal, idsTotal])
 
     return (
         <article className="bg-my-white border">
 
             <div className="flex-1 flex justify-between items-center mb-2 mx-4">
                 <div className="flex justify-between items center gap-4">
-                    <span
+                    {/* <span
                         className={`flex items-center text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
                         $ {montoFormat(total)}
                     </span>
@@ -43,7 +43,7 @@ export default function Header({ page }: { page: string }) {
                         onClick={deleteAllIdsTotal}
                     >
                         x
-                    </button>
+                    </button> */}
                 </div>
                 <Filter setFilter={setFilter} filter={filter} />
             </div>
@@ -61,7 +61,7 @@ const Filter = ({ filter, setFilter }: { filter: string, setFilter: (value: stri
     const filterNames = ["todos", "ragazzi", "patricios", "palihue", "jmolina"]
 
     return (
-        <div className="">
+        <div className="my-2">
 
             <fieldset className="flex gap-6 text-xs">
 
@@ -109,7 +109,8 @@ const HeaderPendientes = () => {
 
 const HeaderRealizados = () => {
     return (
-        <div className="grid pagos-grid-5 tracking-wide font-semibold text-my-black mx-4">
+        <div className="grid pagos-grid-6 tracking-wide font-semibold text-my-black mx-4">
+            <span></span>
             <span>vence</span>
             <span>rubro</span>
             <span>sector</span>

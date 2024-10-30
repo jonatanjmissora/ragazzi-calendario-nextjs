@@ -1,7 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { addSectorDB, deleteSectorDB, getSectoresDB } from "../db/menuDB"
+import { addSectorDB, deleteAllSectoresDB, deleteSectorDB, getSectoresDB } from "../db/menuDB"
 
 export async function deleteSectorAction(rubro: string, sectores: string[]) {
   const res = await deleteSectorDB(rubro, sectores)
@@ -17,4 +17,9 @@ export async function addSectorAction(rubro: string, newSectores: string[]) {
 
 export async function getSectoresAction() {
   return await getSectoresDB()
+}
+
+export async function menuResetAction() {
+  await deleteAllSectoresDB()
+  revalidatePath("/")
 }

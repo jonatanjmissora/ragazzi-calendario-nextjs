@@ -77,7 +77,6 @@ export async function updatePagoDB(id: string, newPago: PagoProps) {
         }
       )
 
-    console.log("resultado del update: ", { data })
     if (!data.acknowledged) throw new Error(JSON.stringify(data))
     return { data: undefined, error: undefined }
 
@@ -87,4 +86,11 @@ export async function updatePagoDB(id: string, newPago: PagoProps) {
       return { data: undefined, error: error.message }
     }
   }
+}
+
+export async function deleteAllPagosDB(collection: string) {
+  await mongoClient
+    .db("Ragazzi")
+    .collection<PagoProps>(collection)
+    .deleteMany({})
 }

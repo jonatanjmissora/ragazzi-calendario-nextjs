@@ -65,3 +65,21 @@ export async function getSectoresDB() {
 
   return data
 }
+
+export async function deleteAllSectoresDB() {
+  const rubrosReset = await mongoClient
+    .db("Ragazzi")
+    .collection<MenuRubroProps>("SectoresReset")
+    .find()
+    .toArray()
+
+  await mongoClient
+    .db("Ragazzi")
+    .collection<MenuRubroProps>("SectoresActuales")
+    .deleteMany({})
+
+  await mongoClient
+    .db("Ragazzi")
+    .collection<MenuRubroProps>("SectoresActuales")
+    .insertMany(rubrosReset)
+}

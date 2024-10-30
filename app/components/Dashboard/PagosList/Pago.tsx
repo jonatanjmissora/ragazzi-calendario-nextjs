@@ -8,6 +8,7 @@ import PagoModal from "./PagoModal"
 import PagoCheckbox from "./PagoCheckbox"
 import PagoMenu from "./PagoMenu"
 import { usePathname } from "next/navigation"
+import ChartSVG from "@/app/assets/ChartSVG"
 
 export default function Pago({ pago }: { pago: PagoProps }) {
 
@@ -25,7 +26,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
         {
           pathname === "/"
             ? <PagoCheckbox pago={pago} />
-            : <span></span>
+            : <span className=""><ChartSVG className="size-6 p-1 rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200"/></span>
         }
 
         <span>{pagoVenceFormat}</span>

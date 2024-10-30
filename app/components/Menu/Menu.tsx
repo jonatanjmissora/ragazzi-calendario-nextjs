@@ -4,6 +4,9 @@ import Rubro from "./Rubro"
 import { MenuRubroProps } from "@/app/types/menuRubros"
 import Nav from "./Nav"
 import Logo from "./Logo"
+import MenuFooter from "./MenuFooter"
+import WebLinks from "./WebLinks"
+import Edit from "./Edit"
 
 const getSectores = (array: MenuRubroProps[], rubro: string) => {
     const sectoresArray = array.filter(object => object.rubro === rubro)
@@ -21,7 +24,10 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
                 <Logo />
             </div>
             {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(data, rubro)} />)}
+            <MenuFooter />
 
+            <WebLinks />
+            <Edit />
         </section>
     )
 }

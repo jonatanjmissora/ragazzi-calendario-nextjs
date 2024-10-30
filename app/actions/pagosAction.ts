@@ -1,7 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { addPagoDB, deletePagoDB, getPagosDB, updatePagoDB } from "../db/pagosDB"
+import { addPagoDB, deleteAllPagosDB, deletePagoDB, getPagosDB, updatePagoDB } from "../db/pagosDB"
 import { PagoProps } from "../types/pagos"
 
 export async function addPagoAction(collection: string, newPago: PagoProps) {
@@ -24,4 +24,9 @@ export async function updatePagoAction(id: string, newPago: PagoProps) {
     const res = await updatePagoDB(id, newPago)
     if (!res?.error) revalidatePath("/")
     return res
+}
+
+export async function deleteAllPagosAction(collection: string) {
+    await deleteAllPagosDB(collection)
+    collection === "PagosRealizados" ? revalidatePath("/") : revalidatePath("/pagos-realizados")
 }

@@ -3,12 +3,13 @@ import PagosList from "@/app/components/Dashboard/PagosList/PagosList";
 
 export default function Page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 
-  const filter = searchParams?.filter ?? "todos"
+  const filterR = searchParams?.filterR ?? "todos"
+  const filterF = searchParams?.filterF ?? ""
 
   return (
     <div className="flex-1 font-[family-name:var(--font-geist-sans)]">
       <DashboardContainer page={"realizados"}>
-        <PagosList page={"realizados"} filter={filter} />
+        <PagosList page={"realizados"} filterR={filterR} filterF={filterF} />
       </DashboardContainer>
     </div>
   );

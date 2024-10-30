@@ -39,11 +39,22 @@ export async function addPagoDB(collection: string, newPago: PagoProps) {
   }
 }
 
-export async function getPagosDB(collection: string) {
+export async function getPagosDB(collection: string, filterF: string) {
 
-  const data = collection === "PagosPendientes"
+  let data = [] as PagoProps[]
+  const rawData = collection === "PagosPendientes"
     ? PAGOSPENDIENTES
     : PAGOSREALIZADOS
+
+  if (collection === "PagosRealizados") {
+    const filteredData = rawData.filter(rdata => rdata.vencimiento.includes(filterF))
+    data = [...filteredData]
+  }
+
+  else {
+    data = [...rawData]
+  }
+
 
   // const data = await mongoClient
   //   .db("Ragazzi")

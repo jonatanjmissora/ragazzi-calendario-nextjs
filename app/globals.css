@@ -69,13 +69,15 @@ body {
 }
 
 /*         INPUTS         */
-input {
+input,
+select {
   border-bottom: 2px solid var(--primary);
   background: transparent;
   color: var(--black)
 }
 
-input:focus {
+input:focus,
+select:focus {
   border: none;
   border-bottom: 2px solid var(--primary);
   outline: none;

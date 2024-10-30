@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../Header/Header";
 
 export default function Dashboard({ page, children }: { page: string, children: React.ReactNode }) {
 

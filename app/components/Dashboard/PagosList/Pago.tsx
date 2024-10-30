@@ -26,10 +26,14 @@ export default function Pago({ pago }: { pago: PagoProps }) {
         {
           pathname === "/"
             ? <PagoCheckbox pago={pago} />
-            : <span className=""><ChartSVG className="size-6 p-1 rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200"/></span>
+            : <span className=""><ChartSVG className="size-6 p-1 rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200" /></span>
         }
 
-        <span>{pagoVenceFormat}</span>
+        {
+          pathname === "/"
+            ? <span>{pagoVenceFormat}</span>
+            : <span>{pago.vencimiento}</span>
+        }
         <span>{pago.rubro}</span>
         <span>{pago.sector}</span>
         <span>{pagoMonto}</span>

@@ -16,8 +16,8 @@ export async function deletePagoAction(collection: string, id: string) {
     return res
 }
 
-export async function getPagosAction(collection: string) {
-    return await getPagosDB(collection)
+export async function getPagosAction(collection: string, filterF: string) {
+    return await getPagosDB(collection, filterF)
 }
 
 export async function updatePagoAction(id: string, newPago: PagoProps) {

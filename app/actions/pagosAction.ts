@@ -28,5 +28,8 @@ export async function updatePagoAction(id: string, newPago: PagoProps) {
 
 export async function deleteAllPagosAction(collection: string) {
     await deleteAllPagosDB(collection)
-    collection === "PagosRealizados" ? revalidatePath("/") : revalidatePath("/pagos-realizados")
+    if (collection === "PagosRealizados")
+        revalidatePath("/")
+    else
+        revalidatePath("/pagos-realizados")
 }

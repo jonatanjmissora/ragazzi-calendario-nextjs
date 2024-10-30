@@ -1,4 +1,5 @@
 import { PagoProps } from "../types/pagos"
+import { PAGOSPENDIENTES, PAGOSREALIZADOS } from "../utils/constants"
 import { mongoClient } from "./clientDB"
 
 export async function deletePagoDB(collection: string, id: string) {
@@ -38,29 +39,17 @@ export async function addPagoDB(collection: string, newPago: PagoProps) {
   }
 }
 
-// const pagosPendientes = [
-//   { _id: "er223", vencimiento: "2024-10-30", rubro: "ragazzi", sector: "contador", monto: "1285000", pagado: "" },
-//   { _id: "edf23", vencimiento: "2024-10-20", rubro: "jmolina", sector: "agua", monto: "7654", pagado: "" },
-//   { _id: "fsw23", vencimiento: "2024-10-25", rubro: "palihue", sector: "cable", monto: "25385", pagado: "" },
-//   { _id: "rtf23", vencimiento: "2024-10-15", rubro: "patricios", sector: "rentas", monto: "5854", pagado: "" },
-// ]
-
-// const pagosRealizados = [
-//   { _id: "edf23", vencimiento: "2024-10-20", rubro: "jmolina", sector: "municipal", monto: "12", pagado: "2024-10-10" },
-//   { _id: "rtf23", vencimiento: "2024-10-15", rubro: "patricios", sector: "autonomos", monto: "85", pagado: "2024-10-10" },
-// ]
-
 export async function getPagosDB(collection: string) {
 
-  // const data = collection === "pendientes"
-  //   ? pagosPendientes
-  //   : pagosRealizados
+  const data = collection === "PagosPendientes"
+    ? PAGOSPENDIENTES
+    : PAGOSREALIZADOS
 
-  const data = await mongoClient
-    .db("Ragazzi")
-    .collection<PagoProps>(collection)
-    .find()
-    .toArray()
+  // const data = await mongoClient
+  //   .db("Ragazzi")
+  //   .collection<PagoProps>(collection)
+  //   .find()
+  //   .toArray()
 
   return data
 }

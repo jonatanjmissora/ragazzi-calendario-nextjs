@@ -1,4 +1,5 @@
 import { MenuRubroProps } from "../types/menuRubros"
+import { MENURUBROS } from "../utils/constants"
 import { mongoClient } from "./clientDB"
 
 export async function deleteSectorDB(rubro: string, sectores: string[]) {
@@ -50,18 +51,13 @@ export async function addSectorDB(rubro: string, newSectores: string[]) {
 
 export async function getSectoresDB() {
 
-  // const data = [
-  //   { _id: "01", rubro: "ragazzi", sectores: ["gas", "luz", "telefono"] },
-  //   { _id: "02", rubro: "patricios", sectores: ["municipal", "internet", "patente"] },
-  //   { _id: "03", rubro: "palihue", sectores: ["municipal", "monotributo"] },
-  //   { _id: "04", rubro: "jmolina", sectores: [] },
-  // ]
+  const data = MENURUBROS
 
-  const data = await mongoClient
-    .db("Ragazzi")
-    .collection<MenuRubroProps>("SectoresActuales")
-    .find()
-    .toArray()
+  // const data = await mongoClient
+  //   .db("Ragazzi")
+  //   .collection<MenuRubroProps>("SectoresActuales")
+  //   .find()
+  //   .toArray()
 
   return data
 }

@@ -55,7 +55,7 @@ export async function getPagosDB(collection: string, filterF: string) {
     data = [...rawData]
   }
 
-
+  //TODO hacer el filtro por fecha
   // const data = await mongoClient
   //   .db("Ragazzi")
   //   .collection<PagoProps>(collection)

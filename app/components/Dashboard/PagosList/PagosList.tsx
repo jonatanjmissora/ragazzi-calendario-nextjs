@@ -6,7 +6,6 @@ import getActualDate from "@/app/utils/date"
 
 export default async function PagosList({ page, filterR, filterF }: { page: string, filterR: string, filterF?: string }) {
 
-
   const fechaActual = getActualDate().substring(0, 7)
   if (!filterF) filterF = fechaActual
 
@@ -19,7 +18,7 @@ export default async function PagosList({ page, filterR, filterF }: { page: stri
     pagos = await getPagosAction("PagosRealizados", filterF)
   }
 
-  if (pagos.length === 0) return <p className="p-8 text-xl">No hay pagos todavia ...</p>
+  if (pagos.length === 0) return <p className="p-8 text-xl">No hay pagos . . .</p>
 
   const filteredPagos = filteredByRubro(pagos, filterR)
   const sortedData = sortedByProp(filteredPagos, page)

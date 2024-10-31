@@ -3,15 +3,19 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import HeaderTitle from "./HeaderTitle"
 import { RubroFilter } from "./RubroFilter"
 import { FechaFilter } from "./FechaFilter"
+import getActualDate from "@/app/utils/date"
+import { ReactNode } from "react"
+import HeaderAdmin from "./HeaderAdmin"
 
 export default function Header({ page }: { page: string }) {
 
+    const fechaActual = getActualDate().substring(0, 7)
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams)
     const filterR = searchParams.get("filterR") ?? "todos"
-    const filterF = searchParams.get("filterF") ?? ""
+    const filterF = searchParams.get("filterF") ?? fechaActual
 
     const setFilterR = (newFilter: string) => {
         params.set('filterR', newFilter);
@@ -27,31 +31,16 @@ export default function Header({ page }: { page: string }) {
         <article className="bg-my-white border">
 
             <div className="flex-1 flex justify-between items-center mb-2 mx-4">
-                {/*<div className="flex justify-between items center gap-4">
-                     <span
-                        className={`flex items-center text-my-black font-bold tracking-wide ${total == 0 && "opacity-0"}`}>
-                        $ {montoFormat(total)}
-                    </span>
-                    <button
-                        className={`text-slate-400 ${total == 0 && "opacity-0"} p-1 px-2 text-xl rounded-lg hover:bg-slate-300 hover:text-slate-700`}
-                        onClick={deleteAllIdsTotal}
-                    >
-                        x
-                    </button> 
-                </div>*/}
 
-                {
-                    pathname === "/pagos-realizados"
-                        ? <FechaFilter setFilter={setFilterF} filter={filterF} />
-                        : <span></span>
-                }
+                {pathname === "/" && <span className="text-my-black">Total</span>}
+                {pathname === "/pagos-realizados" && <FechaFilter setFilter={setFilterF} filter={filterF} />}
 
-                <RubroFilter setFilter={setFilterR} filter={filterR} />
+                {pathname !== "/admin" && <RubroFilter setFilter={setFilterR} filter={filterR} />}
 
             </div>
 
-            <HeaderTitle page={page} />
-
+            {pathname !== "/admin" && <HeaderTitle page={page} />}
+            {pathname === "/admin" && <HeaderAdmin />}
         </article>
     )
 }

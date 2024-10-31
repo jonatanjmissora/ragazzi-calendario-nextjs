@@ -2,17 +2,10 @@
 
 import { MONTHSARRAY } from "@/app/utils/constants"
 import getActualDate from "@/app/utils/date"
-import { usePathname, useSearchParams, useRouter } from "next/navigation"
 
 export function FechaFilter({ filter, setFilter }: { filter: string, setFilter: (value: string) => void }) {
 
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const params = new URLSearchParams(searchParams)
-
   const [actualYear, actualMonth,] = getActualDate().split("-")
-  const actualMonthIndex = Number(actualMonth) - 1
   const yearsArray = Array.from(Array(10).keys()).map(a => Number(actualYear) - a)
   const monthsArray = MONTHSARRAY
 
@@ -28,7 +21,6 @@ export function FechaFilter({ filter, setFilter }: { filter: string, setFilter: 
     const selectedMonthValue = event.currentTarget.value
     const selectedMonthIndex = monthsArray.findIndex(month => month === selectedMonthValue) + 1
     const selectedMonth = selectedMonthIndex < 10 ? "0" + selectedMonthIndex : selectedMonthIndex.toString()
-    console.log({ selectedMonthIndex })
     const newFilterF = filter === ""
       ? getActualDate().substring(0, 5) + selectedMonth
       : filter.substring(0, 5) + selectedMonth

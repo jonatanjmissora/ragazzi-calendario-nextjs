@@ -11,27 +11,27 @@ export default function WebLinks() {
 
   const links = [
     {
-      name: "aguas bonaerenses",
+      _id: "aguas bonaerenses",
       href: "https://oficinavirtual.aguasbonaerenses.com.ar/login",
       img: absa_logo
     },
     {
-      name: "camuzzi gas pampeana",
+      _id: "camuzzi gas pampeana",
       href: "https://oficinavirtual.camuzzigas.com.ar/#/landing",
       img: camuzzi_logo
     },
     {
-      name: "edes",
+      _id: "edes",
       href: "https://oficinavirtual.infoedes.com/ingreso",
       img: edes_logo
     },
     {
-      name: "municipilada bahia blanca",
+      _id: "municipilada bahia blanca",
       href: "https://www.bahia.gob.ar/apex/f?p=204:LOGIN_DESKTOP:9560258291395:::::",
       img: bahia_logo
     },
     {
-      name: "arba rentas",
+      _id: "arba rentas",
       href: "https://app.arba.gov.ar/LiqPredet/InicioLiquidacion.do",
       img: arba_logo
     }
@@ -42,13 +42,12 @@ export default function WebLinks() {
       <ul className='w-full bg-my-white flex justify-between'>
         {
           links.map(link =>
-            <li key={link.name} className='w-[20%] p-2 border border-my-white'>
+            <li key={link._id} className='w-[20%] p-2 border border-my-white'>
               <Link
                 href={link.href}
-                key={link.name}
                 target="_blank"
               >
-                <Image src={link.img} alt={link.name} />
+                <Image src={link.img} alt={link._id} />
               </Link>
             </li>
           )

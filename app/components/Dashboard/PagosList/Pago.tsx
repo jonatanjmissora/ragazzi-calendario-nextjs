@@ -9,8 +9,8 @@ import PagoCheckbox from "./PagoCheckbox"
 import PagoMenu from "./PagoMenu"
 import { usePathname } from "next/navigation"
 import ChartSVG from "@/app/assets/ChartSVG"
-import Link from "next/link"
 import Histogram from "./Histogram"
+import ArrowDownSVG from "@/app/assets/ArrowDownSVG"
 
 export default function Pago({ pago }: { pago: PagoProps }) {
 
@@ -25,15 +25,19 @@ export default function Pago({ pago }: { pago: PagoProps }) {
   return (
     <>
       <article className={`grid pagos-grid-6 items-center tracking-wide rounded-lg m-1 mx-4 text-my-black ${pago.rubro}`}>
-        
+
         {
           pathname === "/"
             ? <PagoCheckbox pago={pago} />
             : <span
-                 className="ml-4" 
-                onClick={() => setShowHistogram(prev => !prev)}>
-                  <ChartSVG className="size-6 p-1 rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200" />
-              </span>
+              className="ml-4"
+              onClick={() => setShowHistogram(prev => !prev)}>
+              {
+                showHistogram
+                  ? <ArrowDownSVG className="size-6 rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200" currentColor="#aa0000" />
+                  : <ChartSVG className="size-6 p-1 rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200" />
+              }
+            </span>
         }
 
         {
@@ -53,7 +57,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
 
       </article>
 
-      {showHistogram && <Histogram />}
+      {showHistogram && <Histogram pago={pago} />}
 
       {
         showModal && <PagoModal pago={pago} setShowModal={setShowModal} />

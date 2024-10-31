@@ -2,7 +2,7 @@ import filteredByRubro from "@/app/utils/filteredByRubro"
 import { sortedByProp } from "@/app/utils/sort"
 import Pago from "./Pago"
 import { getPagosAction } from "@/app/actions/pagosAction"
-import getActualDate from "@/app/utils/date"
+import { getActualDate } from "@/app/utils/date"
 
 export default async function PagosList({ page, filterR, filterF }: { page: string, filterR: string, filterF?: string }) {
 

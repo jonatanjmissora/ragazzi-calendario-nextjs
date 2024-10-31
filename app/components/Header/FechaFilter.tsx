@@ -1,7 +1,7 @@
 "use client"
 
 import { MONTHSARRAY } from "@/app/utils/constants"
-import getActualDate from "@/app/utils/date"
+import { getActualDate } from "@/app/utils/date"
 
 export function FechaFilter({ filter, setFilter }: { filter: string, setFilter: (value: string) => void }) {
 

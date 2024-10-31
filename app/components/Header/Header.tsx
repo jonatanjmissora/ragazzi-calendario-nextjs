@@ -3,9 +3,9 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import HeaderTitle from "./HeaderTitle"
 import { RubroFilter } from "./RubroFilter"
 import { FechaFilter } from "./FechaFilter"
-import getActualDate from "@/app/utils/date"
-import { ReactNode } from "react"
-import HeaderAdmin from "./HeaderAdmin"
+import { getActualDate } from "@/app/utils/date"
+import AdminSubMenu from "./AdminSubMenu"
+import AdminMenu from "./AdminMenu"
 
 export default function Header({ page }: { page: string }) {
 
@@ -30,17 +30,36 @@ export default function Header({ page }: { page: string }) {
     return (
         <article className="bg-my-white border">
 
-            <div className="flex-1 flex justify-between items-center mb-2 mx-4">
+            {pathname === "/" &&
+                <>
+                    <div className="flex-1 flex justify-between items-center mb-2 mx-4">
+                        <span className="text-my-black">Total</span>
+                        <RubroFilter setFilter={setFilterR} filter={filterR} />
+                    </div>
+                    <HeaderTitle page={page} />
+                </>
+            }
 
-                {pathname === "/" && <span className="text-my-black">Total</span>}
-                {pathname === "/pagos-realizados" && <FechaFilter setFilter={setFilterF} filter={filterF} />}
+            {
+                pathname === "/pagos-realizados" &&
+                <>
+                    <div className="flex-1 flex justify-between items-center mb-2 mx-4">
+                        <FechaFilter setFilter={setFilterF} filter={filterF} />
+                        <RubroFilter setFilter={setFilterR} filter={filterR} />
+                    </div>
+                    <HeaderTitle page={page} />
+                </>
+            }
 
-                {pathname !== "/admin" && <RubroFilter setFilter={setFilterR} filter={filterR} />}
+            {
+                pathname === "/admin" &&
+                <>
+                    <AdminMenu />
+                    <AdminSubMenu />
+                </>
 
-            </div>
+            }
 
-            {pathname !== "/admin" && <HeaderTitle page={page} />}
-            {pathname === "/admin" && <HeaderAdmin />}
         </article>
     )
 }

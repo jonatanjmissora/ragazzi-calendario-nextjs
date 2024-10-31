@@ -47,6 +47,12 @@ body {
   box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.4);
 }
 
+.border-on-top {
+  border-radius: 0.5rem;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+
 .white {
   background: var(--white);
   border: 1px solid rgb(34, 4, 4)

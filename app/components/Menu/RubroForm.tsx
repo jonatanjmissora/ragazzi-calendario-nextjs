@@ -1,7 +1,7 @@
 "use client"
 
 import { addPagoAction } from "@/app/actions/pagosAction"
-import getActualLocaleDate from "@/app/utils/date"
+import { getActualDate } from "@/app/utils/date"
 import { useRef, useState } from "react"
 import SubmitBtn from "../SubmitBtn"
 import { deleteSectorAction } from "@/app/actions/menuAction"
@@ -15,7 +15,7 @@ type RubroFormProps = {
 
 export default function RubroForm({ rubro, sectores, showForm, setShowForm }: RubroFormProps) {
 
-  const currentLocaleDate = getActualLocaleDate()
+  const currentLocaleDate = getActualDate()
 
   const [error, setError] = useState<string>("")
   const dateRef = useRef<HTMLInputElement>(null)

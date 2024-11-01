@@ -33,3 +33,7 @@ export async function deleteAllPagosAction(collection: string) {
     else
         revalidatePath("/pagos-realizados")
 }
+
+export async function getAdminPagosAction(collection: string, filterRubro: string, filterSector: string, filterDesde: string, filterHasta: string) {
+    return await getFilteredPagosDB(collection, filterRubro, filterSector, filterDesde, filterHasta)
+}

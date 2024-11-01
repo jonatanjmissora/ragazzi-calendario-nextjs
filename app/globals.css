@@ -8,13 +8,14 @@
   --primary: rgb(104, 29, 29);
   --white: #cacaca;
   --black: #222;
-  --text: var(--white);
+  --gray: #666;
+  --text: var(--black);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--background) //--background: linear-gradient(125deg, rgb(44, 14, 14), rgb(15, 1, 1));
-    --text: var(--black);
+      --text: var(--black);
     --red: linear-gradient(125deg, rgb(113, 102, 212), rgb(58, 11, 11));
   }
 }
@@ -37,7 +38,7 @@ body {
   padding: 0.3rem 0;
   font-size: 12px;
   letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 700;
   flex: 1 1;
   color: var(--text);
   transition-duration: 200ms;
@@ -46,12 +47,55 @@ body {
   align-items: center;
   gap: 1rem;
 }
+
 .link-btn:hover {
   background: #888;
 }
 
 .link-btn-active {
   background: var(--black);
+  color: var(--white);
+}
+
+.btn-light {
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  flex: 1 1;
+  color: var(--text);
+  transition-duration: 200ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn-light:hover {
+  background: var(--gray);
+  color: var(--black);
+}
+
+.btn-dark {
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  flex: 1 1;
+  color: var(--text);
+  transition-duration: 200ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-dark:hover {
+  background: var(--gray);
   color: var(--white);
 }
 

@@ -13,8 +13,6 @@ export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setS
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
 
-  // const { deleteIdTotal } = usePagosStore()
-
   const handlePagado = async () => {
     setIsLoading(true)
 
@@ -27,28 +25,24 @@ export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setS
       monto: pago.monto,
       pagado: actualDate,
     }
-    //Agregar a "PagosRealizados" en DB
-    const res = await addPagoAction("PagosRealizados", newPago)
-    if (res?.error) setError(res?.error)
-    else {
-      //Quitar de "PagosPendientes" en DB
-      await deletePagoAction("PagosPendientes", pago._id)
-    }
+    // const res = await addPagoAction("PagosRealizados", newPago)
+    // if (res?.error) setError(res?.error)
+    // else {
+    // await deletePagoAction("PagosPendientes", pago._id)
+    // }
 
   }
 
   const handleCancel = async () => {
     setIsLoading(true)
-    //Quitar de "PagosPendientes" en DB
-    await deletePagoAction("PagosPendientes", pago._id)
-    //Agregar a "SectoresActuales" en DB
+    // await deletePagoAction("PagosPendientes", pago._id)
     const menuRubros = await getSectoresAction()
     const newSectores = menuRubros
       .find(mr => mr.rubro === pago.rubro)?.sectores
       .filter(s => s !== pago.sector) || []
     newSectores.push(pago.sector)
     console.log(pago.rubro, newSectores)
-    await addSectorAction(pago.rubro, newSectores)
+    // await addSectorAction(pago.rubro, newSectores)
   }
 
   const handleEdit = () => {

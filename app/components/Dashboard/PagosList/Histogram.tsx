@@ -1,23 +1,10 @@
 import { PagoProps } from "@/app/types/pagos"
+import { HISTOGRAM } from "@/app/utils/constants"
 import montoFormat from "@/app/utils/montoFormat"
 
 export default function Histogram({ pago }: { pago: PagoProps }) {
 
-
-    //TODO hace la llamada a la base de datos, segun el filter
-    const histogram = {
-        id: "ragazzi-agua",
-        pagos: [
-            { fecha: "2024-10", monto: "2595" },
-            { fecha: "2024-09", monto: "3850" },
-            { fecha: "2024-08", monto: "4580" },
-            { fecha: "2024-07", monto: "2595" },
-            { fecha: "2024-06", monto: "7890" },
-            { fecha: "2024-05", monto: "3050" },
-            { fecha: "2024-04", monto: "5580" },
-            { fecha: "2024-03", monto: "7580" },
-        ]
-    }
+    const histogram = HISTOGRAM
 
     const pagosArray = histogram.pagos.map(pago => Number(pago.monto))
     const maximoMonto = Math.max(...pagosArray)
@@ -27,7 +14,7 @@ export default function Histogram({ pago }: { pago: PagoProps }) {
     }
 
     return (
-        <div className="bg-my-white mx-4 rounded-lg">
+        <div className="bg-my-white m-4 rounded-lg">
             <p className="w-full text-my-black pt-2 mx-4">{`${pago.rubro} - ${pago.sector}`}</p>
 
             <div className="flex flex-row-reverse justify-center items-end">

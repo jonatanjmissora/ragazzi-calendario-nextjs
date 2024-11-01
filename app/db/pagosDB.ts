@@ -5,12 +5,10 @@ import { mongoClient } from "./clientDB"
 export async function deletePagoDB(collection: string, id: string) {
 
   try {
-    const data = await mongoClient
+    await mongoClient
       .db("Ragazzi")
       .collection<PagoProps>(collection)
       .deleteOne({ "_id": id })
-
-    console.log({ data })
 
   } catch (error) {
     if (error instanceof Error) {
@@ -93,4 +91,17 @@ export async function deleteAllPagosDB(collection: string) {
     .db("Ragazzi")
     .collection<PagoProps>(collection)
     .deleteMany({})
+}
+
+export async function getFilteredPagosDB(collection, filterRubro, filterSector, filterDesde, filterHasta) {
+
+  const data = PAGOSREALIZADOS
+
+  // const data = await mongoClient
+  //   .db("Ragazzi")
+  //   .collection<PagoProps>(collection)
+  //   .find()
+  //   .toArray()
+
+  return data
 }

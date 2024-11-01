@@ -15,8 +15,6 @@ export default function Header({ page }: { page: string }) {
     const filterR = searchParams.get("filterR") ?? "todos"
     const filterF = searchParams.get("filterF") ?? fechaActual
 
-    console.log({pathname})
-
     const setFilterR = (newFilter: string) => {
         params.set('filterR', newFilter);
         router.replace(`${pathname}?${params.toString()}`)

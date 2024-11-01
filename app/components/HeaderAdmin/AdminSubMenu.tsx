@@ -1,8 +1,9 @@
 "use client"
 
-import { addOneMonth, getActualDate, getAnotherDate } from "@/app/utils/date"
+import { RUBROSARRAY, SECTORESARRAY } from "@/app/utils/constants"
+import { addOneMonth, getActualDate } from "@/app/utils/date"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 export default function AdminSubMenu() {
 
@@ -16,44 +17,8 @@ export default function AdminSubMenu() {
   const filterSector = searchParams.get("filterSector") ?? ""
   const filterDesde = searchParams.get("filterDesde") ?? actualDate
   const filterHasta = searchParams.get("filterHasta") ?? actualNextMonth
-
-  const rubrosArray = ["ragazzi", "patricios", "palihue", "jmolina"]
-  const sectoresArray = [
-    "agua",
-    "alquiler",
-    "autonomo",
-    "celular",
-    "cochera",
-    "complement",
-    "contador",
-    "gas",
-    "federada",
-    "ing brutos",
-    "iva",
-    "luz",
-    "master",
-    "municipal",
-    "patente",
-    "seguro",
-    "sindicato",
-    "sueldo Gus",
-    "sueldo Rod",
-    "sueldo Jon",
-    "suss",
-    "tasa",
-    "telefono",
-    "tran Alo",
-    "tran Bal",
-    "rentas",
-    "reporte Z1",
-    "reporte Z2",
-    "reporte Z3",
-    "reporte Z4",
-    "visa",
-    "visa Rio",
-    "visa Pro",
-  ]
-
+  const sectoresArray = SECTORESARRAY
+  const rubrosArray = RUBROSARRAY
 
   const desdeRef = useRef<HTMLInputElement>(null)
   const hastaRef = useRef<HTMLInputElement>(null)
@@ -118,7 +83,6 @@ export default function AdminSubMenu() {
   return (
     <article className="flex justify-center items-center h-[5rem]">
 
-      {/* TODO hacer un menu para elegir si quiero editar, rubro-sectores, un pago realizado, o los web links */}
       <div className="flex justify-center items-center gap-8">
 
         <div className="flex flex-col">

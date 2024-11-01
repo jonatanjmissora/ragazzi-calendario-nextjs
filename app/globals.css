@@ -14,7 +14,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--background) //--background: linear-gradient(125deg, rgb(44, 14, 14), rgb(15, 1, 1));
-      --text: #cacaca;
+    --text: var(--black);
     --red: linear-gradient(125deg, rgb(113, 102, 212), rgb(58, 11, 11));
   }
 }
@@ -36,9 +36,23 @@ body {
 .link-btn {
   padding: 0.3rem 0;
   font-size: 12px;
-  text-align: center;
   letter-spacing: 1px;
-  font-weight: 300;
+  font-weight: 500;
+  flex: 1 1;
+  color: var(--text);
+  transition-duration: 200ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.link-btn:hover {
+  background: #888;
+}
+
+.link-btn-active {
+  background: var(--black);
+  color: var(--white);
 }
 
 .primary {

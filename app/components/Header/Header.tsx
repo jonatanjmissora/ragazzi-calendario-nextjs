@@ -4,8 +4,6 @@ import HeaderTitle from "./HeaderTitle"
 import { RubroFilter } from "./RubroFilter"
 import { FechaFilter } from "./FechaFilter"
 import { getActualDate } from "@/app/utils/date"
-import AdminSubMenu from "./AdminSubMenu"
-import AdminMenu from "./AdminMenu"
 
 export default function Header({ page }: { page: string }) {
 
@@ -16,6 +14,8 @@ export default function Header({ page }: { page: string }) {
     const params = new URLSearchParams(searchParams)
     const filterR = searchParams.get("filterR") ?? "todos"
     const filterF = searchParams.get("filterF") ?? fechaActual
+
+    console.log({pathname})
 
     const setFilterR = (newFilter: string) => {
         params.set('filterR', newFilter);
@@ -51,14 +51,14 @@ export default function Header({ page }: { page: string }) {
                 </>
             }
 
-            {
-                pathname === "/admin" &&
+            {/* {
+                pathname.includes("/admin") &&
                 <>
                     <AdminMenu />
                     <AdminSubMenu />
                 </>
 
-            }
+            } */}
 
         </article>
     )

@@ -1,3 +1,5 @@
+"use client"
+
 import { addOneMonth, getActualDate, getAnotherDate } from "@/app/utils/date"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useRef } from "react"
@@ -87,6 +89,7 @@ export default function AdminSubMenu() {
     }
 
     params.set('filterDesde', desdeValue)
+    params.set("filterHasta", hastaValue)
     router.replace(`${pathname}?${params.toString()}`)
   }
 
@@ -108,11 +111,12 @@ export default function AdminSubMenu() {
     }
 
     params.set('filterHasta', hastaValue)
+    params.set('filterDesde', desdeValue)
     router.replace(`${pathname}?${params.toString()}`)
   }
 
   return (
-    <article className="flex justify-between items center m-4">
+    <article className="flex justify-center items-center h-[5rem]">
 
       {/* TODO hacer un menu para elegir si quiero editar, rubro-sectores, un pago realizado, o los web links */}
       <div className="flex justify-center items-center gap-8">
@@ -156,8 +160,6 @@ export default function AdminSubMenu() {
         </div>
 
       </div>
-
-      <span>WEB</span>
 
     </article>
   )

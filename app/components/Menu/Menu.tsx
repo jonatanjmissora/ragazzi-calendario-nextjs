@@ -25,9 +25,8 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
             </div>
             {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(data, rubro)} />)}
             <MenuFooter />
-
+            <div className="flex-1"></div>
             <WebLinks />
-            <Edit />
         </section>
     )
 }

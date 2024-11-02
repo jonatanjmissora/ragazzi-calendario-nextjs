@@ -3,7 +3,7 @@ import Menu from "./Menu"
 
 export default async function MenuContainer() {
 
-  const data = await getSectoresAction()
+  const data = await getSectoresAction("SectoresActuales")
 
   return (
     <>

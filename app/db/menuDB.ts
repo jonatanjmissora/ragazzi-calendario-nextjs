@@ -1,13 +1,12 @@
 import { MenuRubroProps } from "../types/menuRubros"
-import { MENURUBROS } from "../utils/constants"
+import { MENURUBROS, MENURUBROSRESET } from "../utils/constants"
 import { mongoClient } from "./clientDB"
 
-export async function deleteSectorDB(rubro: string, sectores: string[]) {
+export async function deleteSectorDB(collection: string, rubro: string, sectores: string[]) {
 
   try {
     const data = await mongoClient
-      .db("Ragazzi")
-      .collection("SectoresActuales")
+      .collection(collection)
       .updateOne(
         { rubro },
         {
@@ -19,18 +18,16 @@ export async function deleteSectorDB(rubro: string, sectores: string[]) {
 
   } catch (error) {
     if (error instanceof Error) {
-      console.log(error.message)
       return { data: undefined, error: error.message }
     }
   }
 }
 
-export async function addSectorDB(rubro: string, newSectores: string[]) {
+export async function addSectorDB(collection: string, rubro: string, newSectores: string[]) {
 
   try {
     const data = await mongoClient
-      .db("Ragazzi")
-      .collection<MenuRubroProps>("SectoresActuales")
+      .collection<MenuRubroProps>(collection)
       .updateOne(
         { rubro },
         {
@@ -43,39 +40,38 @@ export async function addSectorDB(rubro: string, newSectores: string[]) {
 
   } catch (error) {
     if (error instanceof Error) {
-      console.log(error.message)
       return { data: undefined, error: error.message }
     }
   }
 }
 
-export async function getSectoresDB() {
+export async function getSectoresDB(collection: string) {
 
-  const data = MENURUBROS
+  const data = collection === "SectoresActuales"
+    ? MENURUBROS
+    : MENURUBROSRESET
 
   // const data = await mongoClient
-  //   .db("Ragazzi")
-  //   .collection<MenuRubroProps>("SectoresActuales")
+  //   .collection<MenuRubroProps>(collection)
   //   .find()
-  //   .toArray()
+  //   .toArray() as MenuRubroProps[] | []
 
   return data
 }
 
 export async function deleteAllSectoresDB() {
   const rubrosReset = await mongoClient
-    .db("Ragazzi")
     .collection<MenuRubroProps>("SectoresReset")
     .find()
-    .toArray()
+    .toArray() as MenuRubroProps[] | []
+
+  console.log({ rubrosReset })
 
   await mongoClient
-    .db("Ragazzi")
     .collection<MenuRubroProps>("SectoresActuales")
     .deleteMany({})
 
   await mongoClient
-    .db("Ragazzi")
     .collection<MenuRubroProps>("SectoresActuales")
     .insertMany(rubrosReset)
 }

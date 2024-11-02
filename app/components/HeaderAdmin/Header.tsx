@@ -2,8 +2,9 @@
 
 import React from 'react'
 import AdminMenu from './AdminMenu'
-import AdminSubMenu from './AdminSubMenu'
 import { usePathname } from 'next/navigation'
+import PagosMenu from './PagosMenu'
+import SectoresMenu from './SectoresMenu'
 
 export default function Header() {
 
@@ -12,13 +13,11 @@ export default function Header() {
   return (
     <article className="bg-my-white border">
 
-        <AdminMenu />
-        {
-          pathname === "/admin/pagos" 
-            ? <AdminSubMenu /> 
-            : <div className='w-full h-[5rem]'></div>
-        }
-      
+      <AdminMenu />
+      {pathname === "/admin/pagos" && <PagosMenu />}
+      {pathname === "/admin/sectores" && <SectoresMenu />}
+      {pathname === "/admin/weblinks" && <div className='w-full h-[5rem]'></div>}
+
     </article>
   )
 }

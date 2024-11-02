@@ -4,6 +4,13 @@ import bahia_logo from "../assets/bahia_logo.webp"
 import camuzzi_logo from "../assets/camuzzi_logo.webp"
 import edes_logo from "../assets/edes_logo.webp"
 
+export const MENURUBROSRESET = [
+  { _id: "01", rubro: "ragazzi", sectores: ["agua", "luz", "municipal"] },
+  { _id: "02", rubro: "patricios", sectores: [] },
+  { _id: "03", rubro: "palihue", sectores: ["internet", "rentas"] },
+  { _id: "04", rubro: "jmolina", sectores: [] },
+]
+
 export const MENURUBROS = [
   { _id: "01", rubro: "ragazzi", sectores: ["gas", "luz", "telefono"] },
   { _id: "02", rubro: "patricios", sectores: ["municipal", "internet", "patente"] },

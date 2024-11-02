@@ -101,7 +101,8 @@ body {
 
 .primary {
   background: var(--primary-grad);
-  color: var(--text);
+  color: var(--white);
+  border: 1px solid darkred;
   box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.4);
 }
 

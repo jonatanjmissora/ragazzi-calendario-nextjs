@@ -1,4 +1,4 @@
-import { PagoProps, QueryProps } from "../types/pagos"
+import { PagoProps } from "../types/pagos"
 import { PAGOSPENDIENTES, PAGOSREALIZADOS } from "../utils/constants"
 import { setQueryAdminPagos } from "../utils/setQueryAdminPagos"
 import { mongoClient } from "./clientDB"
@@ -6,9 +6,13 @@ import { mongoClient } from "./clientDB"
 export async function deletePagoDB(collection: string, id: string) {
 
   try {
-    await mongoClient
+    const data = await mongoClient
       .collection<PagoProps>(collection)
       .deleteOne({ "_id": id })
+
+    console.log({ data })
+    if (data.deletedCount !== 1) throw new Error("No se pudo eliminar")
+    return { data: data.deletedCount, error: undefined }
 
   } catch (error) {
     if (error instanceof Error) {
@@ -66,9 +70,6 @@ export async function getPagosDB(collection: string, filterF: string) {
 
 export async function updatePagoDB(collection: string, id: string, newPago: PagoProps) {
 
-  MAL, si cambio la fecha, cambia el id, tengo que borrar el documento anterior y crear uno nuevo
-
-
   try {
     const data = await mongoClient
       .collection<PagoProps>(collection)
@@ -93,19 +94,19 @@ export async function updatePagoDB(collection: string, id: string, newPago: Pago
 export async function deleteAllPagosDB(collection: string) {
   await mongoClient
     .collection<PagoProps>(collection)
-    .deleteMany({})
+    .deleteMany()
 }
 
 export async function getFilteredPagosDB(collection: string, filterRubro: string, filterSector: string, filterDesde: string, filterHasta: string) {
 
   // const data = PAGOSREALIZADOS
-  
+
   const query = setQueryAdminPagos(filterRubro, filterSector, filterDesde, filterHasta)
 
   const data = await mongoClient
     .collection<PagoProps>(collection)
     .find(query)
-    .sort({vencimiento: 1})
+    .sort({ vencimiento: 1 })
     .toArray()
 
   return data

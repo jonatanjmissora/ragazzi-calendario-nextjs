@@ -4,10 +4,12 @@ import { RUBROSARRAY, SECTORESARRAY } from "@/app/utils/constants"
 import { addOneMonth, getActualDate } from "@/app/utils/date"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useRef } from "react"
+import toast from "react-hot-toast"
 
-export default function AdminSubMenu() {
+export default function PagosMenu() {
 
-  const actualDate = getActualDate()
+  let actualDate = getActualDate()
+  actualDate = actualDate.substring(0, 8) + "01"
   const actualNextMonth = addOneMonth(actualDate)
   const router = useRouter()
   const pathname = usePathname()
@@ -47,7 +49,7 @@ export default function AdminSubMenu() {
     const desdeDate = new Date(desdeValue)
 
     if (hastaDate < desdeDate) {
-      alert("Fecha desde, es mayor a fecha hasta")
+      toast.error("Fecha desde, es mayor a fecha hasta")
       if (desdeRef.current !== null)
         desdeRef.current.value = filterDesde
       return
@@ -69,7 +71,7 @@ export default function AdminSubMenu() {
     const hastaDate = new Date(hastaValue)
 
     if (hastaDate < desdeDate) {
-      alert("Fecha hasta, es menor a fecha desde")
+      toast.error("Fecha hasta, es menor a fecha desde")
       if (hastaRef.current !== null)
         hastaRef.current.value = filterHasta
       return

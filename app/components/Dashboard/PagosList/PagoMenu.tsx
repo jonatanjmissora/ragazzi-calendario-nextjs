@@ -36,13 +36,13 @@ export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setS
   const handleCancel = async () => {
     setIsLoading(true)
     // await deletePagoAction("PagosPendientes", pago._id)
-    const menuRubros = await getSectoresAction()
+    const menuRubros = await getSectoresAction("SectoresActuales")
     const newSectores = menuRubros
       .find(mr => mr.rubro === pago.rubro)?.sectores
       .filter(s => s !== pago.sector) || []
     newSectores.push(pago.sector)
     console.log(pago.rubro, newSectores)
-    // await addSectorAction(pago.rubro, newSectores)
+    // await addSectorAction("SectoresActuales", pago.rubro, newSectores)
   }
 
   const handleEdit = () => {

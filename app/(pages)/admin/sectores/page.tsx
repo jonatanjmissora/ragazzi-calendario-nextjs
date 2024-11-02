@@ -1,13 +1,16 @@
+import { getSectoresAction } from '@/app/actions/menuAction'
 import Rubro from '@/app/components/Admin/Rubro'
-import { SECTORESRESET } from '@/app/utils/constants'
 
-export default function page() {
+export default async function page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 
-  const sectoresReset = SECTORESRESET
+  const type = searchParams?.type ?? "actuales"
+  const collection = type === "actuales" ? "SectoresActuales" : "ConstantMenuSectores"
+
+  const sectoresArray = await getSectoresAction(collection)
 
   return (
     <section className='m-4 flex flex-col gap-4'>
-      {sectoresReset.map(rubro => <Rubro key={rubro._id} rubro={rubro} />)}
+      {sectoresArray.map(rubro => <Rubro key={rubro._id} rubro={rubro} />)}
     </section>
   )
 }

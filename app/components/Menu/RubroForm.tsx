@@ -5,6 +5,7 @@ import { getActualDate } from "@/app/utils/date"
 import { useRef, useState } from "react"
 import SubmitBtn from "../SubmitBtn"
 import { deleteSectorAction } from "@/app/actions/menuAction"
+import toast from "react-hot-toast"
 
 type RubroFormProps = {
   rubro: string;
@@ -24,6 +25,11 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
   const formAction = async (formData: FormData) => {
     const { sector: inputSector, date: inputDate, monto: inputMonto } = Object.fromEntries(formData);
 
+    if (!inputSector) {
+      toast.error("Falta elegir servicio", { position: "top-left" })
+      return
+    }
+
     const newPago = {
       _id: `${inputDate.toString()}-${rubro}-${inputSector.toString()}`,
       rubro,
@@ -32,16 +38,12 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
       vencimiento: inputDate.toString(),
       pagado: "",
     }
-    if (!inputSector) {
-      alert("Falta elegir servicio")
-      return
-    }
 
     const res = await addPagoAction("PagosPendientes", newPago)
     if (res?.error) setError(res?.error)
     else {
       const sectoresWithoutActualSector = sectores.filter(sect => sect !== newPago.sector)
-      await deleteSectorAction(rubro, sectoresWithoutActualSector)
+      await deleteSectorAction("SectoresActuales", rubro, sectoresWithoutActualSector)
       setShowForm(false)
     }
 

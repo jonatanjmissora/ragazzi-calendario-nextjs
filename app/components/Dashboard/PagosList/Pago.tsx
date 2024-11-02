@@ -12,6 +12,9 @@ import ChartSVG from "@/app/assets/ChartSVG"
 import Histogram from "./Histogram"
 import ArrowDownSVG from "@/app/assets/ArrowDownSVG"
 import EditSVG from "@/app/assets/EditSVG"
+import TrashSVG from "@/app/assets/TrashSVG"
+import toast from "react-hot-toast"
+import { deletePagoAction } from "@/app/actions/pagosAction"
 
 export default function Pago({ pago }: { pago: PagoProps }) {
 
@@ -22,6 +25,12 @@ export default function Pago({ pago }: { pago: PagoProps }) {
 
   const pagoVenceFormat = venceFormat(pago.vencimiento)
   const pagoMonto = montoFormat(Number(pago.monto))
+
+  const handleDeletePago = async () => {
+    const res = await deletePagoAction("PagosRealizados", pago._id)
+    if (res?.error) toast.error(res.error)
+    else toast.success("Pago eliminado")
+  }
 
   return (
     <>
@@ -42,9 +51,14 @@ export default function Pago({ pago }: { pago: PagoProps }) {
         {
           pathname === "/admin/pagos" &&
           <span
-            className="ml-4"
-            onClick={() => setShowModal(true)}>
-            <EditSVG className="size-7 p-1" currentColor="#222" />
+            className="flex justify-between items-center"
+          >
+            <button onClick={() => setShowModal(true)}>
+              <EditSVG className="size-7 p-1" currentColor="#222" />
+            </button>
+            <button onClick={handleDeletePago}>
+              <TrashSVG className="size-7 p-1" currentColor="#222" />
+            </button>
           </span>
         }
 
@@ -65,6 +79,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
         }
 
       </article>
+
 
       {showHistogram && <Histogram pago={pago} />}
 

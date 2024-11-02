@@ -6,7 +6,6 @@ import Nav from "./Nav"
 import Logo from "./Logo"
 import MenuFooter from "./MenuFooter"
 import WebLinks from "./WebLinks"
-import Edit from "./Edit"
 
 const getSectores = (array: MenuRubroProps[], rubro: string) => {
     const sectoresArray = array.filter(object => object.rubro === rubro)

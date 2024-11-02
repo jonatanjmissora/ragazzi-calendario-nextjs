@@ -3,20 +3,20 @@
 import { revalidatePath } from "next/cache"
 import { addSectorDB, deleteAllSectoresDB, deleteSectorDB, getSectoresDB } from "../db/menuDB"
 
-export async function deleteSectorAction(rubro: string, sectores: string[]) {
-  const res = await deleteSectorDB(rubro, sectores)
+export async function deleteSectorAction(collection: string, rubro: string, sectores: string[]) {
+  const res = await deleteSectorDB(collection, rubro, sectores)
   if (!res?.error) revalidatePath("/")
   return res
 }
 
-export async function addSectorAction(rubro: string, newSectores: string[]) {
-  const res = await addSectorDB(rubro, newSectores)
+export async function addSectorAction(collection: string, rubro: string, newSectores: string[]) {
+  const res = await addSectorDB(collection, rubro, newSectores)
   if (!res?.error) revalidatePath("/")
   return res
 }
 
-export async function getSectoresAction() {
-  return await getSectoresDB()
+export async function getSectoresAction(collection: string) {
+  return await getSectoresDB(collection)
 }
 
 export async function menuResetAction() {

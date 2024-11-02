@@ -4,6 +4,7 @@ import { WebLinksProps } from '@/app/types/webLinks'
 import { WEBLINKS } from '@/app/utils/constants'
 import Image from 'next/image'
 import React from 'react'
+import toast from 'react-hot-toast'
 
 export default function page() {
 
@@ -19,7 +20,7 @@ export default function page() {
 const Link = ({ link }: { link: WebLinksProps }) => {
 
   const cambiarLink = async () => {
-    alert("Cambiando link")
+    toast.loading("Cambiando link")
   }
 
   return (

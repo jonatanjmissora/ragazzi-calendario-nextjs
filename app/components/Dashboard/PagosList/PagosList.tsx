@@ -21,12 +21,12 @@ export default async function PagosList({ page, filterR, filterF }: { page: stri
   if (pagos.length === 0) return <p className="p-8 text-xl">No hay pagos . . .</p>
 
   const filteredPagos = filteredByRubro(pagos, filterR)
-  const sortedData = sortedByProp(filteredPagos, page)
+  // const sortedData = sortedByProp(filteredPagos, page)
 
   return (
     <div
       className="py-2">
-      {sortedData.map(pago =>
+      {filteredPagos.map(pago =>
         <Pago
           key={pago._id.toString()}
           pago={pago}

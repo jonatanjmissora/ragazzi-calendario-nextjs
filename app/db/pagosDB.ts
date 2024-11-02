@@ -1,12 +1,12 @@
-import { PagoProps } from "../types/pagos"
+import { PagoProps, QueryProps } from "../types/pagos"
 import { PAGOSPENDIENTES, PAGOSREALIZADOS } from "../utils/constants"
+import { setQueryAdminPagos } from "../utils/setQueryAdminPagos"
 import { mongoClient } from "./clientDB"
 
 export async function deletePagoDB(collection: string, id: string) {
 
   try {
     await mongoClient
-      .db("Ragazzi")
       .collection<PagoProps>(collection)
       .deleteOne({ "_id": id })
 
@@ -22,7 +22,6 @@ export async function addPagoDB(collection: string, newPago: PagoProps) {
 
   try {
     const data = await mongoClient
-      .db("Ragazzi")
       .collection<PagoProps>(collection)
       .insertOne(newPago)
 
@@ -53,21 +52,26 @@ export async function getPagosDB(collection: string, filterF: string) {
     data = [...rawData]
   }
 
+  // const sortedByProp = collection === "PagosPendientes" ? "vencimiento" : "pago"
+
   //TODO hacer el filtro por fecha
   // const data = await mongoClient
-  //   .db("Ragazzi")
   //   .collection<PagoProps>(collection)
   //   .find()
+  //   .sort({[sortedByProp]: 1})
   //   .toArray()
 
   return data
 }
 
-export async function updatePagoDB(id: string, newPago: PagoProps) {
+export async function updatePagoDB(collection: string, id: string, newPago: PagoProps) {
+
+  MAL, si cambio la fecha, cambia el id, tengo que borrar el documento anterior y crear uno nuevo
+
+
   try {
     const data = await mongoClient
-      .db("Ragazzi")
-      .collection<PagoProps>("PagosPendientes")
+      .collection<PagoProps>(collection)
       .updateOne(
         { _id: id },
         {
@@ -88,20 +92,21 @@ export async function updatePagoDB(id: string, newPago: PagoProps) {
 
 export async function deleteAllPagosDB(collection: string) {
   await mongoClient
-    .db("Ragazzi")
     .collection<PagoProps>(collection)
     .deleteMany({})
 }
 
-export async function getFilteredPagosDB(collection, filterRubro, filterSector, filterDesde, filterHasta) {
+export async function getFilteredPagosDB(collection: string, filterRubro: string, filterSector: string, filterDesde: string, filterHasta: string) {
 
-  const data = PAGOSREALIZADOS
+  // const data = PAGOSREALIZADOS
+  
+  const query = setQueryAdminPagos(filterRubro, filterSector, filterDesde, filterHasta)
 
-  // const data = await mongoClient
-  //   .db("Ragazzi")
-  //   .collection<PagoProps>(collection)
-  //   .find()
-  //   .toArray()
+  const data = await mongoClient
+    .collection<PagoProps>(collection)
+    .find(query)
+    .sort({vencimiento: 1})
+    .toArray()
 
   return data
 }

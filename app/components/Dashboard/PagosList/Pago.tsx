@@ -18,7 +18,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showHistogram, setShowHistogram] = useState<boolean>(false)
   const pathname = usePathname()
-
+  const collection = pathname === "pagos-pendientes" ? "PagosPendientes" : "PagosRealizados"
 
   const pagoVenceFormat = venceFormat(pago.vencimiento)
   const pagoMonto = montoFormat(Number(pago.monto))
@@ -69,7 +69,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
       {showHistogram && <Histogram pago={pago} />}
 
       {
-        showModal && <PagoModal pago={pago} setShowModal={setShowModal} />
+        showModal && <PagoModal pago={pago} collection={collection} setShowModal={setShowModal} />
       }
 
     </>

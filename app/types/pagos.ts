@@ -6,3 +6,12 @@ export type PagoProps = {
   monto: string;
   pagado: string;
 }
+
+export type QueryProps = {
+  rubro?: string;
+  sector?: string;
+  vencimiento?: {
+    $gte?: string;
+    $lte?: string;
+  }
+}

@@ -4,10 +4,9 @@ import CancelSVG from "@/app/assets/CancelSVG";
 import { PagoProps } from "@/app/types/pagos";
 import { useState } from "react";
 
-export default function PagoModal({ pago, setShowModal }: { pago: PagoProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function PagoModal({ pago, collection, setShowModal }: { pago: PagoProps, collection: string, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
   const [error, setError] = useState<string>("")
-
 
   const formAction = async (formData: FormData) => {
     const { date: inputDate, monto: inputMonto } = Object.fromEntries(formData);
@@ -15,7 +14,7 @@ export default function PagoModal({ pago, setShowModal }: { pago: PagoProps, set
 
     if (Number(pago.monto) !== Number(newPago.monto)
       || pago.vencimiento !== newPago.vencimiento) {
-      const res = await updatePagoAction(pago._id, newPago)
+      const res = await updatePagoAction(collection, pago._id, newPago)
       if (res?.error) {
         setError(res.error)
         return

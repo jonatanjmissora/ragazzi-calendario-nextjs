@@ -1,6 +1,6 @@
 import { Input } from "./Input"
 
-export function RubroFilter({ filter, setFilter }: { filter: string, setFilter: (value: string) => void }) {
+export function RubroFilter() {
 
   const filterNames = ["todos", "ragazzi", "patricios", "palihue", "jmolina"]
 
@@ -10,7 +10,7 @@ export function RubroFilter({ filter, setFilter }: { filter: string, setFilter: 
       <fieldset className="flex gap-6 text-xs">
 
         {filterNames.map(name =>
-          <Input key={name} text={name} filter={filter} setFilter={setFilter} />
+          <Input key={name} text={name} />
         )}
 
       </fieldset>

@@ -3,7 +3,7 @@
 import React from 'react'
 import AdminMenu from './AdminMenu'
 import { usePathname } from 'next/navigation'
-import PagosMenu from './PagosMenu'
+import PagosMenu from './PagosMenu/PagosMenu'
 import SectoresMenu from './SectoresMenu'
 
 export default function Header() {

@@ -11,11 +11,10 @@ pagos-pendientes:
     
 pagos-realizados: 
     histograma
-    no filtra
+    agregar un pago
 
 
-llevar los filtros desde Header.tsx a sus extremos, su Input, y ahi hago el url
-
+cargar mas datos
 
 
 

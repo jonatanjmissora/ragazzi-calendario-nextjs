@@ -1,43 +1,64 @@
 "use client"
 
 import { MONTHSARRAY } from "@/app/utils/constants"
-import { getActualDate } from "@/app/utils/date"
+import { addOneMonth, getActualDate } from "@/app/utils/date"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useRef } from "react"
 
-export function FechaFilter({ filter, setFilter }: { filter: string, setFilter: (value: string) => void }) {
+export function FechaFilter() {
 
-  const [actualYear, actualMonth,] = getActualDate().split("-")
+  const yearRef = useRef<HTMLSelectElement>(null)
+  const monthRef = useRef<HTMLSelectElement>(null)
+
+  let actualDate = getActualDate()
+  actualDate = actualDate.substring(0, 8) + "01"
+  const [actualYear, ,] = actualDate.split("-")
   const yearsArray = Array.from(Array(10).keys()).map(a => Number(actualYear) - a)
   const monthsArray = MONTHSARRAY
 
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const params = new URLSearchParams(searchParams)
+  const filterDesde = searchParams.get("filterDesde") || actualDate
+
   const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedYear = event.currentTarget.value
-    const newFilterF = filter === ""
-      ? selectedYear + getActualDate().substring(4, 7)
-      : selectedYear + filter.substring(4.7)
-    setFilter(newFilterF)
+    const selectedMonthValue = monthRef.current?.value
+    const selectedMonthIndex = monthsArray.findIndex(month => month === selectedMonthValue) + 1
+    const selectedMonth = selectedMonthIndex < 10 ? "0" + selectedMonthIndex : selectedMonthIndex.toString()
+    const selectedDate = `${selectedYear}-${selectedMonth}-01`
+    const actualNextMonth = addOneMonth(selectedDate)
+    params.set('filterDesde', selectedDate);
+    params.set('filterHasta', actualNextMonth);
+    router.replace(`${pathname}?${params.toString()}`)
   }
 
   const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedMonthValue = event.currentTarget.value
     const selectedMonthIndex = monthsArray.findIndex(month => month === selectedMonthValue) + 1
     const selectedMonth = selectedMonthIndex < 10 ? "0" + selectedMonthIndex : selectedMonthIndex.toString()
-    const newFilterF = filter === ""
-      ? getActualDate().substring(0, 5) + selectedMonth
-      : filter.substring(0, 5) + selectedMonth
-    setFilter(newFilterF)
+    const selectedYear = yearRef.current?.value
+    const selectedDate = `${selectedYear}-${selectedMonth}-01`
+    const actualNextMonth = addOneMonth(selectedDate)
+    params.set('filterDesde', selectedDate);
+    params.set('filterHasta', actualNextMonth);
+    router.replace(`${pathname}?${params.toString()}`)
   }
 
   return (
     <div className="flex justify-center gap-6">
       <select
+        ref={yearRef}
         onChange={handleYearChange}
-        name="year" id="year-filter" defaultValue={filter.substring(0, 4)}>
+        name="year" id="year-filter" defaultValue={filterDesde.substring(0, 4)}>
         {yearsArray.map(year => <option key={year} value={year}>{year}</option>)}
       </select>
 
       <select
+        ref={monthRef}
         onChange={handleMonthChange}
-        name="month" id="month-filter" defaultValue={monthsArray[Number(filter.substring(5, 7)) - 1]}>
+        name="month" id="month-filter" defaultValue={monthsArray[Number(filterDesde.substring(5, 7)) - 1]}>
         {monthsArray.map(month => <option key={month} value={month}>{month}</option>)}
       </select>
     </div>

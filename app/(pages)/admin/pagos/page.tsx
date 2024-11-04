@@ -7,8 +7,8 @@ export default async function page({ searchParams }: { searchParams: { [key: str
   let actualDate = getActualDate()
   actualDate = actualDate.substring(0, 8) + "01"
   const actualNextMonth = addOneMonth(actualDate)
-  const filterRubro = searchParams?.filterR || "todos"
-  const filterSector = searchParams?.filterS || "todos"
+  const filterRubro = searchParams?.filterRubro || "todos"
+  const filterSector = searchParams?.filterSector || "todos"
   const filterDesde = searchParams?.filterDesde || actualDate
   const filterHasta = searchParams?.filterHasta || actualNextMonth
 

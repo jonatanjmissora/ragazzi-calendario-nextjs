@@ -4,9 +4,10 @@ import CheckSVG from "@/app/assets/CheckSVG"
 import { useState } from "react"
 import { getActualDate } from "@/app/utils/date"
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
-import { PagoProps } from "@/app/types/pagos"
-import { addPagoAction, deletePagoAction } from "@/app/actions/pagosAction"
-import { addSectorAction, getSectoresAction } from "@/app/actions/menuAction"
+import { PagoProps } from "@/app/_types/pagos"
+import { addPagoAction, deletePagoAction } from "@/app/_actions/pagosAction"
+import { addSectorAction, getSectoresAction } from "@/app/_actions/menuAction"
+import toast from "react-hot-toast"
 
 export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
@@ -25,24 +26,28 @@ export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setS
       monto: pago.monto,
       pagado: actualDate,
     }
-    // const res = await addPagoAction("PagosRealizados", newPago)
-    // if (res?.error) setError(res?.error)
-    // else {
-    // await deletePagoAction("PagosPendientes", pago._id)
-    // }
+    const res = await addPagoAction("PagosRealizados", newPago)
+    if (res?.error) {
+      setError(res?.error)
+      toast.error("No se pudo realizar el pago")
+    }
+    else {
+      await deletePagoAction("PagosPendientes", pago._id)
+      toast.success("Pago realizado correctamente")
+    }
 
   }
 
   const handleCancel = async () => {
     setIsLoading(true)
-    // await deletePagoAction("PagosPendientes", pago._id)
+    await deletePagoAction("PagosPendientes", pago._id)
     const menuRubros = await getSectoresAction("SectoresActuales")
     const newSectores = menuRubros
       .find(mr => mr.rubro === pago.rubro)?.sectores
       .filter(s => s !== pago.sector) || []
     newSectores.push(pago.sector)
-    console.log(pago.rubro, newSectores)
-    // await addSectorAction("SectoresActuales", pago.rubro, newSectores)
+    await addSectorAction("SectoresActuales", pago.rubro, newSectores)
+    toast.success("Pago cancelado con exito")
   }
 
   const handleEdit = () => {

@@ -1,7 +1,7 @@
 "use client"
 
 import Rubro from "./Rubro"
-import { MenuRubroProps } from "@/app/types/menuRubros"
+import { MenuRubroProps } from "@/app/_types/menuRubros"
 import Nav from "./Nav"
 import Logo from "./Logo"
 import MenuFooter from "./MenuFooter"

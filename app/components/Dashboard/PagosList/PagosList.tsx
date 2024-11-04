@@ -1,27 +1,33 @@
 import filteredByRubro from "@/app/utils/filteredByRubro"
-import { sortedByProp } from "@/app/utils/sort"
 import Pago from "./Pago"
-import { getPagosAction } from "@/app/actions/pagosAction"
-import { getActualDate } from "@/app/utils/date"
-import { PagoProps } from "@/app/types/pagos"
+import { getFilteredPagosAction, getPagosAction } from "@/app/_actions/pagosAction"
+import { PagoProps } from "@/app/_types/pagos"
 
-export default async function PagosList({ page, filterR, filterF }: { page: string, filterR: string, filterF?: string }) {
+export default async function PagosList({ page, filterRubro, filterSector, filterDesde, filterHasta }: 
+  { page: string, 
+    filterRubro: string, 
+    filterSector: string,
+    filterDesde: string,
+    filterHasta: string,
+  }) {
 
-  const fechaActual = getActualDate().substring(0, 7)
-  if (!filterF) filterF = fechaActual
+  const collection = page === "pendientes" ? "PagosPendientes" : "PagosRealizados"
 
   let pagos = [] as PagoProps[]
 
-  if (page === "pendientes") {
-    pagos = await getPagosAction("PagosPendientes", filterF)
-  }
-  if (page === "realizados")
-    pagos = await getPagosAction("PagosRealizados", filterF)
+  // if (page === "pendientes") {
+    // pagos = await getPagosAction("PagosPendientes", filterF)
+  // }
+  // if (page === "realizados")
+    // pagos = await getPagosAction("PagosRealizados", filterF)
+
+  console.log(page, filterRubro, filterSector, filterDesde, filterHasta,)
+
+  pagos = await getFilteredPagosAction(collection, filterRubro, filterSector,filterDesde, filterHasta)
 
   if (pagos.length === 0) return <p className="p-8 text-xl">No hay pagos . . .</p>
 
-  const filteredPagos = filteredByRubro(pagos, filterR)
-  // const sortedData = sortedByProp(filteredPagos, page)
+  const filteredPagos = filteredByRubro(pagos, filterRubro)
 
   return (
     <div

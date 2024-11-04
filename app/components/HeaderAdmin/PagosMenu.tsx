@@ -15,10 +15,10 @@ export default function PagosMenu() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams)
-  const filterRubro = searchParams.get("filterRubro") ?? ""
-  const filterSector = searchParams.get("filterSector") ?? ""
-  const filterDesde = searchParams.get("filterDesde") ?? actualDate
-  const filterHasta = searchParams.get("filterHasta") ?? actualNextMonth
+  const filterRubro = searchParams.get("filterRubro") || ""
+  const filterSector = searchParams.get("filterSector") || ""
+  const filterDesde = searchParams.get("filterDesde") || actualDate
+  const filterHasta = searchParams.get("filterHasta") || actualNextMonth
   const sectoresArray = SECTORESARRAY
   const rubrosArray = RUBROSARRAY
 

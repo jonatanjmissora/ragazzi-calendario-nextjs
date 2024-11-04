@@ -1,4 +1,4 @@
-import { getSectoresAction } from "@/app/actions/menuAction"
+import { getSectoresAction } from "@/app/_actions/menuAction"
 import Menu from "./Menu"
 
 export default async function MenuContainer() {

@@ -1,4 +1,4 @@
-import { PagoProps } from "../types/pagos"
+import { PagoProps } from "../_types/pagos"
 import { PAGOSPENDIENTES, PAGOSREALIZADOS } from "../utils/constants"
 import { setQueryAdminPagos } from "../utils/setQueryAdminPagos"
 import { mongoClient } from "./clientDB"
@@ -10,7 +10,6 @@ export async function deletePagoDB(collection: string, id: string) {
       .collection<PagoProps>(collection)
       .deleteOne({ "_id": id })
 
-    console.log({ data })
     if (data.deletedCount !== 1) throw new Error("No se pudo eliminar")
     return { data: data.deletedCount, error: undefined }
 
@@ -42,28 +41,27 @@ export async function addPagoDB(collection: string, newPago: PagoProps) {
 
 export async function getPagosDB(collection: string, filterF: string) {
 
-  let data = [] as PagoProps[]
-  const rawData = collection === "PagosPendientes"
-    ? PAGOSPENDIENTES
-    : PAGOSREALIZADOS
+  // let data = [] as PagoProps[]
+  // const rawData = collection === "PagosPendientes"
+  //   ? PAGOSPENDIENTES
+  //   : PAGOSREALIZADOS
 
-  if (collection === "PagosRealizados") {
-    const filteredData = rawData.filter(rdata => rdata.vencimiento.includes(filterF))
-    data = [...filteredData]
-  }
+  // if (collection === "PagosRealizados") {
+  //   const filteredData = rawData.filter(rdata => rdata.vencimiento.includes(filterF))
+  //   data = [...filteredData]
+  // }
 
-  else {
-    data = [...rawData]
-  }
+  // else {
+  //   data = [...rawData]
+  // }
 
-  // const sortedByProp = collection === "PagosPendientes" ? "vencimiento" : "pago"
+  const sortedByProp = collection === "PagosPendientes" ? "vencimiento" : "pagado"
 
-  //TODO hacer el filtro por fecha
-  // const data = await mongoClient
-  //   .collection<PagoProps>(collection)
-  //   .find()
-  //   .sort({[sortedByProp]: 1})
-  //   .toArray()
+  const data = await mongoClient
+    .collection<PagoProps>(collection)
+    .find()
+    .sort({[sortedByProp]: 1})
+    .toArray()
 
   return data
 }

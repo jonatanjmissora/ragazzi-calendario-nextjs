@@ -1,8 +1,8 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { addPagoDB, deleteAllPagosDB, deletePagoDB, getFilteredPagosDB, getPagosDB, updatePagoDB } from "../db/pagosDB"
-import { PagoProps } from "../types/pagos"
+import { addPagoDB, deleteAllPagosDB, deletePagoDB, getFilteredPagosDB, getPagosDB, updatePagoDB } from "../_db/pagosDB"
+import { PagoProps } from "../_types/pagos"
 
 export async function addPagoAction(collection: string, newPago: PagoProps) {
     const res = await addPagoDB(collection, newPago)

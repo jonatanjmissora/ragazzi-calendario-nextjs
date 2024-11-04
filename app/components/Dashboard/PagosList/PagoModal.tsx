@@ -1,7 +1,7 @@
 "use client"
-import { updatePagoAction } from "@/app/actions/pagosAction";
+import { updatePagoAction } from "@/app/_actions/pagosAction";
 import CancelSVG from "@/app/assets/CancelSVG";
-import { PagoProps } from "@/app/types/pagos";
+import { PagoProps } from "@/app/_types/pagos";
 import { useState } from "react";
 
 export default function PagoModal({ pago, collection, setShowModal }: { pago: PagoProps, collection: string, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {

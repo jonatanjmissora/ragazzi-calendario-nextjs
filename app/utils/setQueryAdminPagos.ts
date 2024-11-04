@@ -1,4 +1,4 @@
-import { QueryProps } from "../types/pagos"
+import { QueryProps } from "../_types/pagos"
 
 export const setQueryAdminPagos = (filterRubro: string, filterSector: string, filterDesde: string, filterHasta: string) => {
     let query = {} as QueryProps

@@ -1,4 +1,4 @@
-import { PagoProps } from "../types/pagos";
+import { PagoProps } from "../_types/pagos";
 
 export function sortedByProp(array: PagoProps[], page: string) {
 

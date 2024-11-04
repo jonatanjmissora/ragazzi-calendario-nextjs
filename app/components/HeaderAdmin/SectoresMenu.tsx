@@ -9,7 +9,7 @@ export default function SectoresMenu() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams)
-  const type = searchParams.get("type") ?? "actuales"
+  const type = searchParams.get("type") || "actuales"
 
   const handleClick = (value: string) => {
 

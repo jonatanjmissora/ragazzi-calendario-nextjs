@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { MenuRubroProps } from "../types/menuRubros";
+import { MenuRubroProps } from "../_types/menuRubros";
 
 type MenuStoreProps = {
   menuRubros: MenuRubroProps[],

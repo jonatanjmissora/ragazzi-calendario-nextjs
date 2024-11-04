@@ -1,6 +1,6 @@
 import DotEmptySVG from "@/app/assets/DotEmptySvg"
 import DotFillSVG from "@/app/assets/DotFillSvg"
-import { PagoProps } from "@/app/types/pagos"
+import { PagoProps } from "@/app/_types/pagos"
 
 export default function PagoCheckbox({ pago }: { pago: PagoProps }) {
 

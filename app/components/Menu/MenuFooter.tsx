@@ -1,7 +1,7 @@
 "use client"
 
-import { menuResetAction } from "@/app/actions/menuAction"
-import { deleteAllPagosAction } from "@/app/actions/pagosAction"
+import { menuResetAction } from "@/app/_actions/menuAction"
+import { deleteAllPagosAction } from "@/app/_actions/pagosAction"
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
 import { useState } from "react"
 

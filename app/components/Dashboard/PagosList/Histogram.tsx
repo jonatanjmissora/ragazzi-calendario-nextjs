@@ -1,4 +1,4 @@
-import { PagoProps } from "@/app/types/pagos"
+import { PagoProps } from "@/app/_types/pagos"
 import { HISTOGRAM } from "@/app/utils/constants"
 import montoFormat from "@/app/utils/montoFormat"
 

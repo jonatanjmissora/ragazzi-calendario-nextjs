@@ -1,10 +1,10 @@
 "use client"
 
-import { addPagoAction } from "@/app/actions/pagosAction"
+import { addPagoAction } from "@/app/_actions/pagosAction"
 import { getActualDate } from "@/app/utils/date"
 import { useRef, useState } from "react"
 import SubmitBtn from "../SubmitBtn"
-import { deleteSectorAction } from "@/app/actions/menuAction"
+import { deleteSectorAction } from "@/app/_actions/menuAction"
 import toast from "react-hot-toast"
 
 type RubroFormProps = {
@@ -24,6 +24,8 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
 
   const formAction = async (formData: FormData) => {
     const { sector: inputSector, date: inputDate, monto: inputMonto } = Object.fromEntries(formData);
+    setError("")
+    let errorFlag = false
 
     if (!inputSector) {
       toast.error("Falta elegir servicio", { position: "top-left" })
@@ -40,13 +42,21 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
     }
 
     const res = await addPagoAction("PagosPendientes", newPago)
-    if (res?.error) setError(res?.error)
+    if (res?.error) {
+      setError(res?.error)
+      errorFlag = true
+    }
     else {
       const sectoresWithoutActualSector = sectores.filter(sect => sect !== newPago.sector)
-      await deleteSectorAction("SectoresActuales", rubro, sectoresWithoutActualSector)
+      const res2 = await deleteSectorAction("SectoresActuales", rubro, sectoresWithoutActualSector)
+      if(res?.error) {
+        setError(prev => prev + res.error)
+        errorFlag = true
+      }
       setShowForm(false)
     }
-
+    if(errorFlag) toast.error("No se pudo agregar el pago")
+    else toast.success("Pago añadido exitosamente")
   }
 
   const handleCalendarChange = (e: React.ChangeEvent<HTMLInputElement>) => {

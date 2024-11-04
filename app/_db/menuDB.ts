@@ -1,4 +1,4 @@
-import { MenuRubroProps } from "../types/menuRubros"
+import { MenuRubroProps } from "../_types/menuRubros"
 import { MENURUBROS, MENURUBROSRESET } from "../utils/constants"
 import { mongoClient } from "./clientDB"
 
@@ -47,14 +47,14 @@ export async function addSectorDB(collection: string, rubro: string, newSectores
 
 export async function getSectoresDB(collection: string) {
 
-  const data = collection === "SectoresActuales"
-    ? MENURUBROS
-    : MENURUBROSRESET
+  // const data = collection === "SectoresActuales"
+  //   ? MENURUBROS
+  //   : MENURUBROSRESET
 
-  // const data = await mongoClient
-  //   .collection<MenuRubroProps>(collection)
-  //   .find()
-  //   .toArray() as MenuRubroProps[] | []
+  const data = await mongoClient
+    .collection<MenuRubroProps>(collection)
+    .find()
+    .toArray() as MenuRubroProps[] | []
 
   return data
 }
@@ -64,8 +64,6 @@ export async function deleteAllSectoresDB() {
     .collection<MenuRubroProps>("SectoresReset")
     .find()
     .toArray() as MenuRubroProps[] | []
-
-  console.log({ rubrosReset })
 
   await mongoClient
     .collection<MenuRubroProps>("SectoresActuales")

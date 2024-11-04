@@ -12,8 +12,8 @@ export default function Header({ page }: { page: string }) {
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams)
-    const filterR = searchParams.get("filterR") ?? "todos"
-    const filterF = searchParams.get("filterF") ?? fechaActual
+    const filterR = searchParams.get("filterR") || "todos"
+    const filterF = searchParams.get("filterF") || fechaActual
 
     const setFilterR = (newFilter: string) => {
         params.set('filterR', newFilter);

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getPagosAction } from "../actions/pagosAction";
+import { getPagosAction } from "../_actions/pagosAction";
 
 type PagosStoreProps = {
 

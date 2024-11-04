@@ -1,6 +1,6 @@
 "use client"
 
-import { PagoProps } from "@/app/types/pagos"
+import { PagoProps } from "@/app/_types/pagos"
 import montoFormat from "@/app/utils/montoFormat"
 import venceFormat from "@/app/utils/venceFormat"
 import { useState } from "react"
@@ -14,7 +14,7 @@ import ArrowDownSVG from "@/app/assets/ArrowDownSVG"
 import EditSVG from "@/app/assets/EditSVG"
 import TrashSVG from "@/app/assets/TrashSVG"
 import toast from "react-hot-toast"
-import { deletePagoAction } from "@/app/actions/pagosAction"
+import { deletePagoAction } from "@/app/_actions/pagosAction"
 
 export default function Pago({ pago }: { pago: PagoProps }) {
 

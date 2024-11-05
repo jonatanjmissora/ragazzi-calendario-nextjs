@@ -14,7 +14,6 @@ export async function deleteSectorAction(collection: string, rubro: string, sect
 
 export async function addSectorAction(collection: string, rubro: string, newSectores: string[]) {
   const res = await addSectorDB(collection, rubro, newSectores)
-  console.log({collection})
   if (!res?.error) {
     revalidatePath("/")
     revalidatePath("/admin/sectores")

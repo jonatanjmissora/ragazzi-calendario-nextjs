@@ -13,7 +13,6 @@ export default function FilterRubro() {
   const rubrosArray = RUBROSARRAY
 
   const handleRubroChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log("queee")
     if (filterSector === "") params.set('filterSector', sectoresArray[0])
     params.set('filterRubro', event.currentTarget.value)
     router.replace(`${pathname}?${params.toString()}`)

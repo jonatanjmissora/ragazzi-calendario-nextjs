@@ -16,5 +16,5 @@ pagos-realizados:
 
 cargar mas datos
 
-
+poner titulo a los admin/pagos
 

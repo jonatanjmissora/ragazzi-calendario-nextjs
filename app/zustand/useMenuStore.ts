@@ -19,7 +19,6 @@ export const useMenuStore = create<MenuStoreProps>()((set, get) => ({
       ?.sectores || []
     newMenuSectores?.push(sector)
     const index = newMenuRubros.findIndex(menu => menu.rubro === rubro)
-    console.log(rubro, index)
     newMenuRubros[index].sectores = newMenuSectores
     set({ menuRubros: newMenuRubros })
   },

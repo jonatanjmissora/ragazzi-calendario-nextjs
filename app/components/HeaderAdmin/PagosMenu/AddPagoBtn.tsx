@@ -1,8 +1,7 @@
-export default function AddPagoBtn({ setShowModal }) {
+export default function AddPagoBtn({ setShowModal }: { setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
 
   const handleAddPago = () => {
-    alert("SSSSSSSIIIIII")
-    setShowModal(prev => !prev)
+    setShowModal(true)
   }
 
   return (

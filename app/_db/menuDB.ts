@@ -61,7 +61,7 @@ export async function getSectoresDB(collection: string) {
 
 export async function deleteAllSectoresDB() {
   const rubrosReset = await mongoClient
-    .collection<MenuRubroProps>("SectoresReset")
+    .collection<MenuRubroProps>("ConstantMenuSectores")
     .find()
     .toArray() as MenuRubroProps[] | []
 

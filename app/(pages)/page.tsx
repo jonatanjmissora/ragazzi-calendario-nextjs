@@ -1,6 +1,6 @@
-import DashboardContainer from "./components/Dashboard/DashboardContainer";
-import PagosList from "./components/Dashboard/PagosList/PagosList";
-import { addOneMonth, getActualDate } from "./utils/date";
+import DashboardContainer from "../components/Dashboard/DashboardContainer"
+import PagosList from "../components/Dashboard/PagosList/PagosList"
+import { addOneMonth, getActualDate } from "../utils/date"
 
 export default async function Page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 
@@ -16,10 +16,10 @@ export default async function Page({ searchParams }: { searchParams: { [key: str
 
     <div className="flex-1 font-[family-name:var(--font-geist-sans)]">
       <DashboardContainer page={"pendientes"}>
-        <PagosList 
-          page={"pendientes"} 
-          filterRubro={filterRubro} 
-          filterSector={filterSector} 
+        <PagosList
+          page={"pendientes"}
+          filterRubro={filterRubro}
+          filterSector={filterSector}
           filterDesde={filterDesde}
           filterHasta={filterHasta}
         />

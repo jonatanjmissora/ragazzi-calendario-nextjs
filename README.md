@@ -6,15 +6,16 @@ DASHBOARD
 ==========
 pagos-pendientes: 
     total
-    hacer que el edit, tambien tome el rubro y sector
-    controlar el tema del edit de un pago, cuando cambio la fecha, tiene que cambiar el id en la base de datos
     
 pagos-realizados: 
     histograma
-    agregar un pago
 
+ADMIN
+======
+confirmacion para borrar pago
 
 cargar mas datos
 
-poner titulo a los admin/pagos
+animaciones
 
+skelton / loading

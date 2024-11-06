@@ -9,25 +9,32 @@ import { usePathname } from "next/navigation";
 import SubmitBtn from "../../SubmitBtn";
 
 const editPago = async (collection: string, oldPago: PagoProps, newPago: PagoProps) => {
-  
+  console.log({ collection })
   let error = ""
-  if(oldPago._id !== newPago._id) {
-    const res = await deletePagoAction("PagosRealizados", oldPago._id)
+  if (oldPago._id !== newPago._id) {
+    const res = await deletePagoAction(collection, oldPago._id)
     if (!res?.error) {
-      const res2 = await addPagoAction("PagosRealizados", newPago)
+      const res2 = await addPagoAction(collection, newPago)
       if (!res2?.error) {
-        return({error: null})
+        return ({ error: null })
       }
       else error += res2?.error
     } else error += res?.error
   }
-    
-  else 
-    if(oldPago.monto === newPago.monto &&
-      oldPago.pagado === newPago.pagado )
-        return {error: "vacio"}
-    else
-      return await updatePagoAction(collection, oldPago._id, newPago)
+
+  else
+    if (oldPago.monto === newPago.monto &&
+      oldPago.pagado === newPago.pagado)
+      return { error: "vacio" }
+    else {
+      const res = await updatePagoAction(collection, oldPago._id, newPago)
+      if (!res?.error) return { error: null }
+      else
+        error += res?.error
+    }
+
+  if (error === "") return { error: null }
+  else return { error }
 }
 
 export default function PagoModal({ pago, collection, setShowModal, isEdit }: { pago: PagoProps, collection: string, setShowModal: React.Dispatch<React.SetStateAction<boolean>>, isEdit: number }) {
@@ -40,20 +47,22 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
   const formAction = async (formData: FormData) => {
 
     const { rubro: inputRubro, sector: inputSector, date: inputDate, monto: inputMonto, paid: inputPaid } = Object.fromEntries(formData);
+
     const newPago = {
       _id: `${inputDate.toString()}-${inputRubro.toString()}-${inputSector.toString()}`,
       rubro: inputRubro.toString(),
       sector: inputSector.toString(),
       vencimiento: inputDate.toString(),
       monto: inputMonto.toString(),
-      pagado: inputPaid.toString(),
+      pagado: inputPaid ? inputPaid.toString() : "",
     }
+
     let error = ""
 
-    if(isEdit) {
+    if (isEdit) {
       const res = await editPago(collection, pago, newPago)
-      if(res?.error) 
-        if(res?.error === "vacio") {
+      if (res?.error)
+        if (res?.error === "vacio") {
           setShowModal(false)
           return
         }
@@ -61,10 +70,10 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
     }
     else {
       const res = await addPagoAction("PagosRealizados", newPago)
-      if(res?.error) error += res?.error
-      }
+      if (res?.error) error += res?.error
+    }
 
-    if(error !== "") {
+    if (error !== "") {
       setError(error)
       toast.error(`No se pudo ${isEdit ? "editar" : "añadir"} pago`)
     }

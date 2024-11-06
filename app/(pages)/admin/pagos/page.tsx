@@ -1,5 +1,6 @@
 import { getFilteredPagosAction } from "@/app/_actions/pagosAction"
 import Pago from "@/app/components/Dashboard/PagosList/Pago"
+import HeaderTitle from "@/app/components/Header/HeaderTitle"
 import { addOneMonth, getActualDate } from "@/app/utils/date"
 
 export default async function page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
@@ -18,6 +19,7 @@ export default async function page({ searchParams }: { searchParams: { [key: str
 
   return (
     <section className='my-4 flex flex-col'>
+      <HeaderTitle page="admin" />
       {pagos.map(pago => <Pago key={pago._id} pago={pago} />)}
     </section>
   )

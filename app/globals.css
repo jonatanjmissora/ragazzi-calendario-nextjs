@@ -27,6 +27,19 @@ body {
   /* overflow: hidden; */
 }
 
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--white);
+  border-radius: 1rem;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -173,6 +186,25 @@ input[type="checkbox"]:checked~.label-fill {
 /*         PAGOS GRID         */
 .pagos-grid-6 {
   grid-template-columns: 0.25fr 1fr 1fr 1fr 1fr 1.25fr;
+}
+
+.hover-light,
+.hover-scale-01 {
+  transition: 0.2s;
+}
+
+.hover-light:hover {
+  filter: drop-shadow(0 0 0 white);
+}
+
+.hover-scale-01:hover {
+  transform-origin: center;
+  transform: scale(1.01);
+}
+
+.hover-scale-125:hover {
+  transform-origin: center;
+  transform: scale(1.25);
 }
 
 .pagos-grid-5 {

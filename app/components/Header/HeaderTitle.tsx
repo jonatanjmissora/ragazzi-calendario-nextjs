@@ -13,9 +13,9 @@ export default function HeaderTitle({ page }: { page: string }) {
       </div>
     )
 
-  if (page === "realizados")
+  if (page === "realizados" || page === "admin")
     return (
-      <div className="grid pagos-grid-6 tracking-wide font-semibold text-my-black mx-4">
+      <div className={`grid pagos-grid-6 tracking-wide font-semibold mx-4 ${page === "admin" ? "text-my-white" : "text-my-black"}`}>
         <span></span>
         <span>vence</span>
         <span>rubro</span>

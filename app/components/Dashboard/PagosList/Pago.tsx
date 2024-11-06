@@ -21,6 +21,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showHistogram, setShowHistogram] = useState<boolean>(false)
   const pathname = usePathname()
+  const collection = pathname.includes("admin") ? "PagosRealizados" : "PagosPendientes"
 
   const pagoVenceFormat = venceFormat(pago.vencimiento)
   const pagoMonto = montoFormat(Number(pago.monto))
@@ -33,8 +34,10 @@ export default function Pago({ pago }: { pago: PagoProps }) {
 
   return (
     <>
-      <article className={`grid pagos-grid-6 items-center tracking-wide rounded-lg m-1 mx-4 text-my-black ${pago.rubro}`}>
-
+      <article
+        className={`grid pagos-grid-6 hover-light hover-scale-01 items-center tracking-wide rounded-lg 
+      ${pathname.includes("admin") ? "m-[0.125rem]" : "m-1"} mx-4 text-my-black  ${pago.rubro}`}
+      >
         {pathname === "/" && <PagoCheckbox pago={pago} />}
         {pathname === "/pagos-realizados" &&
           <span
@@ -42,8 +45,8 @@ export default function Pago({ pago }: { pago: PagoProps }) {
             onClick={() => setShowHistogram(prev => !prev)}>
             {
               showHistogram
-                ? <ArrowDownSVG className="size-6 rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200" currentColor="#aa0000" />
-                : <ChartSVG className="size-6 p-1 rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200" />
+                ? <ArrowDownSVG className="size-6 p-1 hover-scale-125" currentColor="#aa0000" />
+                : <ChartSVG className="size-6 p-1 hover-scale-125" />
             }
           </span>
         }
@@ -53,10 +56,10 @@ export default function Pago({ pago }: { pago: PagoProps }) {
             className="flex justify-between items-center"
           >
             <button onClick={() => setShowModal(true)}>
-              <EditSVG className="size-7 p-1" currentColor="#222" />
+              <EditSVG className="size-7 p-1 hover-scale-125" currentColor="#222" />
             </button>
             <button onClick={handleDeletePago}>
-              <TrashSVG className="size-7 p-1" currentColor="#222" />
+              <TrashSVG className="size-7 p-1 hover-scale-125" currentColor="#222" />
             </button>
           </span>
         }
@@ -83,7 +86,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
       {showHistogram && <Histogram pago={pago} />}
 
       {
-        showModal && <PagoModal pago={pago} collection="PagosRealizados" setShowModal={setShowModal} isEdit={1} />
+        showModal && <PagoModal pago={pago} collection={collection} setShowModal={setShowModal} isEdit={1} />
       }
 
     </>

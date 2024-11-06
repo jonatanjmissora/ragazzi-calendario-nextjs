@@ -20,7 +20,7 @@ export default function Rubro({ rubro, sectores }: { rubro: string, sectores: st
   return (
     <div className="flex flex-col justify-between relative">
 
-      <div className={`flex-1 flex justify-between items-center p-4 ${rubro} text-my-black duration-200 hover:bg-slate-800 hover:text-my-white`}
+      <div className={`flex-1 flex justify-between items-center p-4 ${rubro} text-my-black hover-light hover-scale-01`}
         onClick={handleClick}>
 
         <div className={`${isEmptyClass && "text-gray-500"}`}>

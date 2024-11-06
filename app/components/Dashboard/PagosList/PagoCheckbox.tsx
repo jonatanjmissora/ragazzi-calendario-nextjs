@@ -25,16 +25,16 @@ export default function PagoCheckbox({ pago }: { pago: PagoProps }) {
         id={`check-${pago._id}`} type="checkbox"
       />
 
-      <label className="label-empty rounded-lg hover:bg-slate-400 hover:text-slate-900 duration-200"
+      <label className="label-empty rounded-lg"
         htmlFor={`check-${pago._id}`}
       >
-        <DotEmptySVG className="size-5" />
+        <DotEmptySVG className="size-5 hover-scale-125" />
       </label>
 
-      <label className="label-fill rounded-lg hover:bg-slate-400 hover:text-slate-900"
+      <label className="label-fill rounded-lg"
         htmlFor={`check-${pago._id}`}
       >
-        <DotFillSVG className="size-5" />
+        <DotFillSVG className="size-5 hover-scale-125" />
       </label>
     </span>
   )

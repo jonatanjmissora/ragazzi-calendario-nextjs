@@ -6,6 +6,7 @@ import Nav from "./Nav"
 import Logo from "./Logo"
 import MenuFooter from "./MenuFooter"
 import WebLinks from "./WebLinks"
+import { usePathname } from "next/navigation"
 
 const getSectores = (array: MenuRubroProps[], rubro: string) => {
     const sectoresArray = array.filter(object => object.rubro === rubro)
@@ -15,6 +16,7 @@ const getSectores = (array: MenuRubroProps[], rubro: string) => {
 export default function Menu({ data }: { data: MenuRubroProps[] }) {
 
     const sortedRubros = ["ragazzi", "patricios", "palihue", "jmolina"]
+    const pathname = usePathname()
 
     return (
         <section className="w-[300px] min-h-screen primary flex flex-col shadow-lg border border-slate-500">
@@ -23,7 +25,7 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
                 <Logo />
             </div>
             {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(data, rubro)} />)}
-            <MenuFooter />
+            {pathname.includes("admin") && <MenuFooter />}
             <div className="flex-1"></div>
             <WebLinks />
         </section>

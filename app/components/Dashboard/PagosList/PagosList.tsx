@@ -1,7 +1,6 @@
 import filteredByRubro from "@/app/utils/filteredByRubro"
 import Pago from "./Pago"
-import { getFilteredPagosAction, getPagosAction } from "@/app/_actions/pagosAction"
-import { PagoProps } from "@/app/_types/pagos"
+import { getFilteredPagosAction } from "@/app/_actions/pagosAction"
 
 export default async function PagosList({ page, filterRubro, filterSector, filterDesde, filterHasta }:
   {
@@ -14,15 +13,7 @@ export default async function PagosList({ page, filterRubro, filterSector, filte
 
   const collection = page === "pendientes" ? "PagosPendientes" : "PagosRealizados"
 
-  let pagos = [] as PagoProps[]
-
-  // if (page === "pendientes") {
-  // pagos = await getPagosAction("PagosPendientes", filterF)
-  // }
-  // if (page === "realizados")
-  // pagos = await getPagosAction("PagosRealizados", filterF)
-
-  pagos = await getFilteredPagosAction(collection, filterRubro, filterSector, filterDesde, filterHasta)
+  const pagos = await getFilteredPagosAction(collection, filterRubro, filterSector, filterDesde, filterHasta)
 
   if (pagos.length === 0) return <p className="p-8 text-xl">No hay pagos . . .</p>
 
@@ -30,7 +21,7 @@ export default async function PagosList({ page, filterRubro, filterSector, filte
 
   return (
     <div
-      className="py-2">
+      className="py-2 h-full overflow-auto">
       {filteredPagos.map(pago =>
         <Pago
           key={pago._id.toString()}

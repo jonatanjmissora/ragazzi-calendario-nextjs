@@ -1,7 +1,10 @@
+import Logo from "@/app/assets/Logo";
+import Logo_medio from "@/app/assets/Logo_medio";
+
 export default function Header() {
   return (
-    <div className="p-4 mb-24">
-      Header Logo
+    <div className="static h-[15rem]">
+      <Logo className="h-full" currentColor="darkred" />
     </div>
   )
 }

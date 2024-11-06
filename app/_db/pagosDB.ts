@@ -74,7 +74,7 @@ export async function updatePagoDB(collection: string, id: string, newPago: Pago
       .updateOne(
         { _id: id },
         {
-          $set: { 'monto': newPago.monto, "vencimiento": newPago.vencimiento }
+          $set: { 'monto': newPago.monto, "pagado": newPago.pagado }
         }
       )
 

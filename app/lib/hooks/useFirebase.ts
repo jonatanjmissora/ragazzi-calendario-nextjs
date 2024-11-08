@@ -17,6 +17,7 @@ export const useFirebase = () => {
   const router = useRouter()
   const [firebaseUser, setFirebaseUser] = useState<string>("");
   const [firebaseData, setFirebaseData] = useState<FireDataProps[]>([]);
+  const collection = "2023_11_noviembre"
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -40,7 +41,7 @@ export const useFirebase = () => {
   useEffect(() => {
 
     const get = async () => {
-      const res = await getCollection("2024_10_octubre") as FireDataProps[]
+      const res = await getCollection(collection) as FireDataProps[]
       setFirebaseData(res)
     }
 
@@ -51,7 +52,6 @@ export const useFirebase = () => {
     }
   }, [firebaseUser]);
 
-  const docYear = "2024"
 
-  return { firebaseUser, firebaseData, docYear };
+  return { firebaseUser, firebaseData, collection };
 };

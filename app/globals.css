@@ -146,6 +146,10 @@ body {
   background: rgba(158, 215, 255, 0.75);
 }
 
+.varios {
+  background: rgba(200, 125, 255, 0.75);
+}
+
 /*         INPUTS         */
 input,
 select {
@@ -218,6 +222,10 @@ input[type="checkbox"]:checked~.label-fill {
   display: flex;
   justify-content: end;
   align-items: center;
+}
+
+.db-grid-6 {
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .form {

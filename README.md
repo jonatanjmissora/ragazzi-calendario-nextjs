@@ -14,8 +14,6 @@ ADMIN
 ======
 confirmacion para borrar pago
 
-cargar mas datos
-
 animaciones
 
 skelton / loading

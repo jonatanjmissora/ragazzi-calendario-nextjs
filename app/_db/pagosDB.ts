@@ -60,7 +60,7 @@ export async function getPagosDB(collection: string, filterF: string) {
   const data = await mongoClient
     .collection<PagoProps>(collection)
     .find()
-    .sort({[sortedByProp]: 1})
+    .sort({ [sortedByProp]: 1 })
     .toArray()
 
   return data
@@ -108,4 +108,21 @@ export async function getFilteredPagosDB(collection: string, filterRubro: string
     .toArray()
 
   return data
+}
+
+export async function addAllPagosDB(collection: string, newPagos: PagoProps[]) {
+
+  try {
+    const data = await mongoClient
+      .collection<PagoProps>(collection)
+      .insertMany(newPagos)
+    if (!data.insertedIds) throw new Error(JSON.stringify(data))
+    return { data: data.insertedIds, error: undefined }
+
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message)
+      return { data: undefined, error: error.message }
+    }
+  }
 }

@@ -12,6 +12,8 @@ export type QueryProps = {
   sector?: string;
   vencimiento?: {
     $gte?: string;
+    $gt?: string;
     $lte?: string;
+    $lt?: string;
   }
 }

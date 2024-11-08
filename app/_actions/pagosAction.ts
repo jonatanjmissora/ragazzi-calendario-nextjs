@@ -1,7 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { addPagoDB, deleteAllPagosDB, deletePagoDB, getFilteredPagosDB, getPagosDB, updatePagoDB } from "../_db/pagosDB"
+import { addAllPagosDB, addPagoDB, deleteAllPagosDB, deletePagoDB, getFilteredPagosDB, getPagosDB, updatePagoDB } from "../_db/pagosDB"
 import { PagoProps } from "../_types/pagos"
 
 export async function addPagoAction(collection: string, newPago: PagoProps) {
@@ -36,4 +36,8 @@ export async function deleteAllPagosAction(collection: string) {
 
 export async function getFilteredPagosAction(collection: string, filterRubro: string, filterSector: string, filterDesde: string, filterHasta: string) {
     return await getFilteredPagosDB(collection, filterRubro, filterSector, filterDesde, filterHasta)
+}
+
+export async function addAllPagosAction(collection: string, newPagos: PagoProps[]) {
+    return await addAllPagosDB(collection, newPagos)
 }

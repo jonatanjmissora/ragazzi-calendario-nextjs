@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth"
 import { collection, getDocs, getFirestore } from "firebase/firestore/lite"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAWTufNWgssJ5ek1FZZXpXfDal4FoYOvu8",
+  apiKey: `${process.env.FIREBASE_APIKEY}`,
   authDomain: "pagos2-ragazzi-app.firebaseapp.com",
   projectId: "pagos2-ragazzi-app",
   storageBucket: "pagos2-ragazzi-app.appspot.com",

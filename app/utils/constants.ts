@@ -49,6 +49,7 @@ export const SECTORESARRAY = [
   "gas",
   "federada",
   "ing brutos",
+  "internet",
   "iva",
   "luz",
   "master",

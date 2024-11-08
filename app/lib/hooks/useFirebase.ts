@@ -1,10 +1,10 @@
 import { auth, getCollection } from "@/app/_db/firebaseClient";
 import { onAuthStateChanged } from "firebase/auth";
-import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-type DataProps = {
+export type FireDataProps = {
   date: string;
   rubro: string;
   sector: string;
@@ -13,8 +13,10 @@ type DataProps = {
 }
 
 export const useFirebase = () => {
+
+  const router = useRouter()
   const [firebaseUser, setFirebaseUser] = useState<string>("");
-  const [firebaseData, setFirebaseData] = useState<DataProps[]>([]);
+  const [firebaseData, setFirebaseData] = useState<FireDataProps[]>([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -26,7 +28,7 @@ export const useFirebase = () => {
       else {
         console.log("firebase: usuario no logueado");
         toast("Usuario fire no logueado")
-        revalidatePath("/firabase-mongo")
+        router.refresh()
       }
     });
 
@@ -38,7 +40,7 @@ export const useFirebase = () => {
   useEffect(() => {
 
     const get = async () => {
-      const res = await getCollection("2024_10_octubre") as DataProps[]
+      const res = await getCollection("2024_10_octubre") as FireDataProps[]
       setFirebaseData(res)
     }
 
@@ -49,5 +51,7 @@ export const useFirebase = () => {
     }
   }, [firebaseUser]);
 
-  return { firebaseUser, firebaseData };
+  const docYear = "2024"
+
+  return { firebaseUser, firebaseData, docYear };
 };

@@ -32,7 +32,7 @@ export default function PagoMenu({ pago, setShowModal, setShowConfirm }
       toast.error("No se pudo realizar el pago")
     }
     else {
-      await deletePagoAction("PagosPendientes", pago._id)
+      await deletePagoAction("PagosPendientes", pago)
       toast.success("Pago realizado correctamente")
     }
 

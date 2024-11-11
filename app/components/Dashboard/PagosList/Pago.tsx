@@ -29,7 +29,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
   const pagoMonto = montoFormat(Number(pago.monto))
 
   const handleDeletePago = async () => {
-    const res = await deletePagoAction("PagosRealizados", pago._id)
+    const res = await deletePagoAction("PagosRealizados", pago)
     if (res?.error) toast.error(res.error)
     else toast.success("Pago eliminado")
   }
@@ -78,7 +78,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
 
         {
           pathname === "/"
-            ? <PagoMenu pago={pago} setShowModal={setShowModal} setShowConfirm={setShowConfirm}/>
+            ? <PagoMenu pago={pago} setShowModal={setShowModal} setShowConfirm={setShowConfirm} />
             : <span className="mr-10">{pago.pagado}</span>
         }
 
@@ -92,7 +92,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
       }
 
       {
-        showConfirm && <ConfirmModal pago={pago} setShowConfirm={setShowConfirm}/>
+        showConfirm && <ConfirmModal pago={pago} collection={collection} setShowConfirm={setShowConfirm} />
       }
 
     </>

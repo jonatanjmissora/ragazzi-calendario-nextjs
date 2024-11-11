@@ -15,10 +15,12 @@ import EditSVG from "@/app/assets/EditSVG"
 import TrashSVG from "@/app/assets/TrashSVG"
 import toast from "react-hot-toast"
 import { deletePagoAction } from "@/app/_actions/pagosAction"
+import ConfirmModal from "../../ConfirmModal"
 
 export default function Pago({ pago }: { pago: PagoProps }) {
 
   const [showModal, setShowModal] = useState<boolean>(false)
+  const [showConfirm, setShowConfirm] = useState<boolean>(false)
   const [showHistogram, setShowHistogram] = useState<boolean>(false)
   const pathname = usePathname()
   const collection = pathname.includes("admin") ? "PagosRealizados" : "PagosPendientes"
@@ -76,7 +78,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
 
         {
           pathname === "/"
-            ? <PagoMenu pago={pago} setShowModal={setShowModal} />
+            ? <PagoMenu pago={pago} setShowModal={setShowModal} setShowConfirm={setShowConfirm}/>
             : <span className="mr-10">{pago.pagado}</span>
         }
 
@@ -87,6 +89,10 @@ export default function Pago({ pago }: { pago: PagoProps }) {
 
       {
         showModal && <PagoModal pago={pago} collection={collection} setShowModal={setShowModal} isEdit={1} />
+      }
+
+      {
+        showConfirm && <ConfirmModal pago={pago} setShowConfirm={setShowConfirm}/>
       }
 
     </>

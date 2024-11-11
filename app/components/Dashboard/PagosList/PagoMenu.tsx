@@ -6,10 +6,10 @@ import { getActualDate } from "@/app/utils/date"
 import SpinnerSVG from "@/app/assets/SpinnerSVG"
 import { PagoProps } from "@/app/_types/pagos"
 import { addPagoAction, deletePagoAction } from "@/app/_actions/pagosAction"
-import { addSectorAction, getSectoresAction } from "@/app/_actions/menuAction"
 import toast from "react-hot-toast"
 
-export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function PagoMenu({ pago, setShowModal, setShowConfirm }
+  : { pago: PagoProps, setShowModal: React.Dispatch<React.SetStateAction<boolean>>, setShowConfirm: React.Dispatch<React.SetStateAction<boolean>> }) {
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
@@ -39,15 +39,7 @@ export default function PagoMenu({ pago, setShowModal }: { pago: PagoProps, setS
   }
 
   const handleCancel = async () => {
-    setIsLoading(true)
-    await deletePagoAction("PagosPendientes", pago._id)
-    const menuRubros = await getSectoresAction("SectoresActuales")
-    const newSectores = menuRubros
-      .find(mr => mr.rubro === pago.rubro)?.sectores
-      .filter(s => s !== pago.sector) || []
-    newSectores.push(pago.sector)
-    await addSectorAction("SectoresActuales", pago.rubro, newSectores)
-    toast.success("Pago cancelado con exito")
+    setShowConfirm(true)
   }
 
   const handleEdit = () => {

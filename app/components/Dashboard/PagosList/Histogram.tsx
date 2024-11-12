@@ -1,10 +1,16 @@
+import { getHistogramAction } from "@/app/_actions/pagosAction"
+import { HistoProps } from "@/app/_types/histogram"
 import { PagoProps } from "@/app/_types/pagos"
 import { HISTOGRAM } from "@/app/utils/constants"
 import montoFormat from "@/app/utils/montoFormat"
+import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 
 export default function Histogram({ pago }: { pago: PagoProps }) {
 
-    const histogram = HISTOGRAM
+    // const histogram = HISTOGRAM
+
+    const [histogram, setHistogram] = useState<HistoProps>({id: "", pagos: []})
 
     const pagosArray = histogram.pagos.map(pago => Number(pago.monto))
     const maximoMonto = Math.max(...pagosArray)
@@ -12,6 +18,18 @@ export default function Histogram({ pago }: { pago: PagoProps }) {
     const getMontoHeight = (monto: string) => {
         return Math.round(Number(monto) / maximoMonto * 7)
     }
+
+    useEffect(() => {
+
+        const getHistory = async() => {
+            const res = await getHistogramAction(pago.rubro, pago.sector)
+            if(res?.error) toast.error("No fue posible cargar histograma")
+            else setHistogram(res.data)
+        }
+
+        getHistory()
+
+    }, [])
 
     return (
         <div className="bg-my-white m-4 rounded-lg">
@@ -33,9 +51,9 @@ const Bar = ({ fecha, monto, heightPercentage }: { fecha: string, monto: string,
         <div className="w-[10%] text-center my-2">
             <div
                 style={{ height: `${heightPercentage}rem` }}
-                className={`w-full primary border border-gray-500 border-on-top`}>$ {montoFormat(Number(monto))}
+                className={`w-full text-xs primary border border-gray-500 border-on-top pt-1`}>$ {montoFormat(Number(monto))}
             </div>
-            <p className="w-full text-center text-my-black mt-1">{fecha}</p>
+            <p className="w-full text-xs text-center text-my-black mt-1">{fecha.substring(0, 7)}</p>
         </div>
     )
 }

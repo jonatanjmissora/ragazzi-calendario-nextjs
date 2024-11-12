@@ -121,5 +121,7 @@ export const HISTOGRAM = {
     { fecha: "2024-05", monto: "3050" },
     { fecha: "2024-04", monto: "5580" },
     { fecha: "2024-03", monto: "7580" },
+    { fecha: "2024-04", monto: "5580" },
+    { fecha: "2024-03", monto: "7580" },
   ]
 }

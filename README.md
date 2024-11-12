@@ -8,7 +8,6 @@ pagos-pendientes:
     total
     
 pagos-realizados: 
-    histograma
 
 ADMIN
 ======

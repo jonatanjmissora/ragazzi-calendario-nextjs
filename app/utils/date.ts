@@ -34,3 +34,10 @@ export function addOneMonth(date: string) {
   newDate.setMonth(newDate.getMonth() + 1)
   return newDateToinputDateFormat(newDate.toLocaleDateString())
 }
+
+export function subtractOneYear(date: string) {
+  const formatNewDate = inputDateToNewDateFormat(date)
+  const newDate = new Date(formatNewDate)
+  newDate.setMonth(newDate.getMonth() - 13)
+  return newDateToinputDateFormat(newDate.toLocaleDateString())
+}

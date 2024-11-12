@@ -28,21 +28,21 @@ export default function PagoMenuFooter() {
     }
 
     return (
-        <article className="w-full flex flex-col items-center justify-center">
+        <article className="w-full flex flex-col items-center justify-center mt-8">
             <button
-                className={`flex justify-center items-center w-3/4 py-2 rounded-lg border border-my-black bg-my-black text-my-white duration-200 hover:bg-my-white hover:text-my-black hover:border-my-white ${isLoading[0] && "bg-my-white"}`}
+                className={`shadow bg-my-white rounded-lg m-1 link-btn w-1/2 ${isLoading[0] && "bg-my-white"}`}
                 onClick={handleMenuReset}
                 disabled={isLoading[0]}
             >{isLoading[0] ? <SpinnerSVG className="size-6 p-1" currentColor="#ff0000" /> : "Menu Reset"}</button>
 
             <button
-                className={`flex justify-center items-center w-3/4 py-2 rounded-lg border border-my-black bg-my-black text-my-white duration-200 hover:bg-my-white hover:text-my-black hover:border-my-white ${isLoading[1] && "bg-my-white"}`}
+                className={`bg-my-white rounded-lg m-1 link-btn w-1/2 ${isLoading[1] && "bg-my-white"}`}
                 onClick={handlePendReset}
                 disabled={isLoading[1]}
             >{isLoading[1] ? <SpinnerSVG className="size-6 p-1" currentColor="#ff0000" /> : "Pend Reset"}</button>
 
             <button
-                className={`flex justify-center items-center w-3/4 py-2 rounded-lg border border-my-black bg-my-black text-my-white duration-200 hover:bg-my-white hover:text-my-black hover:border-my-white ${isLoading[2] && "bg-my-white"}`}
+                className={`bg-my-white rounded-lg m-1 link-btn w-1/2 ${isLoading[2] && "bg-my-white"}`}
                 onClick={handleRealReset}
                 disabled={isLoading[2]}
             >{isLoading[2] ? <SpinnerSVG className="size-6 p-1" currentColor="#ff0000" /> : "Real Reset"}</button>

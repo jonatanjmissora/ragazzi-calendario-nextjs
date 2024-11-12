@@ -11,7 +11,7 @@ export default function WebLinks() {
       <ul className='w-full bg-my-white flex justify-between'>
         {
           webLinks.map(link =>
-            <li key={link._id} className='w-[20%] p-2 border border-my-white'>
+            <li key={link._id} className='w-[20%] p-2 hover:bg-gray-400'>
               <Link
                 href={link.href}
                 target="_blank"

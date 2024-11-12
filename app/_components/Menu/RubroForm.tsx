@@ -49,8 +49,8 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
     else {
       const sectoresWithoutActualSector = sectores.filter(sect => sect !== newPago.sector)
       const res2 = await deleteSectorAction("SectoresActuales", rubro, sectoresWithoutActualSector)
-      if (res?.error) {
-        setError(prev => prev + res.error)
+      if (res2?.error) {
+        setError(prev => prev + res2?.error)
         errorFlag = true
       }
       setShowForm(false)
@@ -67,13 +67,13 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
   if (sectores.length === 0) return
 
   return (
-    <div className="">
+    <div className="text-sm">
 
       {
         showForm
         && (
           <form action={formAction}
-            className="min-h-[300px] w-full flex-1 flex justify-between bg-my-white border">
+            className={`min-h-[300px] w-full flex-1 flex justify-between ${rubro} border`}>
 
             <div
               className="absolute -inset-[100%] bg-transparent z-10"

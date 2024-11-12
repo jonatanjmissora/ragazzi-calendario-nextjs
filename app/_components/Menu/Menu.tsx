@@ -7,6 +7,7 @@ import Logo from "./Logo"
 import MenuFooter from "./MenuFooter"
 import WebLinks from "./WebLinks"
 import { usePathname } from "next/navigation"
+import ResetBtn from "./ResetBtn"
 
 const getSectores = (array: MenuRubroProps[], rubro: string) => {
     const sectoresArray = array.filter(object => object.rubro === rubro)
@@ -26,6 +27,7 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
             </div>
             {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(data, rubro)} />)}
             {pathname.includes("admin") && <MenuFooter />}
+            {pathname === ("/") && <ResetBtn />}
             <div className="flex-1"></div>
             <WebLinks />
         </section>

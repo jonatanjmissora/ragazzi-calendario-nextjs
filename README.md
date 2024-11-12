@@ -1,6 +1,7 @@
 
 MENU
 =====
+pasar a acordion
 
 DASHBOARD 
 ==========
@@ -11,6 +12,10 @@ pagos-realizados:
 
 ADMIN
 ======
+
+hacer login
+
+hacer dark-mode
 
 animaciones
 

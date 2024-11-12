@@ -11,7 +11,7 @@ export default function AdminMenu() {
         <Link className={`font-bold link-btn ${pathname === "/admin/pagos" && "link-btn-active"} border-b border-gray-500`} href={"/admin/pagos"}>pagos</Link>
         <Link className={`link-btn ${pathname === "/admin/sectores" && "link-btn-active"} border-b border-gray-500`} href={"/admin/sectores"}>sectores</Link>
         <Link className={`link-btn ${pathname === "/admin/weblinks" && "link-btn-active"} border-b border-gray-500`} href={"/admin/weblinks"}>weblinks</Link>
-        <Link className={`link-btn ${pathname === "/admin/firebase-mongo" && "link-btn-active"} border-b border-gray-500`} href={"/admin/firebase-mongo"}>base de datos</Link>
+        {/* <Link className={`link-btn ${pathname === "/admin/firebase-mongo" && "link-btn-active"} border-b border-gray-500`} href={"/admin/firebase-mongo"}>base de datos</Link> */}
       </nav>
     </div>
   )

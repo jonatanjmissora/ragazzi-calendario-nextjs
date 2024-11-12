@@ -13,12 +13,11 @@ export default function Nav() {
     <nav className='w-full bg-my-white flex flex-col'>
       <div className='flex h-[2rem]'>
         <Link className={`link-btn ${pathname === "/" && "link-btn-active"} border-r border-gray-400`} href={'/'}>pendientes</Link>
-        <Link className={`link-btn ${pathname === "/pagos-realizados" && "link-btn-active"}`} href={'/pagos-realizados'}>realizados</Link>
+        <Link className={`link-btn border-r border-gray-400 ${pathname === "/pagos-realizados" && "link-btn-active"}`} href={'/pagos-realizados'}>realizados</Link>
+        <Link href={'/admin/pagos'} className={`flex items-center justify-center hover:bg-gray-500 ${pathname.includes("/admin") && "link-btn-active"} w-10`}>
+          <SettingsSVG className='size-6 p-1' currentColor={`${pathname.includes("/admin") ? "var(--white)" : "var(--black)"}`} />
+        </Link>
       </div>
-      <Link href={'/admin/pagos'} className={`link-btn ${pathname.includes("/admin") && "link-btn-active"}`}>
-        <span className='font-bold tracking-wide'>admin</span>
-        <SettingsSVG className='size-6 p-1' currentColor={`${pathname.includes("/admin") ? "var(--white)" : "var(--black)"}`} />
-      </Link>
     </nav>
   )
 }

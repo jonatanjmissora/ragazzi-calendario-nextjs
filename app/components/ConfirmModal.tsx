@@ -13,30 +13,33 @@ export default function ConfirmModal({ pago, collection, setShowConfirm }: { pag
     const [error, setError] = useState<string>("")
 
     const formAction = async () => {
+        
         setError("")
+        let errorActual = ""
+        // const pathToRevalidate = collection === "PagosPendientes" ? "/" : "/admin/pagos"
+        
         const res = await deletePagoAction(collection, pago)
-        if (res?.error) {
-            setError(res?.error)
-            toast.error("El pago no ha podido ser eliminado")
-            return
-        }
-        else {
-            if (collection === "Pagos realizados") return
+        if(res?.error) errorActual += res?.error
+
+        if(collection === "PagosPendientes") {
             const menuRubros = await getSectoresAction("SectoresActuales")
             const newSectores = menuRubros
                 .find(mr => mr.rubro === pago.rubro)?.sectores
                 .filter(s => s !== pago.sector) || []
             newSectores.push(pago.sector)
-            const res = await addSectorAction("SectoresActuales", pago.rubro, newSectores)
-            if (res?.error) {
-                setError(res?.error)
-                toast.error("El sector no ha podido ser añadido")
-                return
-            }
-
+            const res2 = await addSectorAction("SectoresActuales", pago.rubro, newSectores)
+            if(res2?.error) errorActual += res2?.error 
         }
-        toast.success("Pago cancelado con exito")
-        setShowConfirm(false)
+
+        if(errorActual === "") {
+            toast.success("Pago eliminado con éxito")
+            setShowConfirm(false)
+        }
+        else {
+            toast.error("No se pudo eliminar el pago")
+            setError(errorActual)
+        }
+
     }
 
     return (
@@ -50,11 +53,11 @@ export default function ConfirmModal({ pago, collection, setShowConfirm }: { pag
 
                     <i className="absolute -top-10 -right-0" onClick={() => setShowConfirm(false)}><CancelSVG className="size-7 p-1 hover:bg-slate-500 rounded-lg" currentColor="#cacaca" /></i>
 
-                    <span>¿ Seguro deseas eliminar el pago pendiente ?</span>
+                    <span>{`¿ Seguro deseas eliminar el pago en ${collection} ?`}</span>
 
                     <SubmitBtn text="Eliminar" />
 
-                    <span className="absolute -bottom-4 left-4 text-xs text-my-white">{error}</span>
+                    <span className="absolute -bottom-4 left-4 text-xs text-red-700">{error}</span>
 
                 </form>
             </div>

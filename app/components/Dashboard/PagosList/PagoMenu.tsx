@@ -16,6 +16,7 @@ export default function PagoMenu({ pago, setShowModal, setShowConfirm }
 
   const handlePagado = async () => {
     setIsLoading(true)
+    let errorActual = ""
 
     const actualDate = getActualDate()
     const newPago = {
@@ -27,14 +28,20 @@ export default function PagoMenu({ pago, setShowModal, setShowConfirm }
       pagado: actualDate,
     }
     const res = await addPagoAction("PagosRealizados", newPago)
-    if (res?.error) {
-      setError(res?.error)
-      toast.error("No se pudo realizar el pago")
-    }
+    if (res?.error) errorActual += res?.error
+ 
     else {
-      await deletePagoAction("PagosPendientes", pago)
-      toast.success("Pago realizado correctamente")
+      const res2 = await deletePagoAction("PagosPendientes", pago)
+      if(res2?.error) errorActual += res2?.error
     }
+    if(errorActual === "")
+        toast.success("Pago realizado correctamente")
+    else {
+      toast.error("No se pudo realizar el pago")
+      setError(errorActual)
+    }
+
+    setIsLoading(false)
 
   }
 
@@ -76,7 +83,7 @@ export default function PagoMenu({ pago, setShowModal, setShowConfirm }
           )
       }
 
-      <span className="absolute -bottom-4 left-4 text-xs text-my-white">{error}</span>
+      <span className="absolute -bottom-4 left-4 text-xs text-red-700 bg-my-white">{error}</span>
 
     </div>
   )

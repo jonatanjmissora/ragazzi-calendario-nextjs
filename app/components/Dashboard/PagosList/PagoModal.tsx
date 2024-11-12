@@ -9,32 +9,25 @@ import { usePathname } from "next/navigation";
 import SubmitBtn from "../../SubmitBtn";
 
 const editPago = async (collection: string, oldPago: PagoProps, newPago: PagoProps) => {
-  console.log({ collection })
-  let error = ""
+
   if (oldPago._id !== newPago._id) {
-    const res = await deletePagoAction(collection, oldPago._id)
-    if (!res?.error) {
-      const res2 = await addPagoAction(collection, newPago)
-      if (!res2?.error) {
-        return ({ error: null })
-      }
-      else error += res2?.error
-    } else error += res?.error
+
+    const res = await deletePagoAction(collection, oldPago)
+    if (res?.error) return {error: res?.error, data: null}
+
+    const res2 = await addPagoAction(collection, newPago)
+    if (res?.error) return {error: res?.error, data: null}
   }
 
   else
     if (oldPago.monto === newPago.monto &&
       oldPago.pagado === newPago.pagado)
-      return { error: "vacio" }
+      return { error: "vacio", data: null }
     else {
-      const res = await updatePagoAction(collection, oldPago._id, newPago)
-      if (!res?.error) return { error: null }
-      else
-        error += res?.error
+      const res3 = await updatePagoAction(collection, oldPago._id, newPago)
+      if (res3?.error) return { error: res3?.error, data: null }
     }
 
-  if (error === "") return { error: null }
-  else return { error }
 }
 
 export default function PagoModal({ pago, collection, setShowModal, isEdit }: { pago: PagoProps, collection: string, setShowModal: React.Dispatch<React.SetStateAction<boolean>>, isEdit: number }) {
@@ -57,7 +50,7 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
       pagado: inputPaid ? inputPaid.toString() : "",
     }
 
-    let error = ""
+    let errorActual = ""
 
     if (isEdit) {
       const res = await editPago(collection, pago, newPago)
@@ -66,14 +59,14 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
           setShowModal(false)
           return
         }
-        else error += res.error
+        else errorActual += res.error
     }
     else {
       const res = await addPagoAction("PagosRealizados", newPago)
-      if (res?.error) error += res?.error
+      if (res?.error) errorActual += res?.error
     }
 
-    if (error !== "") {
+    if (errorActual !== "") {
       setError(error)
       toast.error(`No se pudo ${isEdit ? "editar" : "añadir"} pago`)
     }
@@ -88,7 +81,7 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
       <div className="inset-0 absolute z-10 top-0 left-0 backdrop-blur-[1px] bg-[#22222290]"></div>
       <div className="absolute z-10 inset-0 top-0 left-0 flex justify-center items-center">
         <form
-          className="relative bg-my-white rounded-xl p-8 text-my-black flex flex-col gap-6"
+          className="relative h-max bg-my-white rounded-xl p-8 text-my-black flex flex-col gap-6"
           action={formAction}
         >
 
@@ -123,9 +116,9 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
             </div>
           }
 
-          <SubmitBtn text="Cambiar" />
+          <SubmitBtn text={isEdit ? "Cambiar" : "Agregar"} />
 
-          <span className="absolute -bottom-4 left-4 text-xs text-my-white">{error}</span>
+          <span className="text-xs text-red-700 w-60">{error}</span>
 
         </form>
       </div>

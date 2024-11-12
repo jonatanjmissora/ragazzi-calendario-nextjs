@@ -18,7 +18,7 @@ export default async function page({ searchParams }: { searchParams: { [key: str
   if (pagos.length === 0) return <p className="p-8 text-xl text-my-white">No hay pagos . . .</p>
 
   return (
-    <section className='my-4 flex flex-col'>
+    <section className='my-4 flex flex-col h-[79%] overflow-auto'>
       <HeaderTitle page="admin" />
       {pagos.map(pago => <Pago key={pago._id} pago={pago} />)}
     </section>

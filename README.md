@@ -12,7 +12,6 @@ pagos-realizados:
 
 ADMIN
 ======
-confirmacion para borrar pago
 
 animaciones
 

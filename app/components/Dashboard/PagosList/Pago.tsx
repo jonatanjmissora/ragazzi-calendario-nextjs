@@ -13,8 +13,6 @@ import Histogram from "./Histogram"
 import ArrowDownSVG from "@/app/assets/ArrowDownSVG"
 import EditSVG from "@/app/assets/EditSVG"
 import TrashSVG from "@/app/assets/TrashSVG"
-import toast from "react-hot-toast"
-import { deletePagoAction } from "@/app/_actions/pagosAction"
 import ConfirmModal from "../../ConfirmModal"
 
 export default function Pago({ pago }: { pago: PagoProps }) {
@@ -29,9 +27,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
   const pagoMonto = montoFormat(Number(pago.monto))
 
   const handleDeletePago = async () => {
-    const res = await deletePagoAction("PagosRealizados", pago)
-    if (res?.error) toast.error(res.error)
-    else toast.success("Pago eliminado")
+    setShowConfirm(true)
   }
 
   return (

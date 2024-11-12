@@ -1,7 +1,7 @@
 import { getFilteredPagosAction } from "@/app/_actions/pagosAction"
-import Pago from "@/app/components/Dashboard/PagosList/Pago"
-import HeaderTitle from "@/app/components/Header/HeaderTitle"
-import { addOneMonth, getActualDate } from "@/app/utils/date"
+import Pago from "@/app/_components/Dashboard/PagosList/Pago"
+import HeaderTitle from "@/app/_components/Dashboard/Header/HeaderTitle"
+import { addOneMonth, getActualDate } from "@/app/_lib/utils/date"
 
 export default async function page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 

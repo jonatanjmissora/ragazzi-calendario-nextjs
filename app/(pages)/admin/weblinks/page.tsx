@@ -1,6 +1,6 @@
 
 import { getWeblinksAction, updateWeblinkAction } from '@/app/_actions/weblinksAction'
-import Weblink from '@/app/components/Admin/Weblink'
+import Weblink from '@/app/_components/Admin/Weblink'
 
 export default async function page() {
 

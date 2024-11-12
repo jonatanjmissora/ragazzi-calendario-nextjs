@@ -1,5 +1,5 @@
 import { getSectoresAction } from '@/app/_actions/menuAction'
-import Rubro from '@/app/components/Admin/Rubro'
+import Rubro from '@/app/_components/Admin/Rubro'
 
 export default async function page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 

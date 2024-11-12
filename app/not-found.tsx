@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import img404 from './assets/404.jpg';
+import img404 from './_assets/404.jpg';
 import Link from 'next/link';
 
 export default function NotFound() {

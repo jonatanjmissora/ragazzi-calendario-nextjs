@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Suspense } from "react";
-import MenuContainer from "./components/Menu/MenuContainer";
+import MenuContainer from "./_components/Menu/MenuContainer";
 import { Toaster } from "react-hot-toast";
 
 const geistSans = localFont({

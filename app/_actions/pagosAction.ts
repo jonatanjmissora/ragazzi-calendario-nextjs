@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache"
 import { addAllPagosDB, addPagoDB, deleteAllPagosDB, deletePagoDB, getFilteredPagosDB, getPagosDB, updatePagoDB } from "../_db/pagosDB"
 import { PagoProps } from "../_types/pagos"
 import { addSectorAction, getSectoresAction } from "./menuAction"
-import { getActualDate, subtractOneYear } from "../utils/date"
+import { getActualDate, subtractOneYear } from "../_lib/utils/date"
 
 export async function addPagoAction(collection: string, newPago: PagoProps) {
     const res = await addPagoDB(collection, newPago)
@@ -51,7 +51,7 @@ export async function getHistogramAction(rubro: string, sector: string) {
     let actualDate = getActualDate()
     let prevYearDate = subtractOneYear(actualDate)
     const filteredPagosArray = await getFilteredPagosDB("PagosRealizados", rubro, sector, prevYearDate, actualDate)
-    const pagosArray = filteredPagosArray.map(pago => { return {fecha: pago.vencimiento, monto: pago.monto}})
-    const histogramObj = {id: `${rubro}-${sector}`, pagos: pagosArray}
-    return {error: null, data: histogramObj}
+    const pagosArray = filteredPagosArray.map(pago => { return { fecha: pago.vencimiento, monto: pago.monto } })
+    const histogramObj = { id: `${rubro}-${sector}`, pagos: pagosArray }
+    return { error: null, data: histogramObj }
 }

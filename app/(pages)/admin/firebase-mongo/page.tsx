@@ -1,7 +1,7 @@
 "use client"
 import { firebaseLogin, firebaseLogout } from "@/app/_db/firebaseClient";
 import { PagoProps } from "@/app/_types/pagos";
-import { useFirebase } from "@/app/lib/hooks/useFirebase";
+import { useFirebase } from "@/app/_lib/hooks/useFirebase";
 import { convertFireToMongo } from "./convertFireToMongo";
 import { addAllPagosAction } from "@/app/_actions/pagosAction";
 import toast from "react-hot-toast";

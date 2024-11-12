@@ -1,6 +1,6 @@
-import DashboardContainer from "../components/Dashboard/DashboardContainer"
-import PagosList from "../components/Dashboard/PagosList/PagosList"
-import { addOneMonth, getActualDate } from "../utils/date"
+import DashboardContainer from "../_components/Dashboard/DashboardContainer"
+import PagosList from "../_components/Dashboard/PagosList/PagosList"
+import { addOneMonth, getActualDate } from "../_lib/utils/date"
 
 export default async function Page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 

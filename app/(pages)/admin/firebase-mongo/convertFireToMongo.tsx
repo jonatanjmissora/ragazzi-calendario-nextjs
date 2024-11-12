@@ -1,6 +1,6 @@
 import { PagoProps } from "@/app/_types/pagos";
-import { FireDataProps } from "@/app/lib/hooks/useFirebase";
-import { SECTORESARRAY } from "@/app/utils/constants";
+import { FireDataProps } from "@/app/_lib/hooks/useFirebase";
+import { SECTORESARRAY } from "@/app/_lib/utils/constants";
 
 const OLDSECTORS = ["auton", "compl", "ing br", "muni", "reporte z1",
   "reporte z2", "reporte z3", "reporte z4", "sueldo g", "sueldo r",

@@ -1,5 +1,5 @@
 import { MenuRubroProps } from "../_types/menuRubros"
-import { MENURUBROS, MENURUBROSRESET } from "../utils/constants"
+import { MENURUBROS, MENURUBROSRESET } from "../_lib/utils/constants"
 import { mongoClient } from "./clientDB"
 
 export async function deleteSectorDB(collection: string, rubro: string, sectores: string[]) {

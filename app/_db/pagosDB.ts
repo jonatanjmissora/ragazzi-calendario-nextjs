@@ -1,6 +1,6 @@
 import { PagoProps } from "../_types/pagos"
-import { PAGOSPENDIENTES, PAGOSREALIZADOS } from "../utils/constants"
-import { setQueryAdminPagos } from "../utils/setQueryAdminPagos"
+import { PAGOSPENDIENTES, PAGOSREALIZADOS } from "../_lib/utils/constants"
+import { setQueryAdminPagos } from "../_lib/utils/setQueryAdminPagos"
 import { mongoClient } from "./clientDB"
 
 export async function deletePagoDB(collection: string, id: string) {

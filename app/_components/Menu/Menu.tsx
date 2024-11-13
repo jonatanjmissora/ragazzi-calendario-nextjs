@@ -20,7 +20,7 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
     const pathname = usePathname()
 
     return (
-        <section className="w-[300px] min-h-screen primary flex flex-col shadow-lg border border-slate-500">
+        <section className="relative w-[300px] min-h-screen primary flex flex-col shadow-lg border border-slate-500">
             <div className="flex flex-col">
                 <Nav />
                 <Logo />

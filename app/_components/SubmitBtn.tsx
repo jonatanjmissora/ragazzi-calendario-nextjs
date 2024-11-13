@@ -7,7 +7,7 @@ export default function SubmitBtn({ text }: { text: string }) {
 
   return (
     <button
-      className={`tracking-wider mb-2 flex justify-center primary p-4 py-2 rounded-lg ${false && "opacity-80"} duration-200 hover:text-my-black hover:border hover:border-black`}
+      className={`tracking-wider w-1/2 mb-2 flex justify-center primary p-4 py-2 rounded-lg ${false && "opacity-80"} duration-200 hover:text-my-black hover:border hover:border-black`}
       disabled={pending}
       type="submit" >
       {pending ? <SpinnerSVG className="size-6" currentColor="#eeeeee" /> : text}

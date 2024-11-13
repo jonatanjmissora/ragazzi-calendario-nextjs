@@ -1,7 +1,6 @@
 
 MENU
 =====
-pasar a acordion
 
 DASHBOARD 
 ==========
@@ -21,6 +20,8 @@ animaciones
 
 skelton / loading
 
-terminal menu acordion con animacion
+terminal menu acordion con animacion (no puedo)
 
-el boton de reset del menu con un confirmar
+verificar si los botones de borrar o reset, tienen todos confirmar?
+
+responsive

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  interpolate-size: allow-keywords;
   --background: linear-gradient(125deg, #eee, #999);
   --primary-grad: linear-gradient(to bottom, rgb(177, 33, 33), rgb(104, 29, 29));
   --primary: rgb(104, 29, 29);
@@ -10,6 +11,10 @@
   --black: #222;
   --gray: #666;
   --text: var(--black);
+  --ragazzi: #ffff7dbf;
+  --patricios: #7dfd7dbf;
+  --palihue: #ffc8c8bf;
+  --jmolina: #9ed7ffbf;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,6 +44,7 @@ body {
   background-color: var(--white);
   border-radius: 1rem;
 }
+
 
 @layer utilities {
   .text-balance {
@@ -131,23 +137,43 @@ body {
 }
 
 .ragazzi {
-  background: #ffff7dbf;
+  background: var(--ragazzi);
 }
 
 .patricios {
-  background: #7dfd7dbf;
+  background: var(--patricios);
 }
 
 .palihue {
-  background: #ffc8c8bf;
+  background: var(--palihue);
 }
 
 .jmolina {
-  background: #9ed7ffbf;
+  background: var(--jmolina);
 }
 
 .varios {
   background: rgba(200, 125, 255, 0.75);
+}
+
+.menu-details[open] summary[data-rubro="ragazzi"] {
+  background-color: var(--ragazzi);
+}
+.menu-details[open] summary[data-rubro="patricios"] {
+  background-color: var(--patricios);
+}
+.menu-details[open] summary[data-rubro="palihue"] {
+  background-color: var(--palihue);
+}
+.menu-details[open] summary[data-rubro="jmolina"] {
+  background-color: var(--jmolina);
+}
+
+.menu-details .plus-svg {
+  transition: transform 0.25s;
+}
+.menu-details[open] .plus-svg {
+  transform: rotate(135deg)
 }
 
 /*         INPUTS         */

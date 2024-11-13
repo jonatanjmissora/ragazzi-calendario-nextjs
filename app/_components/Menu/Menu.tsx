@@ -1,6 +1,5 @@
 "use client"
 
-import Rubro from "./Rubro"
 import { MenuRubroProps } from "@/app/_types/menuRubros"
 import Nav from "./Nav"
 import Logo from "./Logo"
@@ -8,6 +7,7 @@ import MenuFooter from "./MenuFooter"
 import WebLinks from "./WebLinks"
 import { usePathname } from "next/navigation"
 import ResetBtn from "./ResetBtn"
+import Rubro from "./Rubro"
 
 const getSectores = (array: MenuRubroProps[], rubro: string) => {
     const sectoresArray = array.filter(object => object.rubro === rubro)

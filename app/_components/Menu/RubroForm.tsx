@@ -10,11 +10,9 @@ import toast from "react-hot-toast"
 type RubroFormProps = {
   rubro: string;
   sectores: string[];
-  showForm: boolean;
-  setShowForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function RubroForm({ rubro, sectores, showForm, setShowForm }: RubroFormProps) {
+export default function RubroForm2({ rubro, sectores}: RubroFormProps) {
 
   const currentLocaleDate = getActualDate()
 
@@ -53,7 +51,6 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
         setError(prev => prev + res2?.error)
         errorFlag = true
       }
-      setShowForm(false)
     }
     if (errorFlag) toast.error("No se pudo agregar el pago")
     else toast.success("Pago añadido exitosamente")
@@ -69,16 +66,9 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
   return (
     <div className="text-sm">
 
-      {
-        showForm
-        && (
+      
           <form action={formAction}
             className={`min-h-[300px] w-full flex-1 flex justify-between ${rubro} border`}>
-
-            <div
-              className="absolute -inset-[100%] bg-transparent z-10"
-              onClick={() => setShowForm(prev => !prev)}
-            ></div>
 
             <SectoresList sectores={sectores} />
 
@@ -87,7 +77,7 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
               <div className="relative">
 
                 <input name="date"
-                  className="absolute top-[20%] right-0 w-full py-1 text-center"
+                  className="absolute top-[20%] right-0 w-full py-1 text-center hover:bg-white"
                   onClick={() => dateRef.current?.showPicker()} ref={showDateRef} readOnly defaultValue={currentLocaleDate} />
 
                 <input name="calendar"
@@ -97,7 +87,7 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
               </div>
 
               <input name="monto"
-                className="text-center w-full py-1 bg-transparent border-b-2 border-red-900 text-black"
+                className="text-center w-full py-1 bg-transparent border-b-2 border-red-900 text-black hover:bg-white"
                 type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} defaultValue="0" />
 
               <SubmitBtn text="Agregar" />
@@ -108,9 +98,7 @@ export default function RubroForm({ rubro, sectores, showForm, setShowForm }: Ru
 
           </form>
 
-        )
-
-      }
+        
 
     </div>
   )

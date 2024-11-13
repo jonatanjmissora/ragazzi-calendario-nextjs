@@ -81,29 +81,29 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
       <div className="inset-0 absolute z-10 top-0 left-0 backdrop-blur-[1px] bg-[#22222290]"></div>
       <div className="absolute z-10 inset-0 top-0 left-0 flex justify-center items-center">
         <form
-          className="relative h-max bg-my-white rounded-xl p-8 text-my-black flex flex-col gap-6"
+          className="relative h-max bg-my-white rounded-xl p-8 text-my-black flex flex-col gap-8 items-center justify-center"
           action={formAction}
         >
 
           <i className="absolute -top-10 -right-0" onClick={() => setShowModal(false)}><CancelSVG className="size-7 p-1 hover:bg-slate-500 rounded-lg" currentColor="#cacaca" /></i>
 
           <div className="flex items-center gap-8">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-8">
               <select
-                className="w-[11ch] pb-[0.1rem]"
+                className="w-40 pb-[0.1rem]"
                 name="rubro" id="rubro" defaultValue={pago.rubro}>
                 {rubrosArray.map(rubro => <option key={rubro} value={rubro}>{rubro}</option>)}
               </select>
-              <input className="w-5rem" type="date" name="date" defaultValue={pago.vencimiento} />
+              <input className="w-40" type="date" name="date" defaultValue={pago.vencimiento} />
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-8">
               <select
-                className="w-[11ch] pb-[0.1rem]"
+                className="w-40 pb-[0.1rem]"
                 name="sector" id="sector" defaultValue={pago.sector}>
                 {sectoresArray.map(sector => <option key={sector} value={sector}>{sector}</option>)}
               </select>
-              <input className="w-[6rem] pb-[2px]" type="number" name="monto" defaultValue={pago.monto} onFocus={(e) => e.currentTarget.select()} />
+              <input className="w-40 pb-[2px]" type="number" name="monto" defaultValue={pago.monto} onFocus={(e) => e.currentTarget.select()} />
             </div>
 
 
@@ -116,7 +116,7 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
             </div>
           }
 
-          <SubmitBtn text={isEdit ? "Cambiar" : "Agregar"} />
+          <SubmitBtn text={isEdit ? "Cambiar" : "Agregar"} className={"w-3/4"}/>
 
           <span className="text-xs text-red-700 w-60">{error}</span>
 

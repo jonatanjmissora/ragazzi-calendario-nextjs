@@ -55,7 +55,7 @@ export default function ConfirmModal({ pago, collection, setShowConfirm }: { pag
 
                     <span className='text-center'>{`¿ Seguro deseas eliminar el pago en ${collection} ?`}</span>
 
-                    <SubmitBtn text="Eliminar" />
+                    <SubmitBtn text="Eliminar" className='w-1/2'/>
 
                     <span className="absolute -bottom-4 left-4 text-xs text-red-700">{error}</span>
 

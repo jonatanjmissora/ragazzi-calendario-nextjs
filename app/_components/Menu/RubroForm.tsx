@@ -12,7 +12,7 @@ type RubroFormProps = {
   sectores: string[];
 }
 
-export default function RubroForm2({ rubro, sectores }: RubroFormProps) {
+export default function RubroForm({ rubro, sectores }: RubroFormProps) {
 
   const currentLocaleDate = getActualDate()
 
@@ -94,7 +94,7 @@ export default function RubroForm2({ rubro, sectores }: RubroFormProps) {
             className="text-center w-full py-1 bg-transparent border-b-2 border-red-900 text-black hover:bg-white"
             type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} defaultValue="0" />
 
-          <SubmitBtn text="Agregar" />
+          <SubmitBtn text="Agregar" className={"w-full"}/>
 
           <span className="w-[300px] fixed bottom-4 left-0 text-xs">{error}</span>
 

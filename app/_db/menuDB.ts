@@ -59,17 +59,33 @@ export async function getSectoresDB(collection: string) {
   return data
 }
 
-export async function deleteAllSectoresDB() {
-  const rubrosReset = await mongoClient
-    .collection<MenuRubroProps>("ConstantMenuSectores")
-    .find()
-    .toArray() as MenuRubroProps[] | []
+export async function resetSectoresDB() {
 
-  await mongoClient
-    .collection<MenuRubroProps>("SectoresActuales")
-    .deleteMany({})
+  try {
 
-  await mongoClient
-    .collection<MenuRubroProps>("SectoresActuales")
-    .insertMany(rubrosReset)
+    const rubrosReset = await mongoClient
+      .collection<MenuRubroProps>("ConsttantMenuSectores")
+      .find()
+      .toArray() as MenuRubroProps[] | []
+
+      
+    const res =  await mongoClient
+      .collection<MenuRubroProps>("SectoresActuales")
+      .deleteMany({})
+      
+      if (res.deletedCount !== 1) throw new Error("No se pudo eliminar")
+
+    const res2 = await mongoClient
+      .collection<MenuRubroProps>("SectoresActuales")
+      .insertMany(rubrosReset)
+
+    if (!res2.insertedIds)  throw new Error(JSON.stringify(res2))
+      
+    return { data: "ok", error: undefined }
+    
+  } catch (error) {
+    if (error instanceof Error) {
+      return { data: undefined, error: error.message }
+    }
+  }
 }

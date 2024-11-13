@@ -20,8 +20,6 @@ animaciones
 
 skelton / loading
 
-terminal menu acordion con animacion (no puedo)
-
-verificar si los botones de borrar o reset, tienen todos confirmar?
+menu acordion con animacion (no puedo)
 
 responsive

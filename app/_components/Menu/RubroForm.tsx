@@ -72,11 +72,11 @@ export default function RubroForm({ rubro, sectores }: RubroFormProps) {
 
 
       <form ref={formRef} action={formAction}
-        className={`min-h-[300px] w-full flex-1 flex justify-between ${rubro} border`}>
+        className={`min-h-[300px] w-full flex-1 flex justify-between ${rubro}`}>
 
         <SectoresList sectores={sectores} />
 
-        <div className="relative z-10 flex-1 flex flex-col justify-between p-2 border-l">
+        <div className="relative z-10 flex-1 flex flex-col justify-between p-2">
 
           <div className="relative">
 
@@ -94,7 +94,7 @@ export default function RubroForm({ rubro, sectores }: RubroFormProps) {
             className="text-center w-full py-1 bg-transparent border-b-2 border-red-900 text-black hover:bg-white"
             type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} defaultValue="0" />
 
-          <SubmitBtn text="Agregar" className={"w-full"}/>
+          <SubmitBtn text="Agregar" className={"w-full"} />
 
           <span className="w-[300px] fixed bottom-4 left-0 text-xs">{error}</span>
 
@@ -111,7 +111,7 @@ export default function RubroForm({ rubro, sectores }: RubroFormProps) {
 export function SectoresList({ sectores }: { sectores: string[] }) {
 
   return (
-    <div className="flex-1 flex flex-col justify-center static z-10 p-2 border-r border-slate-400">
+    <div className="flex-1 flex flex-col justify-center static z-10 p-2">
       <fieldset>
         {sectores.map(sector =>
 
@@ -120,7 +120,7 @@ export function SectoresList({ sectores }: { sectores: string[] }) {
               className="hidden flex-0"
               type="radio" id={sector} name="sector" defaultValue={sector} />
             <label htmlFor={sector}
-              className={`${sectores.length > 12 && "text-xs"} text-slate-600 text-center flex-1 border-b-2 border-transparent hover:bg-slate-200 hover:text-my-black`} >{sector}</label>
+              className={`${sectores.length > 12 && "text-xs"} text-my-black text-center flex-1 border-b-2 border-transparent hover:bg-my-white hover:text-my-black`} >{sector}</label>
           </div>
 
         )}

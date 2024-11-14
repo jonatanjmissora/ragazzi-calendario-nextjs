@@ -25,7 +25,7 @@ export function Input({ text }: { text: string }) {
         checked={filterR === text}
       />
       <label htmlFor={text}
-        className="text-slate-600 text-center flex-1 border border-transparent hover:text-black px-1">{labelText}</label>
+        className="text-my-black text-center flex-1 rounded-sm hover:bg-my-hover hover:text-my-white px-2 duration-200">{labelText}</label>
     </>
   )
 }

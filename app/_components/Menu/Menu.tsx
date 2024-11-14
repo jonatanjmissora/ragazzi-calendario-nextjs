@@ -8,7 +8,6 @@ import WebLinks from "./WebLinks"
 import { usePathname } from "next/navigation"
 import ResetBtn from "./ResetBtn"
 import Rubro from "./Rubro"
-import { useCountStore } from "@/app/_lib/zustand/counter"
 
 const getSectores = (array: MenuRubroProps[], rubro: string) => {
     const sectoresArray = array.filter(object => object.rubro === rubro)
@@ -21,7 +20,7 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
     const pathname = usePathname()
 
     return (
-        <section className="relative w-[300px] min-h-screen primary flex flex-col shadow-lg border border-slate-500">
+        <section className="relative w-[300px] min-h-screen bg-card flex flex-col shadow-lg ">
             <div className="flex flex-col">
                 <Nav />
                 <Logo />

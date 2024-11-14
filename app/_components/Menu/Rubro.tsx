@@ -22,7 +22,7 @@ export default function Rubro({ rubro, sectores }: { rubro: string, sectores: st
             <details name="menu" className="menu-details">
 
                 <summary
-                    className={`flex-1 flex justify-between items-center p-4 bg-my-white text-my-black text-sm border-b border-gray-500 ${rubroClass[rubro]} duration-200`}
+                    className={`flex-1 flex justify-between items-center p-4 bg-header text-my-black text-sm border-b border-gray-500 ${rubroClass[rubro]} duration-200`}
                     data-rubro={rubro}
                 >
                     <RubroSummary rubro={rubro} sectores={sectores} />

@@ -6,7 +6,7 @@ import TotalCounter from "./TotalCounter"
 export default function Header({ page }: { page: string }) {
 
     return (
-        <article className="bg-my-white border">
+        <article className="bg-header">
 
             {page === "pendientes" &&
                 <>

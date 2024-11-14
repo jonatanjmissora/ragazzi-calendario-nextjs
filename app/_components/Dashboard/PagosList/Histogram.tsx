@@ -32,7 +32,7 @@ export default function Histogram({ pago }: { pago: PagoProps }) {
     }, [])
 
     return (
-        <div className="bg-my-white m-4 rounded-lg">
+        <div className="bg-header m-4 rounded-lg">
             <p className="w-full text-my-black pt-2 mx-4">{`${pago.rubro} - ${pago.sector}`}</p>
 
             <div className="flex flex-row-reverse justify-center items-end">
@@ -46,12 +46,14 @@ export default function Histogram({ pago }: { pago: PagoProps }) {
 
 const Bar = ({ fecha, monto, heightPercentage }: { fecha: string, monto: string, heightPercentage: number }) => {
 
-
+    const isLower = (!heightPercentage || heightPercentage < 2) ? true : false
+    console.log(fecha, heightPercentage, isLower)
     return (
         <div className="w-[10%] text-center my-2">
             <div
                 style={{ height: `${heightPercentage}rem` }}
-                className={`w-full text-xs primary border border-gray-500 border-on-top pt-1`}>$ {montoFormat(Number(monto))}
+                className={`relative w-full text-xs bg-histogram border-on-top pt-1 flex justify-center`}>
+                <span className={`absolute ${isLower ? "-top-5 text-my-black" : "top-2"}`}>$ {montoFormat(Number(monto))}</span>
             </div>
             <p className="w-full text-xs text-center text-my-black mt-1">{fecha.substring(0, 7)}</p>
         </div>

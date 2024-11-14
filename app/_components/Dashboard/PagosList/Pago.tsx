@@ -33,7 +33,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
   return (
     <>
       <article
-        className={`grid pagos-grid-6 hover-light items-center tracking-wide rounded-lg 
+        className={`grid pagos-grid-6 hover-light items-center tracking-wide rounded-sm 
       ${pathname.includes("admin") ? "m-[0.125rem]" : "m-1"} mx-4 text-my-black  ${pago.rubro}`}
       >
         {pathname === "/" && <PagoCheckbox pago={pago} />}
@@ -43,8 +43,8 @@ export default function Pago({ pago }: { pago: PagoProps }) {
             onClick={() => setShowHistogram(prev => !prev)}>
             {
               showHistogram
-                ? <ArrowDownSVG className="size-6 p-1 hover-scale-125" currentColor="#aa0000" />
-                : <ChartSVG className="size-6 p-1 hover-scale-125" />
+                ? <ArrowDownSVG className="size-6 p-1 hover:scale-125" currentColor="#aa0000" />
+                : <ChartSVG className="size-6 p-1 hover:scale-125" />
             }
           </span>
         }
@@ -54,10 +54,10 @@ export default function Pago({ pago }: { pago: PagoProps }) {
             className="flex justify-between items-center"
           >
             <button onClick={() => setShowModal(true)}>
-              <EditSVG className="size-7 p-1 hover-scale-125" currentColor="#222" />
+              <EditSVG className="size-7 p-1 hover:scale-125" currentColor="#222" />
             </button>
             <button onClick={handleDeletePago}>
-              <TrashSVG className="size-7 p-1 hover-scale-125" currentColor="#222" />
+              <TrashSVG className="size-7 p-1 hover:scale-125" currentColor="#222" />
             </button>
           </span>
         }

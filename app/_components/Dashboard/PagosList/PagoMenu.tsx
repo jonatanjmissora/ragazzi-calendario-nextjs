@@ -55,29 +55,30 @@ export default function PagoMenu({ pago, setShowModal, setShowConfirm }
 
   return (
     <div id="span-menu"
-      className="w-10/12 ml-auto bg-slate-200 rounded-lg">
+      className="w-10/12 ml-auto flex items-center justify-center bg-menu-alpha h-full">
 
       {
         isLoading
           ? (<div className="flex justify-center"><SpinnerSVG className="size-7 p-1 origin-center hover:scale-150 duration-200" currentColor={"#dd0000"} /></div>)
           : (
-            <div className="flex justify-center gap-6">
+            <div className="flex justify-center items-center gap-6">
               <button id="check-btn"
+                className=""
                 onClick={handlePagado}
                 type="button" >
-                <CheckSVG className="size-7 p-1 hover-scale-125" currentColor="#008000" />
+                <CheckSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#008000" />
               </button>
 
               <button id="cancel-btn"
                 onClick={handleCancel}
                 type="button" >
-                <CancelSVG className="size-7 p-1 hover-scale-125" currentColor="#ff0000" />
+                <CancelSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#ff0000" />
               </button>
 
               <button id="edit-btn"
                 onClick={handleEdit}
                 type="button" >
-                <EditSVG className="size-7 p-1 hover-scale-125" currentColor="#000000" />
+                <EditSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#000000" />
               </button>
             </div>
           )

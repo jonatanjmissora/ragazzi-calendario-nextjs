@@ -12,7 +12,7 @@ export default function ResetBtn() {
 
   const formAction = async () => {
     const res = await menuResetAction()
-    if(res?.error) {
+    if (res?.error) {
       setError(res.error)
       toast.error("No se pudo resetear los sectores")
     }
@@ -22,7 +22,7 @@ export default function ResetBtn() {
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <button className="primary px-4 py-1 rounded-lg mt-8" onClick={() => setShowConfirm(true)}>reset</button>
+      <button className="bg-card px-4 py-1 rounded-lg mt-8" onClick={() => setShowConfirm(true)}>reset</button>
 
       {
         showConfirm &&
@@ -40,7 +40,7 @@ export default function ResetBtn() {
               <span className="text-center">{`¿ Seguro deseas resetear los sectores ?`}</span>
 
               <SubmitBtn text="reset" className={"w-1/2"} />
-              
+
               <span className="absolute -bottom-4 left-4 text-xs text-red-700">{error}</span>
 
             </form>

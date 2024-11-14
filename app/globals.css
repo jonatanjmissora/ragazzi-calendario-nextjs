@@ -3,25 +3,27 @@
 @tailwind utilities;
 
 :root {
-  interpolate-size: allow-keywords;
-  --background: linear-gradient(125deg, #eee, #999);
-  --primary-grad: linear-gradient(to bottom, rgb(177, 33, 33), rgb(104, 29, 29));
+  --background: linear-gradient(125deg, #aaa, #777);
+  --primary-grad-red: linear-gradient(to bottom, rgb(177, 33, 33), rgb(104, 29, 29));
   --primary: rgb(104, 29, 29);
   --white: #cacaca;
   --black: #222;
   --gray: #666;
   --text: var(--black);
-  --ragazzi: #ffff7dbf;
-  --patricios: #7dfd7dbf;
-  --palihue: #ffc8c8bf;
-  --jmolina: #9ed7ffbf;
+  --ragazzi: #ffff7d88;
+  --patricios: #7dfd7d88;
+  --palihue: #ffc8c888;
+  --jmolina: #9ed7ff88;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--background) //--background: linear-gradient(125deg, rgb(44, 14, 14), rgb(15, 1, 1));
-      --text: var(--black);
-    --red: linear-gradient(125deg, rgb(113, 102, 212), rgb(58, 11, 11));
+    --background: linear-gradient(125deg, #222, #000);
+    --text: var(--white);
+    --card-grad: radial-gradient(50% 50% at center center, rgba(0, 0, 0, .66), #262626), linear-gradient(180deg, #fff, #262626);
+    --card-grad-red: var(--primary-grad-red);
+    --menu-alpha: #262626ee;
+    --header: #888;
   }
 }
 
@@ -30,6 +32,28 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   /* overflow: hidden; */
+}
+
+.bg-menu-alpha {
+  background: var(--menu-alpha);
+}
+
+.bg-header {
+  background: var(--header);
+}
+
+.bg-histogram {
+  background: var(--card-grad-red);
+}
+
+.bg-card {
+  background: var(--card-grad);
+}
+
+.bg-card {
+  background: var(--card-grad);
+  color: var(--white);
+  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.4);
 }
 
 ::-webkit-scrollbar {
@@ -41,7 +65,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--white);
+  background-color: var(--header);
   border-radius: 1rem;
 }
 
@@ -118,13 +142,6 @@ body {
   color: var(--white);
 }
 
-.primary {
-  background: var(--primary-grad);
-  color: var(--white);
-  border: 1px solid darkred;
-  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.4);
-}
-
 .border-on-top {
   border-radius: 0.5rem;
   border-bottom-left-radius: 0%;
@@ -159,12 +176,15 @@ body {
 .menu-details[open] summary[data-rubro="ragazzi"] {
   background-color: var(--ragazzi);
 }
+
 .menu-details[open] summary[data-rubro="patricios"] {
   background-color: var(--patricios);
 }
+
 .menu-details[open] summary[data-rubro="palihue"] {
   background-color: var(--palihue);
 }
+
 .menu-details[open] summary[data-rubro="jmolina"] {
   background-color: var(--jmolina);
 }
@@ -172,6 +192,7 @@ body {
 .menu-details .plus-svg {
   transition: transform 0.25s;
 }
+
 .menu-details[open] .plus-svg {
   transform: rotate(135deg)
 }
@@ -194,6 +215,10 @@ select:focus {
 input:checked+label {
   border-bottom: 2px solid var(--primary);
   color: var(--primary);
+}
+
+input[type=radio]:checked+label {
+  border: none;
 }
 
 /*         CHECKBOXS         */
@@ -232,7 +257,7 @@ input[type="checkbox"]:checked~.label-fill {
   transform: scale(1.01);
 }
 
-.hover-scale-125:hover {
+.hover:scale-125:hover {
   transform-origin: center;
   transform: scale(1.25);
 }

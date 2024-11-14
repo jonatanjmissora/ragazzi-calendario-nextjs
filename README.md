@@ -5,7 +5,6 @@ MENU
 DASHBOARD 
 ==========
 pagos-pendientes: 
-    total
     
 pagos-realizados: 
 

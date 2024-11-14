@@ -1,6 +1,7 @@
 import HeaderTitle from "./HeaderTitle"
 import { RubroFilter } from "./RubroFilter"
 import { FechaFilter } from "./FechaFilter"
+import TotalCounter from "./TotalCounter"
 
 export default function Header({ page }: { page: string }) {
 
@@ -10,7 +11,7 @@ export default function Header({ page }: { page: string }) {
             {page === "pendientes" &&
                 <>
                     <div className="flex-1 flex justify-between items-center mb-2 mx-4">
-                        <span className="text-my-black">Total</span>
+                        <TotalCounter />
                         <RubroFilter />
                     </div>
                     <HeaderTitle page={page} />

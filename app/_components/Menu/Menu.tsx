@@ -8,6 +8,7 @@ import WebLinks from "./WebLinks"
 import { usePathname } from "next/navigation"
 import ResetBtn from "./ResetBtn"
 import Rubro from "./Rubro"
+import { useCountStore } from "@/app/_lib/zustand/counter"
 
 const getSectores = (array: MenuRubroProps[], rubro: string) => {
     const sectoresArray = array.filter(object => object.rubro === rubro)

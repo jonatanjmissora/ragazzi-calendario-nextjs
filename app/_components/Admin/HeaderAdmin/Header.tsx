@@ -11,7 +11,7 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <article className="bg-my-white border">
+    <article className="bg-header">
 
       <AdminMenu />
       {pathname === "/admin/pagos" && <PagosMenu />}

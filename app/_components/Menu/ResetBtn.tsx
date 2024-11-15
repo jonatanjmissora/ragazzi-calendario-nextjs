@@ -22,7 +22,7 @@ export default function ResetBtn() {
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <button className="bg-card px-4 py-1 rounded-lg mt-8" onClick={() => setShowConfirm(true)}>reset</button>
+      <button className="primary-btn mt-8" onClick={() => setShowConfirm(true)}>reset</button>
 
       {
         showConfirm &&

@@ -21,12 +21,12 @@ export default function FilterSector() {
   return (
     <div className="flex flex-col">
       <select
-        className="w-[11ch] pb-[0.1rem]"
+        className="w-[11ch] pb-[0.1rem] hover:text-my-white duration-200"
         onChange={handleSectorChange}
         name="sector" id="sector" defaultValue={filterSector}>
         {sectoresArray.map(sector => <option key={sector} value={sector}>{sector}</option>)}
       </select>
-      <label className="text-gray-500 text-xs tracking-wide mx-1" htmlFor="sector">sector</label>
+      <label className="text-my-white text-xs tracking-wide mx-1" htmlFor="sector">sector</label>
     </div>
   )
 }

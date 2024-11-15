@@ -51,11 +51,11 @@ export default function ConfirmModal({ pago, collection, setShowConfirm }: { pag
                     action={formAction}
                 >
 
-                    <i className="absolute -top-10 -right-0" onClick={() => setShowConfirm(false)}><CancelSVG className="size-7 p-1 hover:bg-slate-500 rounded-lg" currentColor="#cacaca" /></i>
+                    <i className="absolute -top-10 -right-0" onClick={() => setShowConfirm(false)}><CancelSVG className="size-7 p-1 rounded-sm text-my-white hover:scale-125 hover:bg-my-hover-secondary hover:text-my-black duration-200" currentColor="currentColor" /></i>
 
                     <span className='text-center'>{`¿ Seguro deseas eliminar el pago en ${collection} ?`}</span>
 
-                    <SubmitBtn text="Eliminar" className='w-1/2'/>
+                    <SubmitBtn text="Eliminar" className='w-1/2' />
 
                     <span className="absolute -bottom-4 left-4 text-xs text-red-700">{error}</span>
 

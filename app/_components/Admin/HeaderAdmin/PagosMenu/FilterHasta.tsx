@@ -42,10 +42,10 @@ export default function FilterHasta() {
     <div className="flex flex-col">
       <input
         ref={hastaRef}
-        className="w-[12ch] text-sm"
+        className="w-[12ch] text-sm hover:text-my-white duration-200"
         onChange={handleHastaChange}
         type="date" name="hasta" id="hasta" defaultValue={filterHasta} />
-      <label className="text-gray-500 text-xs tracking-wide mb-1 mx-1" htmlFor="hasta">hasta</label>
+      <label className="text-my-white text-xs tracking-wide mb-1 mx-1" htmlFor="hasta">hasta</label>
     </div>
   )
 }

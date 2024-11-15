@@ -30,7 +30,7 @@ export default function Rubro({ rubro }: { rubro: MenuRubroProps }) {
   }
 
   return (
-    <div className="p-2 bg-my-white rounded-lg shadow text-my-black">
+    <div className="p-2 bg-header rounded-lg shadow text-my-black">
 
       <div className="flex justify-between items-center">
         <span className="font-bold tracking-wide">{rubro.rubro}</span>
@@ -66,10 +66,10 @@ const SectorCard = ({ sector, rubro, sectores, type }: { sector: string, rubro: 
   }
 
   return (
-    <div className="bg-gray-500 text-my-white flex gap-2 justify-center items-center px-1 rounded-lg duration-200 hover:bg-my-black hover:text-my-white">
+    <div className="bg-header text-my-white flex gap-2 justify-center items-center px-1 rounded-lg duration-200 hover:bg-my-black hover:text-my-white">
       <span>{sector}</span>
       <button
-        className="pt-[0.15rem]"
+        className="pt-[0.15rem] hover:scale-110"
         onClick={handleDelete}
       >
         <CancelSVG className="size-5 p-1" currentColor="#cacaca" />

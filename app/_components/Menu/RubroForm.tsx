@@ -68,43 +68,38 @@ export default function RubroForm({ rubro, sectores }: RubroFormProps) {
   if (sectores.length === 0) return
 
   return (
-    <div className="text-sm">
 
+    <form ref={formRef} action={formAction}
+      className={`min-h-[300px] w-full flex-1 flex justify-between ${rubro} border-b border-gray-500`}>
 
-      <form ref={formRef} action={formAction}
-        className={`min-h-[300px] w-full flex-1 flex justify-between ${rubro}`}>
+      <SectoresList sectores={sectores} />
 
-        <SectoresList sectores={sectores} />
+      <div className="relative z-10 flex-1 flex flex-col justify-between p-2">
 
-        <div className="relative z-10 flex-1 flex flex-col justify-between p-2">
+        <div className="relative">
 
-          <div className="relative">
+          <input name="date"
+            className="absolute top-[20%] right-0 w-full py-1 text-center hover:bg-my-white"
+            onClick={() => dateRef.current?.showPicker()} ref={showDateRef} readOnly defaultValue={currentLocaleDate} />
 
-            <input name="date"
-              className="absolute top-[20%] right-0 w-full py-1 text-center hover:bg-white"
-              onClick={() => dateRef.current?.showPicker()} ref={showDateRef} readOnly defaultValue={currentLocaleDate} />
-
-            <input name="calendar"
-              className="w-0 absolute -top-[25%] right-[100%]"
-              ref={dateRef} type="date" onChange={handleCalendarChange} />
-
-          </div>
-
-          <input name="monto"
-            className="text-center w-full py-1 bg-transparent border-b-2 border-red-900 text-black hover:bg-white"
-            type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} defaultValue="0" />
-
-          <SubmitBtn text="Agregar" className={"w-full"} />
-
-          <span className="w-[300px] fixed bottom-4 left-0 text-xs">{error}</span>
+          <input name="calendar"
+            className="w-0 absolute -top-[25%] right-[100%]"
+            ref={dateRef} type="date" onChange={handleCalendarChange} />
 
         </div>
 
-      </form>
+        <input name="monto"
+          className="text-center w-full py-1 bg-transparent border-b-2 border-red-900 text-black hover:bg-my-white"
+          type="number" placeholder="monto" onFocus={(e) => e.currentTarget.select()} defaultValue="0" />
 
+        <SubmitBtn text="Agregar" className={"w-full"} />
 
+        <span className="w-[300px] fixed bottom-4 left-0 text-xs">{error}</span>
 
-    </div>
+      </div>
+
+    </form>
+
   )
 }
 

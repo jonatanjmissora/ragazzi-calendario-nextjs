@@ -6,7 +6,7 @@ export default function AddPagoBtn({ setShowModal }: { setShowModal: React.Dispa
 
   return (
     <button
-      className="bg-my-black p-1 px-4 rounded border border-my-black duration-200 hover:bg-gray-500"
+      className="primary-btn"
       onClick={handleAddPago}
     >
       Agregar

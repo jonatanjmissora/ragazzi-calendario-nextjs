@@ -12,11 +12,16 @@ export default function Nav() {
   return (
     <nav className='w-full bg-header flex flex-col text-my-black'>
       <div className='flex h-[2rem]'>
-        <Link className={`link-btn ${pathname === "/" && "link-btn-active"} border-r border-gray-400`} href={'/'}>pendientes</Link>
-        <Link className={`link-btn border-r border-gray-400 ${pathname === "/pagos-realizados" && "link-btn-active"}`} href={'/pagos-realizados'}>realizados</Link>
-        <Link href={'/admin/pagos'} className={`flex items-center justify-center hover:bg-my-hover ${pathname.includes("/admin") && "link-btn-active"} hover:text-my-white w-10`}>
-          <SettingsSVG className={`size-6 p-1 ${pathname.includes("/admin") ? "var(--white)" : "var(--black)"}`} currentColor="currentColor" />
-        </Link>
+        <Link className={`link-btn ${pathname === "/" && "link-btn-active"}`} href={'/'}>pendientes</Link>
+        <Link className={`link-btn ${pathname === "/pagos-realizados" && "link-btn-active"}`} href={'/pagos-realizados'}>realizados</Link>
+
+        <div className='w-10 h-full'>
+          <Link
+            href={'/admin/pagos'}
+            className={`link-btn ${pathname.includes("/admin") && "link-btn-active"} w-full h-full`}>
+            <SettingsSVG className={`size-4 ${pathname.includes("/admin") ? "var(--white)" : "var(--black)"}`} currentColor="currentColor" />
+          </Link>
+        </div>
       </div>
     </nav>
   )

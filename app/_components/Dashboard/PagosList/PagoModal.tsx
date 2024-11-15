@@ -85,7 +85,7 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
           action={formAction}
         >
 
-          <i className="absolute -top-10 -right-0" onClick={() => setShowModal(false)}><CancelSVG className="size-7 p-1 hover:bg-slate-500 rounded-lg" currentColor="#cacaca" /></i>
+          <i className="absolute -top-10 -right-0" onClick={() => setShowModal(false)}><CancelSVG className="size-7 p-1 rounded-sm text-my-white hover:scale-125 hover:bg-my-hover-secondary hover:text-my-black duration-200" currentColor="currentColor" /></i>
 
           <div className="flex items-center gap-8">
             <div className="flex flex-col gap-8">
@@ -116,7 +116,7 @@ export default function PagoModal({ pago, collection, setShowModal, isEdit }: { 
             </div>
           }
 
-          <SubmitBtn text={isEdit ? "Cambiar" : "Agregar"} className={"w-3/4"}/>
+          <SubmitBtn text={isEdit ? "Cambiar" : "Agregar"} className={"w-3/4"} />
 
           <span className="text-xs text-red-700 w-60">{error}</span>
 

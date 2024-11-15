@@ -8,7 +8,7 @@
   --primary: rgb(104, 29, 29);
   --white: #cacaca;
   --black: #222;
-  --gray: #666;
+  --gray: #888;
   --text: var(--black);
   --ragazzi: #ffff7d88;
   --patricios: #7dfd7d88;
@@ -18,12 +18,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: linear-gradient(125deg, #222, #000);
+    --background: linear-gradient(125deg, #2a2a2a, #111);
+    --background-inv: linear-gradient(125deg, #888, #aaa);
     --text: var(--white);
-    --card-grad: radial-gradient(50% 50% at center center, rgba(0, 0, 0, .66), #262626), linear-gradient(180deg, #fff, #262626);
+    --text-inv: var(--black);
+    --card-grad: radial-gradient(50% 50% at center center, rgba(4, 4, 4, .66), #2a2a2a), linear-gradient(180deg, #fff, #262626);
     --card-grad-red: var(--primary-grad-red);
     --menu-alpha: #262626ee;
-    --header: #888;
   }
 }
 
@@ -39,7 +40,7 @@ body {
 }
 
 .bg-header {
-  background: var(--header);
+  background: var(--gray);
 }
 
 .bg-histogram {
@@ -83,64 +84,43 @@ body {
   letter-spacing: 1px;
   font-weight: 700;
   flex: 1 1;
-  color: var(--black);
-  transition-duration: 200ms;
+  transition: color 0.25s ease-out;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  background: var(--gray);
+  color: var(--text-inv);
 }
 
 .link-btn:hover {
   background: var(--menu-alpha);
-  color: var(--white)
+  color: var(--text)
 }
 
 .link-btn-active {
-  background: var(--black);
-  color: var(--white);
+  background: var(--background);
+  color: var(--text);
 }
 
-.btn-light {
+.primary-btn {
   padding: 0.5rem 1rem;
   font-size: 12px;
   letter-spacing: 1px;
   font-weight: 700;
-  flex: 1 1;
-  color: var(--text);
-  transition-duration: 200ms;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background: var(--white);
-  color: var(--black);
-}
-
-.btn-light:hover {
-  background: var(--gray);
-  color: var(--black);
-}
-
-.btn-dark {
-  padding: 0.5rem 1rem;
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-weight: 700;
-  flex: 1 1;
+  border-radius: 0.5rem;
+  filter:drop-shadow(2px 2px 3px rgb(0, 0, 0, 0.5));
+  transition: 0.25s ease-out;
+  background: var(--background);
   color: var(--text);
-  transition-duration: 200ms;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  background: var(--black);
-  color: var(--white);
 }
-
-.btn-dark:hover {
-  background: var(--gray);
-  color: var(--white);
+.primary-btn:hover {
+  background: var(--background-inv);
+  color: var(--text-inv)
 }
 
 .border-on-top {

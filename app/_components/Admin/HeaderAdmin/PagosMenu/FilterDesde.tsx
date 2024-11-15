@@ -41,10 +41,10 @@ export default function FilterDesde() {
     <div className="flex flex-col">
       <input
         ref={desdeRef}
-        className="w-[12ch] text-sm"
+        className="w-[12ch] text-sm hover:text-my-white duration-200"
         onChange={handleDesdeChange}
         type="date" name="desde" id="desde" defaultValue={filterDesde} />
-      <label className="text-gray-500 text-xs tracking-wide mb-1 mx-1" htmlFor="desde">desde</label>
+      <label className="text-my-white text-xs tracking-wide mb-1 mx-1" htmlFor="desde">desde</label>
     </div>
   )
 }

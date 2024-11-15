@@ -13,7 +13,7 @@ const config: Config = {
         "primary-red": "bg-gradient-to-br from-slate-200 to-indigo-600",
         "my-white": "#cacaca",
         "my-black": "#222",
-        "my-hover": "#26262688",
+        "my-hover": "#262626ee",
         "my-hover-secondary": "#dddddd88"
       },
     },

@@ -21,12 +21,12 @@ export default function FilterRubro() {
   return (
     <div className="flex flex-col">
       <select
-        className="w-[11ch] pb-[0.1rem]"
+        className="w-[11ch] pb-[0.1rem] hover:text-my-white duration-200"
         onChange={handleRubroChange}
         name="rubro" id="rubro" defaultValue={filterRubro}>
         {rubrosArray.map(rubro => <option key={rubro} value={rubro}>{rubro}</option>)}
       </select>
-      <label className="text-gray-500 text-xs tracking-wide mx-1" htmlFor="rubro">rubro</label>
+      <label className="text-my-white text-xs tracking-wide mx-1" htmlFor="rubro">rubro</label>
     </div>
   )
 }

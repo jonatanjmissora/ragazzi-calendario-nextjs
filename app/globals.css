@@ -83,7 +83,7 @@ body {
   letter-spacing: 1px;
   font-weight: 700;
   flex: 1 1;
-  color: var(--text);
+  color: var(--black);
   transition-duration: 200ms;
   display: flex;
   justify-content: center;
@@ -92,7 +92,8 @@ body {
 }
 
 .link-btn:hover {
-  background: #888;
+  background: var(--menu-alpha);
+  color: var(--white)
 }
 
 .link-btn-active {

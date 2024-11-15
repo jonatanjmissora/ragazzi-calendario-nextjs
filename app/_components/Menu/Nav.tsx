@@ -10,12 +10,12 @@ export default function Nav() {
   const pathname = usePathname()
 
   return (
-    <nav className='w-full bg-my-white flex flex-col'>
+    <nav className='w-full bg-header flex flex-col text-my-black'>
       <div className='flex h-[2rem]'>
         <Link className={`link-btn ${pathname === "/" && "link-btn-active"} border-r border-gray-400`} href={'/'}>pendientes</Link>
         <Link className={`link-btn border-r border-gray-400 ${pathname === "/pagos-realizados" && "link-btn-active"}`} href={'/pagos-realizados'}>realizados</Link>
-        <Link href={'/admin/pagos'} className={`flex items-center justify-center hover:bg-gray-500 ${pathname.includes("/admin") && "link-btn-active"} w-10`}>
-          <SettingsSVG className='size-6 p-1' currentColor={`${pathname.includes("/admin") ? "var(--white)" : "var(--black)"}`} />
+        <Link href={'/admin/pagos'} className={`flex items-center justify-center hover:bg-my-hover ${pathname.includes("/admin") && "link-btn-active"} hover:text-my-white w-10`}>
+          <SettingsSVG className={`size-6 p-1 ${pathname.includes("/admin") ? "var(--white)" : "var(--black)"}`} currentColor="currentColor" />
         </Link>
       </div>
     </nav>

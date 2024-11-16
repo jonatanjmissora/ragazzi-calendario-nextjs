@@ -10,7 +10,7 @@ export default function Nav() {
   const pathname = usePathname()
 
   return (
-    <nav className='w-full bg-header flex flex-col text-my-black'>
+    <nav className='w-full flex flex-col '>
       <div className='flex h-[2rem]'>
         <Link className={`link-btn ${pathname === "/" && "link-btn-active"}`} href={'/'}>pendientes</Link>
         <Link className={`link-btn ${pathname === "/pagos-realizados" && "link-btn-active"}`} href={'/pagos-realizados'}>realizados</Link>

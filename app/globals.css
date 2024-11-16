@@ -3,28 +3,68 @@
 @tailwind utilities;
 
 :root {
-  --background: linear-gradient(125deg, #aaa, #777);
+
   --primary-grad-red: linear-gradient(to bottom, rgb(177, 33, 33), rgb(104, 29, 29));
-  --primary: rgb(104, 29, 29);
+  --primary-red: rgb(104, 29, 29);
+  --card-grad: radial-gradient(50% 50% at center center, #eee, #aaa), linear-gradient(180deg, #fff, #888);
+
   --white: #cacaca;
   --black: #222;
-  --gray: #888;
-  --text: var(--black);
+  --gray: #444;
+  --gray-light: #888;
+
   --ragazzi: #ffff7d88;
   --patricios: #7dfd7d88;
   --palihue: #ffc8c888;
   --jmolina: #9ed7ff88;
+
+  --background-light: linear-gradient(125deg, #aaa, #777);
+  --background-dark: linear-gradient(125deg, #2a2a2a, #111);
+  --text-dark: var(--black);
+  --text-light: var(--white);
+
+  --menu-alpha: #262626ee;
+
+  --background: var(--background-light);
+  --text: var(--text-dark);
+
+  --primary-btn-bg: var(--gray);
+  --primary-btn-text: var(--text-light);
+  --primary-btn-bg-hover: var(--background-light);
+  --primary-btn-text-hover: var(--text-dark);
+
+  --link-bg: transparent;
+  --link-text: var(--text-dark);
+  --link-bg-hover: var(--gray-light);
+  --link-text-hover: var(--text-light);
+  --link-active-bg: var(--gray);
+  --link-active-text: var(--text-light);
+
+  --weblink-hover: var(--gray-light);
+  --logo-bg-light: url("./_assets/logo-light.svg");
+  --logo-bg: var(--logo-bg-light);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: linear-gradient(125deg, #2a2a2a, #111);
-    --background-inv: linear-gradient(125deg, #888, #aaa);
-    --text: var(--white);
-    --text-inv: var(--black);
+    --background: var(--background-dark);
+    --text: var(--text-light);
     --card-grad: radial-gradient(50% 50% at center center, rgba(4, 4, 4, .66), #2a2a2a), linear-gradient(180deg, #fff, #262626);
-    --card-grad-red: var(--primary-grad-red);
-    --menu-alpha: #262626ee;
+
+    --primary-btn-bg: var(--background-dark);
+    --primary-btn-text: var(--text-light);
+    --primary-btn-bg-hover: var(--background-light);
+    --primary-btn-text-hover: var(--text-dark);
+
+    --link-text: var(--text-light);
+    --link-bg-hover: var(--background-dark);
+    --link-text-hover: var(--text-light);
+    --link-active-bg: var(--background-dark);
+    --link-active-text: var(--text-light);
+
+    --weblink-hover: var(var(--gray));
+    --logo-bg-dark: url("./_assets/logo-dark.svg");
+    --logo-bg: var(--logo-bg-dark);
   }
 }
 
@@ -33,6 +73,11 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   /* overflow: hidden; */
+}
+
+.dashboard-container {
+  background-image: var(--logo-bg);
+  background-size: 30px;
 }
 
 .bg-menu-alpha {
@@ -44,7 +89,7 @@ body {
 }
 
 .bg-histogram {
-  background: var(--card-grad-red);
+  background: var(--primary-grad-red);
 }
 
 .bg-card {
@@ -53,7 +98,7 @@ body {
 
 .bg-card {
   background: var(--card-grad);
-  color: var(--white);
+  color: var(--text);
   box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.4);
 }
 
@@ -89,18 +134,18 @@ body {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background: var(--gray);
-  color: var(--text-inv);
+  background: var(--link-bg);
+  color: var(--link-text);
 }
 
 .link-btn:hover {
-  background: var(--menu-alpha);
-  color: var(--text)
+  background: var(--link-bg-hover);
+  color: var(--link-text-hover)
 }
 
 .link-btn-active {
-  background: var(--background);
-  color: var(--text);
+  background: var(--link-active-bg);
+  color: var(--link-active-text);
 }
 
 .primary-btn {
@@ -113,14 +158,24 @@ body {
   align-items: center;
   gap: 1rem;
   border-radius: 0.5rem;
-  filter:drop-shadow(2px 2px 3px rgb(0, 0, 0, 0.5));
+  filter: drop-shadow(2px 2px 3px rgb(0, 0, 0, 0.5));
   transition: 0.25s ease-out;
-  background: var(--background);
-  color: var(--text);
+  background: var(--primary-btn-bg);
+  color: var(--primary-btn-text);
 }
+
 .primary-btn:hover {
-  background: var(--background-inv);
-  color: var(--text-inv)
+  background: var(--primary-btn-bg-hover);
+  color: var(--primary-btn-text-hover)
+}
+
+.menu-rubro {
+  color: var(--text);
+  border-bottom: 1px solid rgb(63, 63, 63);
+}
+
+.weblink:hover {
+  background: var(--link-bg-hover);
 }
 
 .border-on-top {
@@ -156,18 +211,22 @@ body {
 
 .menu-details[open] summary[data-rubro="ragazzi"] {
   background-color: var(--ragazzi);
+  color: var(--text-dark);
 }
 
 .menu-details[open] summary[data-rubro="patricios"] {
   background-color: var(--patricios);
+  color: var(--text-dark);
 }
 
 .menu-details[open] summary[data-rubro="palihue"] {
   background-color: var(--palihue);
+  color: var(--text-dark);
 }
 
 .menu-details[open] summary[data-rubro="jmolina"] {
   background-color: var(--jmolina);
+  color: var(--text-dark);
 }
 
 .menu-details .plus-svg {
@@ -181,7 +240,7 @@ body {
 /*         INPUTS         */
 input,
 select {
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary-red);
   background: transparent;
   color: var(--black)
 }
@@ -189,12 +248,12 @@ select {
 input:focus,
 select:focus {
   border: none;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary-red);
   outline: none;
 }
 
 input:checked+label {
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary-red);
   color: var(--primary);
 }
 

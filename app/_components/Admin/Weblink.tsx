@@ -23,7 +23,7 @@ export default function Weblink({ link }: { link: WebLinksProps }) {
       </picture>
 
       <form className='flex gap-6 flex-1' action={formAction}>
-        <input className="w-3/4" type="text" defaultValue={link.href} name="href" />
+        <input className="w-3/4 hover:text-my-white" type="text" defaultValue={link.href} name="href" />
         <button className='primary-btn'>Cambiar</button>
       </form>
     </div>

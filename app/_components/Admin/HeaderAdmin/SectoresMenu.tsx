@@ -21,14 +21,14 @@ export default function SectoresMenu() {
   return (
     <div className='w-1/2 h-[5rem] text-my-black flex items-center p-4 '>
       <button
-        className={`link-btn border-b border-gray-500 ${type === "actuales" && "link-btn-active"}`}
+        className={`link-btn ${type === "actuales" && "link-btn-active"}`}
         onClick={() => handleClick("actuales")}
       >
         actuales
       </button>
 
       <button
-        className={`link-btn border-b border-gray-500 ${type === "reset" && "link-btn-active"}`}
+        className={`link-btn ${type === "reset" && "link-btn-active"}`}
         onClick={() => handleClick("reset")}
       >
         reset

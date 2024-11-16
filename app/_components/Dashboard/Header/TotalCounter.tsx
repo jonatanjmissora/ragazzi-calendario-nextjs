@@ -19,7 +19,7 @@ export default function TotalCounter() {
       {total > 0 &&
         <div className='flex justify-center items-center gap-4'>
           <span className='text-my-black tracking-wide font-semibold'>total: $ {montoFormat(total)}</span>
-          <button className='hover:scale-125 text-gray-700 rounded-md hover:bg-my-hover hover:text-my-white duration-200' onClick={resetTotal}><CancelSVG className="size-4 " currentColor='currentColor' /></button>
+          <button className='hover:scale-125 text-my-black rounded-md hover:bg-my-hover hover:text-my-white duration-200' onClick={resetTotal}><CancelSVG className="size-5 p-1" currentColor='currentColor' /></button>
         </div>
       }
 

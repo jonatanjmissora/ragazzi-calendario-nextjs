@@ -49,6 +49,7 @@ export function FechaFilter() {
   return (
     <div className="flex justify-center gap-6">
       <select
+        className="hover:text-my-white duration-200"
         ref={yearRef}
         onChange={handleYearChange}
         name="year" id="year-filter" defaultValue={filterDesde.substring(0, 4)}>
@@ -56,6 +57,7 @@ export function FechaFilter() {
       </select>
 
       <select
+        className="hover:text-my-white duration-200"
         ref={monthRef}
         onChange={handleMonthChange}
         name="month" id="month-filter" defaultValue={monthsArray[Number(filterDesde.substring(5, 7)) - 1]}>

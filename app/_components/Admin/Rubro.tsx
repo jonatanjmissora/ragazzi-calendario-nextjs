@@ -66,13 +66,13 @@ const SectorCard = ({ sector, rubro, sectores, type }: { sector: string, rubro: 
   }
 
   return (
-    <div className="bg-header text-my-white flex gap-2 justify-center items-center px-1 rounded-lg duration-200 hover:bg-my-black hover:text-my-white">
+    <div className="text-my-white flex gap-2 justify-center items-center px-1 rounded-lg duration-200 bg-my-black hover:scale-110 hover:bg-my-hover-secondary">
       <span>{sector}</span>
       <button
-        className="pt-[0.15rem] hover:scale-110"
+        className="pt-[0.15rem]"
         onClick={handleDelete}
       >
-        <CancelSVG className="size-5 p-1" currentColor="#cacaca" />
+        <CancelSVG className="size-5 p-1" currentColor="currentColor" />
       </button>
     </div>
   )

@@ -8,10 +8,10 @@ export default function WebLinks() {
 
   return (
     <div>
-      <ul className='w-full bg-header flex justify-between'>
+      <ul className='w-full flex justify-between'>
         {
           webLinks.map(link =>
-            <li key={link._id} className='w-[20%] p-2 hover:bg-my-hover'>
+            <li key={link._id} className='w-[20%] p-2 weblink duration-200'>
               <Link
                 href={link.href}
                 target="_blank"

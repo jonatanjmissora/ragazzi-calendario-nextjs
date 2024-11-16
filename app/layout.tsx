@@ -19,6 +19,20 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Ragazzi",
   description: "registro de movimientos",
+  icons: [
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      url: './_assets/logo-light.svg',
+      media: '(prefers-color-scheme: light)',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      url: './_assets/logo-dark.svg',
+      media: '(prefers-color-scheme: dark)',
+    },
+  ],
 };
 
 export default function RootLayout({

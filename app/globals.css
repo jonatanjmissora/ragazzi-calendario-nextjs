@@ -41,8 +41,12 @@
   --link-active-text: var(--text-light);
 
   --weblink-hover: var(--gray-light);
-  --logo-bg-light: url("./_assets/logo-light.svg");
-  --logo-bg: var(--logo-bg-light);
+  --dashboard-logo-bg-light: url("./_assets/dashboard-logo-light.svg");
+  --dashboard-logo-bg: var(--dashboard-logo-bg-light);
+  --logo-light: url("./_assets/logo-light.svg");
+  --logo-bg: var(--logo-light);
+
+  --header-bg: var(--white);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -63,8 +67,12 @@
     --link-active-text: var(--text-light);
 
     --weblink-hover: var(var(--gray));
-    --logo-bg-dark: url("./_assets/logo-dark.svg");
-    --logo-bg: var(--logo-bg-dark);
+    --dashboard-logo-bg-dark: url("./_assets/dashboard-logo-dark.svg");
+    --dashboard-logo-bg: var(--dashboard-logo-bg-dark);
+    --logo-dark: url("./_assets/logo-dark.svg");
+    --logo-bg: var(--logo-dark);
+
+    --header-bg: var(--gray);
   }
 }
 
@@ -74,9 +82,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   /* overflow: hidden; */
 }
+.logo-container {
+  background-image: var(--logo-bg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 
 .dashboard-container {
-  background-image: var(--logo-bg);
+  background-image: var(--dashboard-logo-bg);
   background-size: 30px;
 }
 
@@ -85,7 +99,10 @@ body {
 }
 
 .bg-header {
-  background: var(--gray);
+  background: var(--header-bg);
+  box-shadow: 
+              inset -2px -2px 2px rgba(0, 0, 0, 0.75),
+              inset 2px 2px 2px rgba(80, 80, 80, 0.25)
 }
 
 .bg-histogram {
@@ -94,12 +111,11 @@ body {
 
 .bg-card {
   background: var(--card-grad);
-}
-
-.bg-card {
-  background: var(--card-grad);
   color: var(--text);
-  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.4);
+  box-shadow: 
+              inset -2px -2px 2px rgba(0, 0, 0, 0.75),
+              inset 2px 2px 2px rgba(80, 80, 80, 0.25),
+              8px 8px 10px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar {
@@ -278,9 +294,18 @@ input[type="checkbox"]:checked~.label-fill {
   display: flex;
 }
 
-/*         PAGOS GRID         */
-.pagos-grid-6 {
-  grid-template-columns: 0.25fr 1fr 1fr 1fr 1fr 1.25fr;
+/*         PAGOS         */
+.pagos-container span,
+.pagos-container span {
+  text-align: end;
+  height: 1.75rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.db-grid-6 {
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .hover-light,
@@ -300,23 +325,6 @@ input[type="checkbox"]:checked~.label-fill {
 .hover:scale-125:hover {
   transform-origin: center;
   transform: scale(1.25);
-}
-
-.pagos-grid-5 {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1.25fr;
-}
-
-.pagos-grid-6 span,
-.pagos-grid-5 span {
-  text-align: end;
-  height: 1.75rem;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-}
-
-.db-grid-6 {
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .form {

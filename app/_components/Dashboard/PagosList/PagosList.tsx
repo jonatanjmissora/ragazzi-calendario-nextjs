@@ -21,7 +21,7 @@ export default async function PagosList({ page, filterRubro, filterSector, filte
 
   return (
     <div
-      className="py-2 h-[90%] overflow-auto">
+      className="py-2 sm:h-[90%] sm:overflow-auto">
       {filteredPagos.map(pago =>
         <Pago
           key={pago._id.toString()}

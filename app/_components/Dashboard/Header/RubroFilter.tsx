@@ -5,7 +5,7 @@ export function RubroFilter() {
   const filterNames = ["todos", "ragazzi", "patricios", "palihue", "jmolina"]
 
   return (
-    <div className="my-2">
+    <div className="my-2 w-full sm:w-3/4">
 
       <fieldset className="flex gap-6 text-xs">
 

@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     {
       rel: 'icon',
       type: 'image/x-icon',
-      url: './_assets/logo-light.svg',
+      url: 'favicon.ico.',
       media: '(prefers-color-scheme: light)',
     },
     {
       rel: 'icon',
       type: 'image/png',
-      url: './_assets/logo-dark.svg',
+      url: '/_assets/favicon-light.ico',
       media: '(prefers-color-scheme: dark)',
     },
   ],
@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex h-screen overflow-hidden ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`flex flex-col sm:flex-row h-dvh sm:min-h-dvh ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <MenuContainer />
         <Suspense fallback={"Loading ..."}>

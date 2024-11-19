@@ -16,6 +16,35 @@ const config: Config = {
         "my-hover": "#262626ee",
         "my-hover-secondary": "#dddddd88"
       },
+      gridTemplateColumns: {
+        "my-6": "0.25fr, 1fr, 1fr, 1fr, 1fr, 1.25fr",
+        "my-6-dots": "0.5fr, 1fr, 1fr, 1fr, 1fr, 0.5fr",
+        "my-5": "1fr, 1fr, 1fr, 1fr, 1.25fr",
+      },
+      keyframes: {
+        "appear": {
+          from: {
+            opacity: "0",
+          },
+          to: {
+            opacity: "1"
+          },
+        },
+        "slide": {
+          from: {
+            transform: "translateX(-50%)",
+            opacity: "0",
+          },
+          to: {
+            transform: "translateX(0%)",
+            opacity: "1",
+          },
+        }
+      },
+      animation: {
+        "appear": "appear 0.75s ease-in-out",
+        "slide": "slide 0.75s ease-in-out"
+      }
     },
   },
   plugins: [],

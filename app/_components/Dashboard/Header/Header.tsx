@@ -6,11 +6,11 @@ import TotalCounter from "./TotalCounter"
 export default function Header({ page }: { page: string }) {
 
     return (
-        <article className="bg-header pt-4">
+        <article className="bg-header py-4 sm:pb-0">
 
             {page === "pendientes" &&
                 <>
-                    <div className="flex-1 flex justify-between items-center mb-2 mx-4">
+                    <div className="flex-1 flex-wrap flex justify-between items-center mb-2 mx-4">
                         <TotalCounter />
                         <RubroFilter />
                     </div>

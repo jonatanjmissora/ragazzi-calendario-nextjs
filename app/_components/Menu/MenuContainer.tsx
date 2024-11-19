@@ -6,8 +6,6 @@ export default async function MenuContainer() {
   const data = await getSectoresAction("SectoresActuales")
 
   return (
-    <>
-      <Menu data={data} />
-    </>
+    <Menu data={data} />
   )
 }

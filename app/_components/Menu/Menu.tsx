@@ -20,11 +20,9 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
     const pathname = usePathname()
 
     return (
-        <section className="relative w-[300px] min-h-screen bg-card flex flex-col shadow-lg ">
-            <div className="flex flex-col">
-                <Nav />
-                <Logo />
-            </div>
+        <section className="w-full mt-20 relative bg-card flex flex-col shadow-lg animate-slide sm:mt-0 sm:w-[300px] sm:min-h-screen">
+            <Nav />
+            <Logo />
             {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(data, rubro)} />)}
             {pathname.includes("admin") && <MenuFooter />}
             {pathname === ("/") && <ResetBtn />}

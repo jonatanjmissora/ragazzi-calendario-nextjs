@@ -33,8 +33,8 @@ export default function Pago({ pago }: { pago: PagoProps }) {
   return (
     <>
       <article
-        className={`grid pagos-grid-6 hover-light items-center tracking-wide rounded-sm 
-      ${pathname.includes("admin") ? "m-[0.125rem]" : "m-1"} mx-4 text-my-black  ${pago.rubro}`}
+        className={`pagos-container grid grid-cols-my-6-dots sm:grid-cols-my-6 hover-light items-center tracking-wide rounded-sm 
+          ${pathname.includes("admin") ? "m-[0.125rem]" : "m-1"} mx-4 text-my-black ${pago.rubro}`}
       >
         {pathname === "/" && <PagoCheckbox pago={pago} />}
         {pathname === "/pagos-realizados" &&

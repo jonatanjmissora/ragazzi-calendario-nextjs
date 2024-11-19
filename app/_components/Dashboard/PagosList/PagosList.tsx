@@ -27,6 +27,7 @@ export default async function PagosList({ page, filterRubro, filterSector, filte
           key={pago._id.toString()}
           pago={pago}
         />)}
+
     </div>
   )
 }

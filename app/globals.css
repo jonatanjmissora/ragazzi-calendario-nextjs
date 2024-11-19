@@ -295,7 +295,6 @@ input[type="checkbox"]:checked~.label-fill {
 }
 
 /*         PAGOS         */
-.pagos-container span,
 .pagos-container span {
   text-align: end;
   height: 1.75rem;
@@ -303,6 +302,21 @@ input[type="checkbox"]:checked~.label-fill {
   justify-content: end;
   align-items: center;
 }
+
+@media screen and (max-width: 500px) {
+  .pagos-container span {
+    font-size: 11px;
+  }
+}
+
+/* summary::-webkit-details-marker {
+  display: none;
+ } */
+ 
+ summary {
+  list-style: none;
+ }
+
 
 .db-grid-6 {
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;

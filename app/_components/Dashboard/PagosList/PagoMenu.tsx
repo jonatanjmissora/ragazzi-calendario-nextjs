@@ -63,39 +63,56 @@ export default function PagoMenu({ pago, setShowModal, setShowConfirm }
           ? (<div className="flex justify-center"><SpinnerSVG className="size-7 p-1 origin-center hover:scale-150 duration-200" currentColor={"#dd0000"} /></div>)
           : (
             <>
-              <div className="hidden sm:flex justify-center items-center gap-6">
-                <button id="check-btn"
-                  className=""
-                  onClick={handlePagado}
-                  type="button" >
-                  <CheckSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#008000" />
-                </button>
 
-                <button id="cancel-btn"
-                  onClick={handleCancel}
-                  type="button" >
-                  <CancelSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#ff0000" />
-                </button>
-
-                <button id="edit-btn"
-                  onClick={handleEdit}
-                  type="button" >
-                  <EditSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#000000" />
-                </button>
-              </div>
+              <MenuIcons style="desktop" handlePagado={handlePagado} handleCancel={handleCancel} handleEdit={handleEdit} />
 
               <div className="flex sm:hidden justify-center items-center h-full">
-                <button>
-                  <DotsSVG className="border size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#aaa"/>
-                </button>
+                <details name="menu" className="relative">
+                  <summary className="list-none">
+                    <DotsSVG className="size-5 p-1 relative z-0" currentColor="#cacaca" />
+                  </summary>
+
+                  <MenuIcons style="mobil" handlePagado={handlePagado} handleCancel={handleCancel} handleEdit={handleEdit} />
+
+                </details>
               </div>
-              
+
             </>
           )
       }
 
       <span className="absolute -bottom-4 left-4 text-xs text-red-700 bg-my-white">{error}</span>
 
+    </div>
+  )
+}
+
+const MenuIcons = ({ style, handlePagado, handleCancel, handleEdit }
+  : { style: string, handlePagado: () => void, handleCancel: () => void, handleEdit: () => void }) => {
+
+  const styleClass = style === "desktop"
+    ? "hidden sm:flex justify-center items-center gap-6"
+    : "absolute z-10 top-[100%] -right-[10%] bg-my-white p-2 rounded-md"
+
+  return (
+    <div className={styleClass}>
+      <button id="check-btn"
+        onClick={handlePagado}
+        type="button" >
+        <CheckSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#008000" />
+      </button>
+
+      <button id="cancel-btn"
+        onClick={handleCancel}
+        type="button" >
+        <CancelSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#ff0000" />
+      </button>
+
+      <button id="edit-btn"
+        onClick={handleEdit}
+        type="button" >
+        <EditSVG className="size-5 rounded-sm hover:scale-125 hover:bg-my-hover-secondary duration-200" currentColor="#000000" />
+      </button>
     </div>
   )
 }

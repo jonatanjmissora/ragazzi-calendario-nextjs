@@ -7,7 +7,7 @@ export function RubroFilter() {
   return (
     <div className="my-2 w-full sm:w-3/4">
 
-      <fieldset className="flex gap-6 text-xs">
+      <fieldset className="flex text-xs">
 
         {filterNames.map(name =>
           <Input key={name} text={name} />

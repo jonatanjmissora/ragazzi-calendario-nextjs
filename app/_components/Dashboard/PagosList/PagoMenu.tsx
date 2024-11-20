@@ -56,7 +56,7 @@ export default function PagoMenu({ pago, setShowModal, setShowConfirm }
 
   return (
     <div id="span-menu"
-      className="w-10/12 ml-auto sm:flex items-center justify-center bg-menu-alpha h-full">
+      className="w-10/12 ml-auto sm:flex items-center justify-center bg-pago-menu h-full">
 
       {
         isLoading

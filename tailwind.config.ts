@@ -13,6 +13,7 @@ const config: Config = {
         "primary-red": "bg-gradient-to-br from-slate-200 to-indigo-600",
         "my-white": "#cacaca",
         "my-black": "#222",
+        "my-gray": "#555",
         "my-hover": "#262626ee",
         "my-hover-secondary": "#dddddd88"
       },
@@ -39,11 +40,24 @@ const config: Config = {
             transform: "translateX(0%)",
             opacity: "1",
           },
+        },
+        "slide-right": {
+          "0%": {
+            transform: "translateX(100%)",
+          },
+          "100%": {
+            transform: "translateX(0%)",
+          },
         }
       },
       animation: {
         "appear": "appear 0.75s ease-in-out",
-        "slide": "slide 0.75s ease-in-out"
+        "slide": "slide 0.75s ease-in-out",
+        "slide-right-0": "slide-right 0.5s ease-in 0s forwards",
+        "slide-right-1": "slide-right 0.5s ease-in 0.15s forwards",
+        "slide-right-2": "slide-right 0.5s ease-in 0.30s forwards",
+        "slide-right-3": "slide-right 0.5s ease-in 0.45s forwards",
+        "slide-right-4": "slide-right 0.5s ease-in 0.6s forwards",
       }
     },
   },

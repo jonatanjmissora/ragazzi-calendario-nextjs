@@ -4,6 +4,7 @@ import "./globals.css";
 import { Suspense } from "react";
 import MenuContainer from "./_components/Menu/MenuContainer";
 import { Toaster } from "react-hot-toast";
+import Scroll from "./_components/Scroll";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,8 +43,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Scroll />
       <body
-        className={`flex flex-col sm:flex-row sm:min-h-dvh ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`flex flex-col sm:flex-row sm:h-dvh ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <MenuContainer />
         <Suspense fallback={"Loading ..."}>

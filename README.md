@@ -1,16 +1,4 @@
 
-MENU
-=====
-
-DASHBOARD 
-==========
-pagos-pendientes: 
-    
-pagos-realizados: 
-
-ADMIN
-======
-
 hacer login
 
 skelton / loading
@@ -22,11 +10,11 @@ pendientes:
 admin:
 
 menu movil
-  hacer que se cierre cuando elijo
-  colocar un background al link activo
-  hacer animacion
-  reemplazar X con un svg
-  ver tema
+  temas
+  cerrar sesion
+  menu para light mode
 
+
+convertir a Nextjs15 y React19
 
 

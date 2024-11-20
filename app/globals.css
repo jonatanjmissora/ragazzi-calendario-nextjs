@@ -45,8 +45,12 @@
   --dashboard-logo-bg: var(--dashboard-logo-bg-light);
   --logo-light: url("./_assets/logo-light.svg");
   --logo-bg: var(--logo-light);
+  --logo-bg-inv: url("./_assets/logo-dark.svg");
 
   --header-bg: var(--white);
+  --hamb-menu-color: var(--black);
+  --hamb-menu-bg: var(--white);
+  --pago-menu-bg: var(--gray-light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -71,8 +75,12 @@
     --dashboard-logo-bg: var(--dashboard-logo-bg-dark);
     --logo-dark: url("./_assets/logo-dark.svg");
     --logo-bg: var(--logo-dark);
+    --logo-bg-inv: url("./_assets/logo-light.svg");
 
     --header-bg: var(--gray);
+    --hamb-menu-color: var(--white);
+    --hamb-menu-bg: var(--gray);
+    --pago-menu-bg: var(--gray);
   }
 }
 
@@ -84,11 +92,28 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   /* overflow: hidden; */
 }
+
 .logo-container {
-  background-image: var(--logo-bg);
+  background: var(--logo-bg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.logo-container-inv {
+  background: var(--logo-bg-inv);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.hamb-menu {
+  color: var(--hamb-menu-color);
+  background: var(--hamb-menu-bg);
+}
+
+.bg-pago-menu {
+  background: var(--pago-menu-bg);
 }
 
 .bg-menu-alpha {
@@ -97,9 +122,9 @@ body {
 
 .bg-header {
   background: var(--header-bg);
-  box-shadow: 
-              inset -2px -2px 2px rgba(0, 0, 0, 0.75),
-              inset 2px 2px 2px rgba(80, 80, 80, 0.25)
+  box-shadow:
+    inset -2px -2px 2px rgba(0, 0, 0, 0.75),
+    inset 2px 2px 2px rgba(80, 80, 80, 0.25)
 }
 
 .bg-histogram {
@@ -109,10 +134,10 @@ body {
 .bg-card {
   background: var(--card-grad);
   color: var(--text);
-  box-shadow: 
-              inset -2px -2px 2px rgba(0, 0, 0, 0.75),
-              inset 2px 2px 2px rgba(80, 80, 80, 0.25),
-              8px 8px 10px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    inset -2px -2px 2px rgba(0, 0, 0, 0.75),
+    inset 2px 2px 2px rgba(80, 80, 80, 0.25),
+    8px 8px 10px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar {
@@ -309,10 +334,10 @@ input[type="checkbox"]:checked~.label-fill {
 /* summary::-webkit-details-marker {
   display: none;
  } */
- 
- summary {
+
+summary {
   list-style: none;
- }
+}
 
 
 .db-grid-6 {

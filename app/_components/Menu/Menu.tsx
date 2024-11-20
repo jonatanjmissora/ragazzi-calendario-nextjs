@@ -20,7 +20,7 @@ export default function Menu({ data }: { data: MenuRubroProps[] }) {
     const pathname = usePathname()
 
     return (
-        <section className="w-full mt-20 relative bg-card flex flex-col shadow-lg animate-slide sm:mt-0 sm:w-[300px] sm:min-h-screen">
+        <section className="w-full relative bg-card flex flex-col shadow-lg animate-slide sm:mt-0 sm:w-[300px] sm:min-h-screen">
             <Nav />
             <Logo />
             {sortedRubros.map(rubro => <Rubro key={rubro} rubro={rubro} sectores={getSectores(data, rubro)} />)}

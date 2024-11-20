@@ -1,14 +1,11 @@
 import { getHistogramAction } from "@/app/_actions/pagosAction"
 import { HistoProps } from "@/app/_types/histogram"
 import { PagoProps } from "@/app/_types/pagos"
-import { HISTOGRAM } from "@/app/_lib/utils/constants"
 import montoFormat from "@/app/_lib/utils/montoFormat"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 
 export default function Histogram({ pago }: { pago: PagoProps }) {
-
-    // const histogram = HISTOGRAM
 
     const [histogram, setHistogram] = useState<HistoProps>({ id: "", pagos: [] })
 
@@ -21,21 +18,31 @@ export default function Histogram({ pago }: { pago: PagoProps }) {
 
     useEffect(() => {
 
+        let histogramNumber = 12
+        if (window.screen.width < 500) histogramNumber = 4
+
         const getHistory = async () => {
             const res = await getHistogramAction(pago.rubro, pago.sector)
             if (res?.error) toast.error("No fue posible cargar histograma")
-            else setHistogram(res.data)
+            else {
+                if (histogramNumber === 4) {
+                    const newPagos = res.data.pagos.slice(9, 13)
+                    const newHistogram = { ...res.data, pagos: newPagos }
+                    setHistogram(newHistogram)
+                }
+                else setHistogram(res.data)
+            }
         }
 
         getHistory()
 
-    }, [])
+    }, [pago])
 
     return (
         <div className="bg-header m-4 rounded-lg">
             <p className="w-full text-my-black pt-2 mx-4">{`${pago.rubro} - ${pago.sector}`}</p>
 
-            <div className="flex flex-row-reverse justify-center items-end">
+            <div className="flex flex-row-reverse justify-center items-end overflow-hidden">
                 {
                     histogram.pagos.map(pago => <Bar key={pago.fecha} fecha={pago.fecha} monto={pago.monto} heightPercentage={getMontoHeight(pago.monto)} />)
                 }
@@ -47,9 +54,8 @@ export default function Histogram({ pago }: { pago: PagoProps }) {
 const Bar = ({ fecha, monto, heightPercentage }: { fecha: string, monto: string, heightPercentage: number }) => {
 
     const isLower = (!heightPercentage || heightPercentage < 2) ? true : false
-    console.log(fecha, heightPercentage, isLower)
     return (
-        <div className="w-[10%] text-center my-2">
+        <div className="w-[20%] sm:w-[10%] text-center my-2">
             <div
                 style={{ height: `${heightPercentage}rem` }}
                 className={`relative w-full text-xs bg-histogram border-on-top pt-1 flex justify-center`}>

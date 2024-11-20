@@ -16,14 +16,14 @@ export default function Weblink({ link }: { link: WebLinksProps }) {
   }
 
   return (
-    <div className='bg-header p-4 rounded-lg shadow flex justify-between items-center gap-12'>
+    <div className='bg-header p-4 rounded-lg shadow flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-12'>
 
       <picture className='size-8 flex relative'>
         <Image src={link.img} alt={link._id} fill />
       </picture>
 
-      <form className='flex gap-6 flex-1' action={formAction}>
-        <input className="w-3/4 hover:text-my-white" type="text" defaultValue={link.href} name="href" />
+      <form className='w-full flex flex-col sm:flex-row gap-6 flex-1' action={formAction}>
+        <input className="w-full sm:w-3/4 hover:text-my-white" type="text" defaultValue={link.href} name="href" />
         <button className='primary-btn'>Cambiar</button>
       </form>
     </div>

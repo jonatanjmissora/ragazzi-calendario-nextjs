@@ -6,7 +6,7 @@ export default function AddPagoBtn({ setShowModal }: { setShowModal: React.Dispa
 
   return (
     <button
-      className="primary-btn"
+      className="primary-btn my-4"
       onClick={handleAddPago}
     >
       Agregar

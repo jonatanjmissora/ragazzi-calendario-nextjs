@@ -11,7 +11,7 @@ export default function WebLinks() {
       <ul className='w-full flex justify-between'>
         {
           webLinks.map(link =>
-            <li key={link._id} className='w-[20%] p-2 weblink duration-200'>
+            <li key={link._id} className='w-[15%] sm:w-[20%] p-2 weblink duration-200'>
               <Link
                 href={link.href}
                 target="_blank"

@@ -11,9 +11,9 @@ export default function PagosMenu() {
   const [showModal, setShowModal] = useState<boolean>(false)
 
   return (
-    <article className="flex justify-between items-center h-[5rem] mx-4">
+    <article className="flex flex-wrap text-sm sm:text-base justify-center sm:justify-between items-center pb-2 m-4 sm:pb-0 sm:h-[5rem] sm:my-0">
 
-      <div className="flex justify-center items-center gap-8">
+      <div className="flex flex-wrap justify-center items-center gap-x-20 gap-y-4 sm:gap-8">
 
         <FilterRubro />
 

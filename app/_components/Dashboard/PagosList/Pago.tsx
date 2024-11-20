@@ -75,7 +75,7 @@ export default function Pago({ pago }: { pago: PagoProps }) {
         {
           pathname === "/"
             ? <PagoMenu pago={pago} setShowModal={setShowModal} setShowConfirm={setShowConfirm} />
-            : <span className="mr-10">{pago.pagado}</span>
+            : <span className="sm:mr-10">{pago.pagado.substring(5, 10)}</span>
         }
 
       </article>

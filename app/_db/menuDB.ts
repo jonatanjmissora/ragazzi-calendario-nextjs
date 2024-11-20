@@ -1,5 +1,4 @@
 import { MenuRubroProps } from "../_types/menuRubros"
-import { MENURUBROS, MENURUBROSRESET } from "../_lib/utils/constants"
 import { mongoClient } from "./clientDB"
 
 export async function deleteSectorDB(collection: string, rubro: string, sectores: string[]) {
@@ -13,7 +12,7 @@ export async function deleteSectorDB(collection: string, rubro: string, sectores
           $set: { 'sectores': sectores }
         }
       )
-    console.log("resultado del update: ", { data })
+    // console.log("resultado del update: ", { data })
     return { data: undefined, error: undefined }
 
   } catch (error) {
@@ -34,7 +33,7 @@ export async function addSectorDB(collection: string, rubro: string, newSectores
           $set: { 'sectores': newSectores }
         }
       )
-    console.log("resultado del update: ", { data })
+    // console.log("resultado del update: ", { data })
     if (!data.acknowledged) throw new Error(JSON.stringify(data))
     return { data: undefined, error: undefined }
 
@@ -68,21 +67,21 @@ export async function resetSectoresDB() {
       .find()
       .toArray() as MenuRubroProps[] | []
 
-      
-    const res =  await mongoClient
+
+    const res = await mongoClient
       .collection<MenuRubroProps>("SectoresActuales")
       .deleteMany({})
-      
-      if (res.deletedCount !== 1) throw new Error("No se pudo eliminar")
+
+    if (res.deletedCount !== 1) throw new Error("No se pudo eliminar")
 
     const res2 = await mongoClient
       .collection<MenuRubroProps>("SectoresActuales")
       .insertMany(rubrosReset)
 
-    if (!res2.insertedIds)  throw new Error(JSON.stringify(res2))
-      
+    if (!res2.insertedIds) throw new Error(JSON.stringify(res2))
+
     return { data: "ok", error: undefined }
-    
+
   } catch (error) {
     if (error instanceof Error) {
       return { data: undefined, error: error.message }

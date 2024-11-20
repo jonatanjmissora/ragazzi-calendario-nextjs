@@ -48,8 +48,8 @@ export async function addAllPagosAction(collection: string, newPagos: PagoProps[
 }
 
 export async function getHistogramAction(rubro: string, sector: string) {
-    let actualDate = getActualDate()
-    let prevYearDate = subtractOneYear(actualDate)
+    const actualDate = getActualDate()
+    const prevYearDate = subtractOneYear(actualDate)
     const filteredPagosArray = await getFilteredPagosDB("PagosRealizados", rubro, sector, prevYearDate, actualDate)
     const pagosArray = filteredPagosArray.map(pago => { return { fecha: pago.vencimiento, monto: pago.monto } })
     const histogramObj = { id: `${rubro}-${sector}`, pagos: pagosArray }

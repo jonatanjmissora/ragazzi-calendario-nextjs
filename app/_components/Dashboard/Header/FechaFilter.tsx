@@ -47,7 +47,7 @@ export function FechaFilter() {
   }
 
   return (
-    <div className="flex justify-center gap-6">
+    <div className="flex justify-center gap-6 w-full sm:w-max">
       <select
         className="hover:text-my-white duration-200"
         ref={yearRef}

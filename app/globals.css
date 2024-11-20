@@ -78,7 +78,9 @@
 
 body {
   color: var(--text);
-  background: var(--background);
+  background: var(--dashboard-logo-bg), var(--background);
+  background-size: 30px;
+  background-attachment: fixed;
   font-family: Arial, Helvetica, sans-serif;
   /* overflow: hidden; */
 }
@@ -87,11 +89,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-}
-
-.dashboard-container {
-  background-image: var(--dashboard-logo-bg);
-  background-size: 30px;
 }
 
 .bg-menu-alpha {
@@ -305,7 +302,7 @@ input[type="checkbox"]:checked~.label-fill {
 
 @media screen and (max-width: 500px) {
   .pagos-container span {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 

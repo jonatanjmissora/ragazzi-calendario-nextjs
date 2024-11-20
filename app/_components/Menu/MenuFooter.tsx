@@ -28,7 +28,7 @@ export default function PagoMenuFooter() {
     }
 
     return (
-        <article className="w-full flex flex-col gap-4 items-center justify-center mt-8">
+        <article className="w-full flex flex-col gap-4 items-center justify-center my-8">
             <button
                 className={`primary-btn w-1/2 ${isLoading[0] && "bg-my-white"}`}
                 onClick={handleMenuReset}

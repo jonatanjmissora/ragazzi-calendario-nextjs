@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex flex-col sm:flex-row h-dvh sm:min-h-dvh ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`flex flex-col sm:flex-row sm:min-h-dvh ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <MenuContainer />
         <Suspense fallback={"Loading ..."}>

@@ -21,7 +21,7 @@ export default function Header({ page }: { page: string }) {
             {
                 page === "realizados" &&
                 <>
-                    <div className="flex-1 flex justify-between items-center mb-2 mx-4">
+                    <div className="flex-1 flex flex-wrap justify-between items-center mb-2 mx-4 text-sm sm:text-base">
                         <FechaFilter />
                         <RubroFilter />
                     </div>

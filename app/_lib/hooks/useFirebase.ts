@@ -36,19 +36,15 @@ export const useFirebase = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [router]);
 
   useEffect(() => {
-
     const get = async () => {
       const res = await getCollection(collection) as FireDataProps[]
       setFirebaseData(res)
     }
-
     if (firebaseUser) {
-
       get()
-
     }
   }, [firebaseUser]);
 

@@ -3,7 +3,7 @@ import { create } from 'zustand';
 // State types
 interface States {
   totalIds: string[];
-  totalArray: {id: string, monto: number}[];
+  totalArray: { id: string, monto: number }[];
   total: number;
 }
 
@@ -21,13 +21,15 @@ export const useCountStore = create<States & Actions>((set) => ({
   totalIds: [],
   totalArray: [],
   total: 0,
-    
+
   // Actions
-  addId: (id, monto) => set((state) => ({totalIds: [...state.totalIds, id], totalArray: [...state.totalArray, {id, monto}]})),
-  eliminateId: (id) => set((state) => 
-    ({totalIds: [...state.totalIds.filter(totalId => id !== totalId)],
-    totalArray: [...state.totalArray.filter(totalId => id !== totalId.id)]}
+  addId: (id, monto) => set((state) => ({ totalIds: [...state.totalIds, id], totalArray: [...state.totalArray, { id, monto }] })),
+  eliminateId: (id) => set((state) =>
+  ({
+    totalIds: [...state.totalIds.filter(totalId => id !== totalId)],
+    totalArray: [...state.totalArray.filter(totalId => id !== totalId.id)]
+  }
   )),
-  getTotal: () =>  set((state) => ({total: state.totalArray.reduce((acc, pago) => acc + pago.monto, 0) })),
-  resetTotal: () => set((state) => ({total: 0, totalIds: [], totalArray: []})),
+  getTotal: () => set((state) => ({ total: state.totalArray.reduce((acc, pago) => acc + pago.monto, 0) })),
+  resetTotal: () => set(() => ({ total: 0, totalIds: [], totalArray: [] })),
 }));

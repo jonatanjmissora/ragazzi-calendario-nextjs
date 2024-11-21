@@ -3,7 +3,6 @@
 import { revalidatePath } from "next/cache"
 import { addAllPagosDB, addPagoDB, deleteAllPagosDB, deletePagoDB, getFilteredPagosDB, getPagosDB, updatePagoDB } from "../_db/pagosDB"
 import { PagoProps } from "../_types/pagos"
-import { addSectorAction, getSectoresAction } from "./menuAction"
 import { getActualDate, subtractOneYear } from "../_lib/utils/date"
 
 export async function addPagoAction(collection: string, newPago: PagoProps) {

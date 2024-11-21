@@ -4,7 +4,7 @@ import DotEmptySVG from "@/app/_assets/DotEmptySvg"
 import DotFillSVG from "@/app/_assets/DotFillSvg"
 import { useCountStore } from "@/app/_lib/zustand/counter";
 import { PagoProps } from "@/app/_types/pagos"
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export default function PagoCheckbox({ pago }: { pago: PagoProps }) {
 

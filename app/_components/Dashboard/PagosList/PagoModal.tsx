@@ -16,7 +16,7 @@ const editPago = async (collection: string, oldPago: PagoProps, newPago: PagoPro
     if (res?.error) return { error: res?.error, data: null }
 
     const res2 = await addPagoAction(collection, newPago)
-    if (res?.error) return { error: res?.error, data: null }
+    if (res2?.error) return { error: res?.error, data: null }
   }
 
   else

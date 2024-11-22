@@ -1,7 +1,8 @@
-import { getFilteredPagosAction } from "@/app/_actions/pagosAction"
-import Pago from "@/app/_components/Dashboard/PagosList/Pago"
 import HeaderTitle from "@/app/_components/Dashboard/Header/HeaderTitle"
 import { addOneMonth, getActualDate } from "@/app/_lib/utils/date"
+import { Suspense } from "react"
+import SkeltonPagos from "@/app/_components/SkeltonPagos"
+import PagosList from "@/app/_components/Dashboard/PagosList/PagosList"
 
 export default async function page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 
@@ -13,14 +14,18 @@ export default async function page({ searchParams }: { searchParams: { [key: str
   const filterDesde = searchParams?.filterDesde || actualDate
   const filterHasta = searchParams?.filterHasta || actualNextMonth
 
-  const pagos = await getFilteredPagosAction("PagosRealizados", filterRubro, filterSector, filterDesde, filterHasta)
-
-  if (pagos.length === 0) return <p className="p-8 text-xl text-my-white">No hay pagos . . .</p>
-
   return (
     <section className='my-4 flex flex-col h-[79%] overflow-auto'>
       <HeaderTitle page="admin" />
-      {pagos.map(pago => <Pago key={pago._id} pago={pago} />)}
+      <Suspense key={Math.random()} fallback={<SkeltonPagos />}>
+        <PagosList
+          page={"admin"}
+          filterRubro={filterRubro}
+          filterSector={filterSector}
+          filterDesde={filterDesde}
+          filterHasta={filterHasta}
+        />
+      </Suspense>
     </section>
   )
 }

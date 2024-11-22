@@ -1,19 +1,12 @@
 
 hacer login
 
-skelton / loading
-
-responsive: 
-pendientes:
-  hay error con el z-index en el menu de pagos
-
-admin:
+hay error con el z-index en el menu de pagos en movil
 
 menu movil
-  temas
   cerrar sesion
-  menu para light mode
 
+cuando filtro por rubro o sector, no llamar a DB, usar zustand para filtrar
 
 convertir a Nextjs15 y React19
 

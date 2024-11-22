@@ -53,11 +53,11 @@ const config: Config = {
       animation: {
         "appear": "appear 0.75s ease-in-out",
         "slide": "slide 0.75s ease-in-out",
-        "slide-right-0": "slide-right 0.5s ease-in 0s forwards",
-        "slide-right-1": "slide-right 0.5s ease-in 0.15s forwards",
-        "slide-right-2": "slide-right 0.5s ease-in 0.30s forwards",
-        "slide-right-3": "slide-right 0.5s ease-in 0.45s forwards",
-        "slide-right-4": "slide-right 0.5s ease-in 0.6s forwards",
+        "slide-right-0": "slide-right 0.35s ease-out 0s forwards",
+        "slide-right-1": "slide-right 0.35s ease-out 0.15s forwards",
+        "slide-right-2": "slide-right 0.35s ease-out 0.30s forwards",
+        "slide-right-3": "slide-right 0.35s ease-out 0.45s forwards",
+        "slide-right-4": "slide-right 0.35s ease-out 0.6s forwards",
       }
     },
   },

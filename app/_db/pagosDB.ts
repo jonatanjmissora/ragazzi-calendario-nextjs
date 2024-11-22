@@ -1,5 +1,4 @@
 import { PagoProps } from "../_types/pagos"
-import { PAGOSPENDIENTES, PAGOSREALIZADOS } from "../_lib/utils/constants"
 import { setQueryAdminPagos } from "../_lib/utils/setQueryAdminPagos"
 import { mongoClient } from "./clientDB"
 
@@ -39,21 +38,8 @@ export async function addPagoDB(collection: string, newPago: PagoProps) {
   }
 }
 
-export async function getPagosDB(collection: string, filterF: string) {
+export async function getPagosDB(collection: string) {
 
-  // let data = [] as PagoProps[]
-  // const rawData = collection === "PagosPendientes"
-  //   ? PAGOSPENDIENTES
-  //   : PAGOSREALIZADOS
-
-  // if (collection === "PagosRealizados") {
-  //   const filteredData = rawData.filter(rdata => rdata.vencimiento.includes(filterF))
-  //   data = [...filteredData]
-  // }
-
-  // else {
-  //   data = [...rawData]
-  // }
 
   const sortedByProp = collection === "PagosPendientes" ? "vencimiento" : "pagado"
 
@@ -96,8 +82,6 @@ export async function deleteAllPagosDB(collection: string) {
 }
 
 export async function getFilteredPagosDB(collection: string, filterRubro: string, filterSector: string, filterDesde: string, filterHasta: string) {
-
-  // const data = PAGOSREALIZADOS
 
   const query = setQueryAdminPagos(filterRubro, filterSector, filterDesde, filterHasta)
 

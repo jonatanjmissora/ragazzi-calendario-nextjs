@@ -1,6 +1,8 @@
+import { Suspense } from "react"
 import DashboardContainer from "../_components/Dashboard/DashboardContainer"
 import PagosList from "../_components/Dashboard/PagosList/PagosList"
 import { addOneMonth, getActualDate } from "../_lib/utils/date"
+import SkeltonPagos from "../_components/SkeltonPagos"
 
 export default async function Page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 
@@ -16,13 +18,17 @@ export default async function Page({ searchParams }: { searchParams: { [key: str
 
     <div className="flex-1 font-[family-name:var(--font-geist-sans)]">
       <DashboardContainer page={"pendientes"}>
-        <PagosList
-          page={"pendientes"}
-          filterRubro={filterRubro}
-          filterSector={filterSector}
-          filterDesde={filterDesde}
-          filterHasta={filterHasta}
-        />
+
+        <Suspense key={Math.random()} fallback={<SkeltonPagos />}>
+          <PagosList
+            page={"pendientes"}
+            filterRubro={filterRubro}
+            filterSector={filterSector}
+            filterDesde={filterDesde}
+            filterHasta={filterHasta}
+          />
+        </Suspense>
+
       </DashboardContainer>
     </div>
   );

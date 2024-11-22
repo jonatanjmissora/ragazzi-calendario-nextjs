@@ -48,7 +48,7 @@ export default function RootLayout({
         className={`flex flex-col sm:flex-row sm:h-dvh ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <MenuContainer />
-        <Suspense fallback={"Loading ..."}>
+        <Suspense fallback={"SUSPENSE inside layout..."}>
           {children}
         </Suspense>
         <Toaster

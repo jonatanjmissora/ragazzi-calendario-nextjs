@@ -11,6 +11,7 @@ export default function ResetBtn() {
   const [error, setError] = useState<string>("")
 
   const formAction = async () => {
+    setError("")
     const res = await menuResetAction()
     if (res?.error) {
       setError(res.error)

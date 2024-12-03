@@ -4,7 +4,7 @@ import { mongoClient } from "./clientDB"
 export async function deleteSectorDB(collection: string, rubro: string, sectores: string[]) {
 
   try {
-    const data = await mongoClient
+    await mongoClient
       .collection(collection)
       .updateOne(
         { rubro },
@@ -63,16 +63,13 @@ export async function resetSectoresDB() {
   try {
 
     const rubrosReset = await mongoClient
-      .collection<MenuRubroProps>("ConsttantMenuSectores")
+      .collection<MenuRubroProps>("ConstantMenuSectores")
       .find()
       .toArray() as MenuRubroProps[] | []
 
-
-    const res = await mongoClient
+    await mongoClient
       .collection<MenuRubroProps>("SectoresActuales")
       .deleteMany({})
-
-    if (res.deletedCount !== 1) throw new Error("No se pudo eliminar")
 
     const res2 = await mongoClient
       .collection<MenuRubroProps>("SectoresActuales")

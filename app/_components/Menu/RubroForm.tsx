@@ -112,7 +112,7 @@ export function SectoresList({ sectores }: { sectores: string[] }) {
 
           <div key={sector} className="text-center w-full flex">
             <input
-              className="hidden flex-0"
+              className="flex-0"
               type="radio" id={sector} name="sector" defaultValue={sector} />
             <label htmlFor={sector}
               className={`${sectores.length > 12 && "text-xs"} text-my-black text-center flex-1 border-b-2 border-transparent hover:bg-my-white hover:text-my-black`} >{sector}</label>

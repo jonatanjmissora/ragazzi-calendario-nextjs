@@ -4,15 +4,15 @@ import SkeltonPagos from "@/app/_components/SkeltonPagos";
 import { addOneMonth, getActualDate } from "@/app/_lib/utils/date";
 import { Suspense } from "react";
 
-export default function Page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
 
   let actualDate = getActualDate()
   actualDate = actualDate.substring(0, 8) + "01"
   const actualNextMonth = addOneMonth(actualDate)
-  const filterRubro = searchParams?.filterR || "todos"
+  const filterRubro = (await searchParams)?.filterR || "todos"
   const filterSector = "todos"
-  const filterDesde = searchParams?.filterDesde || actualDate
-  const filterHasta = searchParams?.filterHasta || actualNextMonth
+  const filterDesde = (await searchParams)?.filterDesde || actualDate
+  const filterHasta = (await searchParams)?.filterHasta || actualNextMonth
 
   return (
     <div className="flex-1 font-[family-name:var(--font-geist-sans)]">

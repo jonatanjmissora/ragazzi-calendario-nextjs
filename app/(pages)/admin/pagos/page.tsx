@@ -4,15 +4,15 @@ import { Suspense } from "react"
 import SkeltonPagos from "@/app/_components/SkeltonPagos"
 import PagosList from "@/app/_components/Dashboard/PagosList/PagosList"
 
-export default async function page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+export default async function page({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
 
   let actualDate = getActualDate()
   actualDate = actualDate.substring(0, 8) + "01"
   const actualNextMonth = addOneMonth(actualDate)
-  const filterRubro = searchParams?.filterRubro || "todos"
-  const filterSector = searchParams?.filterSector || "todos"
-  const filterDesde = searchParams?.filterDesde || actualDate
-  const filterHasta = searchParams?.filterHasta || actualNextMonth
+  const filterRubro = (await searchParams)?.filterRubro || "todos"
+  const filterSector = (await searchParams)?.filterSector || "todos"
+  const filterDesde = (await searchParams)?.filterDesde || actualDate
+  const filterHasta = (await searchParams)?.filterHasta || actualNextMonth
 
   return (
     <section className='my-4 flex flex-col h-[79%] overflow-auto'>

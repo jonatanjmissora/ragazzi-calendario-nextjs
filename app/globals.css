@@ -72,7 +72,7 @@
     --link-active-bg: var(--background-dark);
     --link-active-text: var(--text-light);
 
-    --weblink-hover: var(var(--gray));
+    --weblink-hover: var(--gray);
     --dashboard-logo-bg-dark: url("./_assets/dashboard-logo-dark.svg");
     --dashboard-logo-bg: var(--dashboard-logo-bg-dark);
     --logo-dark: url("./_assets/logo-dark.svg");
@@ -376,7 +376,7 @@ summary {
   transform: scale(1.01);
 }
 
-.hover:scale-125:hover {
+.hover-scale-125:hover {
   transform-origin: center;
   transform: scale(1.25);
 }

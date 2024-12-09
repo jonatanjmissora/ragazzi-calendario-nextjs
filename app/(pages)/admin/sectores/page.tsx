@@ -1,9 +1,9 @@
 import { getSectoresAction } from '@/app/_actions/menuAction'
 import Rubro from '@/app/_components/Admin/Rubro'
 
-export default async function page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+export default async function page({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
 
-  const type = searchParams?.type || "actuales"
+  const type = (await searchParams)?.type || "actuales"
   const collection = type === "actuales" ? "SectoresActuales" : "ConstantMenuSectores"
 
   const sectoresArray = await getSectoresAction(collection)
